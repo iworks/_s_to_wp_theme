@@ -1,0 +1,35 @@
+@import '_mixin';
+
+:root {
+    --font-family-serif: 'Crimson Pro', serif;
+    --font-family-sans-serif: 'Montserrat', sans-serif;
+
+    --color-white: #fff;
+    --color-black: #000;
+
+    --color-primary: #2a2d2e;
+    --color-accent:  #406aa6;
+    --color-alert:   #d80606;
+
+    --color-blue-1: #ccdaeb;
+    --color-blue-2: #254473;
+    --color-blue-3: #1c2b3f;
+
+    --color-gray-1: #c8cfd8;
+    --color-gray-2: #5b6773;
+    --color-gray-3: #{rgba( #c8cfd8, .3 )};
+
+    --padding-default: 30px;
+    --padding-small: 20px;
+
+
+    --button-background: var(--color-accent);
+    --button-background-hover: var(--color-blue-2);
+    --button-border-color: var(--color-accent);
+    --button-border-color-hover: var(--color-blue-2);
+    --button-color: var(--color-white);
+    --button-color-hover: var(--color-white);
+    --button-reverse-background-hover: var(--color-blue-1);
+}
+
+

@@ -1,0 +1,86 @@
+@import '_mixin';
+
+form {
+    button,
+    input,
+    select,
+    textarea {
+        @include font( 14, 17 );
+    }
+    button,
+    input[type=submit] {
+        @include button;
+    }
+    input[type=text],
+    input[type=email],
+    input[type=password],
+    select,
+    textarea {
+        @include radius;
+        background-color: var(--color-white);
+        border-color: var(--color-black);
+        padding: 6px 10px;
+        width: 100%;
+        @include placeholder {
+            color: var(--color-blue-2);
+            font-weight: 300;
+        }
+    }
+    label {
+    }
+    .required-descrpition {
+        strong {
+            color: var(--color-alert);
+        }
+    }
+    .required {
+        label {
+            span {
+                &:after {
+                    content: "*";
+                    color: var(--color-alert);
+                }
+            }
+            div {
+                span {
+                    &:after {
+                        content: "";
+                        display: none;
+                    }
+                }
+            }
+        }
+    }
+    [disabled],
+    [readonly] {
+        opacity: .5;
+        &:hover {
+            cursor: default;
+        }
+    }
+    fieldset {
+        border: 0;
+    }
+    .select2-container {
+        width: 100% !important;
+    }
+}
+
+.button {
+    @include button;
+}
+.wp-block-file {
+    @media screen and (max-width: #{ $width_s - 1px }) {
+        padding-top: var(--padding-small);
+        .wp-block-file__button {
+            width: 100%;
+            text-align: center;
+        }
+    }
+    @media screen and (min-width: $width_s) {
+        text-align: right;
+    }
+    .wp-block-file__button {
+        @include button_reverse;;
+    }
+}
