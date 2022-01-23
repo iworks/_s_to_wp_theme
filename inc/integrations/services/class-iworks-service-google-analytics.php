@@ -15,7 +15,7 @@ class iWorks_Integration_Service_Google_Analitics {
 		if ( is_user_logged_in() ) {
 			return;
 		}
-		if ( empty( $this->id ) {
+		if ( empty( $this->id ) ) {
 			return;
 		}
 		?>
