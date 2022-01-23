@@ -13,7 +13,7 @@ ASSETS=${PWD}/${THEME_SLUG}/assets
 # get "_s" theme
 #
 curl https://underscores.me/ -d "underscoresme_name=$1&underscoresme_slug=${THEME_SLUG}&underscoresme_sass=1&underscoresme_generate=1" -o ${THEME_SLUG}.zip
-unzip ${THEME_SLUG}.zip
+unzip -o ${THEME_SLUG}.zip
 rm ${THEME_SLUG}.zip
 rm ${THEME}/composer.json
 #
@@ -30,22 +30,18 @@ mkdir -p ${ASSETS}/scripts/admin
 mv ${THEME}/js/customizer.js ${THEME}/assets/scripts/admin
 rm -rf ${THEME}/js
 #
-# inc
-#
-mv ${THEME}/inc ${THEME}/includes
-#
 # https://github.com/iworks/_s_to_wp_theme/archive/refs/heads/master.zip
 #
 wget https://github.com/iworks/_s_to_wp_theme/archive/refs/heads/master.zip
 
-unzip master.zip
-mv -f _s_to_wp_theme-master/* ${THEME}
+unzip -o master.zip
+cp -r _s_to_wp_theme-master/* ${THEME}
 #
 # clean up
 #
-rm -rf master.zip
-rm -rf _s_to_wp_theme-master
-rm -rf ${THEME_SLUG}.zip
+# rm -rf master.zip
+# rm -rf _s_to_wp_theme-master
+# rm -rf ${THEME_SLUG}.zip
 
 cd ${THEME}
 

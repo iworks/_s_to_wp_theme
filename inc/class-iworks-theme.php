@@ -34,6 +34,10 @@ class iWorks_Theme extends iWorks {
 		add_action( 'wp_head', array( $this, 'html_head' ), PHP_INT_MAX );
 		add_filter( 'body_class', array( $this, 'body_classses' ) );
 		add_filter( 'excerpt_more', array( $this, 'excerpt_more' ) );
+		add_action( 'after_setup_theme', array( $this, 'load_theme_textdomain' ) );
+		add_action( 'after_setup_theme', array( $this, 'setup' ) );
+		add_action( 'after_setup_theme', array( $this, 'content_width' ) );
+		add_action( 'after_setup_theme', array( $this, '' ) );
 		/**
 		 * js
 		 */
@@ -175,6 +179,17 @@ class iWorks_Theme extends iWorks {
 				'after_widget'  => '</div>',
 			)
 		);
+		register_sidebar(
+			array(
+				'name'          => esc_html__( 'Sidebar', 'THEME_SLUG' ),
+				'id'            => 'sidebar-1',
+				'description'   => esc_html__( 'Add widgets here.', 'THEME_SLUG' ),
+				'before_widget' => '<section id="%1$s" class="widget %2$s">',
+				'after_widget'  => '</section>',
+				'before_title'  => '<h2 class="widget-title">',
+				'after_title'   => '</h2>',
+			)
+		);
 	}
 
 	/**
@@ -191,6 +206,37 @@ class iWorks_Theme extends iWorks {
 
 	public function set_iworks_cache_keys() {
 		do_action( 'iworks_cache_keys', array( $this, 'add_iworks_cache_keys' ), 'slider' );
+	}
+
+	public function load_theme_textdomain() {
+		load_theme_textdomain( 'THEME_SLUG', get_template_directory() . '/languages' );
+	}
+
+	public function setup() {
+		add_theme_support( 'automatic-feed-links' );
+		add_theme_support( 'title-tag' );
+		add_theme_support( 'post-thumbnails' );
+		register_nav_menus(
+			array(
+				'menu-1' => esc_html__( 'Primary', 'THEME_SLUG' ),
+			)
+		);
+		add_theme_support(
+			'html5',
+			array(
+				'search-form',
+				'comment-form',
+				'comment-list',
+				'gallery',
+				'caption',
+				'style',
+				'script',
+			)
+		);
+	}
+
+	public function content_width() {
+		$GLOBALS['content_width'] = apply_filters( 'iworks_content_width', 640 );
 	}
 
 }
