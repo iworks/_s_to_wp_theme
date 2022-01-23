@@ -1,6 +1,7 @@
 <?php
-require_once 'class-iworks.php';
-class iWorks_Cookie_Notice extends iWorks {
+require_once 'class-iworks-theme-base.php';
+
+class iWorks_Cookie_Notice extends iWorks_Theme_Base {
 	/**
 	 * Module option name.
 	 *

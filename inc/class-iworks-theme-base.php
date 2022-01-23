@@ -1,6 +1,6 @@
 <?php
 
-abstract class iWorks {
+abstract class iWorks_Theme_Base {
 
 	/**
 	 * Theme url.

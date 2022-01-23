@@ -1,8 +1,8 @@
 <?php
 
-require_once 'class-iworks.php';
+require_once 'class-iworks-theme-base.php';
 
-class iWorks_Theme extends iWorks {
+class iWorks_Theme extends iWorks_Theme_Base {
 
 
 	/**
