@@ -37,7 +37,6 @@ class iWorks_Theme extends iWorks_Theme_Base {
 		add_action( 'after_setup_theme', array( $this, 'load_theme_textdomain' ) );
 		add_action( 'after_setup_theme', array( $this, 'setup' ) );
 		add_action( 'after_setup_theme', array( $this, 'content_width' ) );
-		add_action( 'after_setup_theme', array( $this, '' ) );
 		/**
 		 * js
 		 */
