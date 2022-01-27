@@ -99,7 +99,7 @@ class iWorks_Cookie_Notice extends iWorks_Theme_Base {
 		 * cookie js data
 		 */
 		echo '<script id="iworks-cookie-notice-js">';
-		printf( 'var iworks_cookie = %s;', wp_json_encode( $this->data ) );
+		printf( 'window.iworks_cookie = %s;', wp_json_encode( $this->data ) );
 		echo '</script>';
 		echo PHP_EOL;
 	}

@@ -19,8 +19,8 @@ rm ${THEME}/composer.json
 #
 # SASS
 #
-mkdir -p ${ASSETS}/sass/
-mv ${THEME}/sass ${ASSETS}/sass/frontend
+mkdir -p ${ASSETS}/sass/frontend/
+mv ${THEME}/sass ${ASSETS}/sass/frontend/_s
 #
 # script
 #

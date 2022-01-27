@@ -381,7 +381,7 @@ $font_root: 'assets/fonts/';
     font-weight: 400;
 }
 
-@mixin sedno_tag() {
+@mixin tag() {
     padding: 6px 20px;
     background-color: var(--color-blue-1);
     color: var(--color-accent);
@@ -393,7 +393,7 @@ $font_root: 'assets/fonts/';
     @include radius;
 }
 
-@mixin sedno_social_media() {
+@mixin social_media() {
     @include reset_ul;
     display: inline-flex;
     gap: var(--padding-small);
