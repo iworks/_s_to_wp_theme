@@ -42,6 +42,7 @@ cp -r _s_to_wp_theme-master/* ${THEME}
 rm -rf master.zip
 rm -rf _s_to_wp_theme-master
 rm -rf ${THEME_SLUG}.zip
+rm -rf ${THEME_SLUG}/bin
 
 cd ${THEME}
 

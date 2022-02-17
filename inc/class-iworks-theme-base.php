@@ -182,5 +182,12 @@ abstract class iWorks_Theme_Base {
 			'icon'    => wp_get_attachment_image_src( $attachment_ID, 'thumbnail', true )[0],
 		);
 	}
+
+	/**
+	 * Check is REST API request handler
+	 */
+	protected function is_rest_request() {
+		return defined( 'REST_REQUEST' ) && REST_REQUEST;
+	}
 }
 

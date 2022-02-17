@@ -36,17 +36,21 @@ $image_root: 'assets/images/';
     image: url(#{$image_root}#{$image}?v=#{$version});
 }
 
+@mixin imageb( $image ) {
+    background: {
+        repeat: no-repeat;
+        position: 50% 50%;
+        size: contain;
+        @include image(#{$image});
+    }
+}
+
 @mixin icon( $image ) {
     @include image( 'icons/#{$image}' );
 }
 
 @mixin iconb( $image ) {
-    background: {
-        repeat: no-repeat;
-        position: 50% 50%;
-        size: contain;
-        @include icon(#{$image});
-    }
+    @include imageb( 'icons/#{$image}' );
 }
 
 @mixin default_width_no_paddings() {
@@ -203,6 +207,11 @@ $image_root: 'assets/images/';
 /**
  * fonts
  */
+
+
+@mixin font_s() { @include font(12); }
+@mixin font_m() { @include font(14); }
+@mixin font_l() { @include font(16); }
 
 $font_root: 'assets/fonts/';
 

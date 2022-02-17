@@ -30,6 +30,12 @@ class iWorks_Cookie_Notice extends iWorks_Theme_Base {
 	 * Branda_Cookie_Notice constructor.
 	 */
 	public function __construct() {
+		if ( is_admin() ) {
+			return;
+		}
+		if ( $this->is_rest_request() ) {
+			return;
+		}
 		parent::__construct();
 		add_action( 'wp_footer', array( $this, 'add_cookie_notice' ), PHP_INT_MAX );
 		add_action( 'wp_ajax_iworks_cookie_notice', array( $this, 'save_user_meta' ) );

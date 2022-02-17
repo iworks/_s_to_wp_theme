@@ -1,2 +1,10 @@
 @import '_mixin';
 
+.site-footer {
+    border-top: 1px solid var(--color-gray-1);
+    color: var(--color-gray-1);
+    @include font_s;
+    margin-top: var(--padding-default);
+    padding: var(--padding-small);
+}
+
