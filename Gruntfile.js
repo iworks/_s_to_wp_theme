@@ -43,6 +43,14 @@ module.exports = function(grunt) {
             "assets/css/frontend/_s.css": "assets/sass/frontend/_s/style.scss",
             "assets/css/frontend/content.css": "assets/sass/frontend/content.scss",
             /**
+             * WordPress Block Styles
+             */
+            "assets/css/frontend/blocks-columns.css": "../../../wp-includes/blocks/columns/style.css",
+            "assets/css/frontend/blocks-embed.css": "../../../wp-includes/blocks/embed/style.css",
+            "assets/css/frontend/blocks-gallery.css": "../../../wp-includes/blocks/gallery/style.css",
+            "assets/css/frontend/blocks-group.css": "../../../wp-includes/blocks/group/style.css",
+            "assets/css/frontend/blocks-table.css": "../../../wp-includes/blocks/table/style.css",
+            /**
              * Last at ALL!
              */
             "assets/css/frontend/print.css": "assets/sass/frontend/print.scss",
