@@ -126,8 +126,8 @@ class iWorks_Theme extends iWorks_Theme_Base {
 		if ( is_admin() ) {
 			return;
 		}
-        wp_deregister_style( 'wp-block-library' );
-        wp_deregister_style( 'global-styles' );
+		wp_deregister_style( 'wp-block-library' );
+		wp_deregister_style( 'global-styles' );
 	}
 
 	/**

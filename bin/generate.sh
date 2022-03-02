@@ -46,6 +46,6 @@ rm -rf ${THEME_SLUG}/bin
 
 cd ${THEME}
 
-perl -pi -e 's/THEME_SLUG/${THEME_SLUG}/g' $(grep -rl THEME_SLUG)
-perl -pi -e 's/THEME_NAME/${THEME_NAME}/g' $(grep -rl THEME_NAME)
+perl -pi -e "s/THEME_SLUG/${THEME_SLUG}/g" $(grep -rl THEME_SLUG)
+perl -pi -e "s/THEME_NAME/${THEME_NAME}/g" $(grep -rl THEME_NAME)
 
