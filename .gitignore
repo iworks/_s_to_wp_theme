@@ -1,12 +1,5 @@
-node_modules
-.sass-cache
-release
+.sass-cache/
+assets/css/
+node_modules/
 package-lock.json
-assets/css/frontend/*.map
-assets/css/frontend/*.css
-assets/css/style.css
-style.css
-assets/scripts/frontend.js
-assets/scripts/frontend.min.js
-assets/scripts/customizer.js
-assets/scripts/customizer.min.js
+

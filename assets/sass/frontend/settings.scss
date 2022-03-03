@@ -1,9 +1,10 @@
 @import '_mixin';
 
 :root {
-    --font-family-serif: 'Crimson Pro', serif;
-    --font-family-sans-serif: 'Montserrat', sans-serif;
+    --font-family-serif: serif;
+    --font-family-sans-serif: sans-serif;
 
+    /* COLORS */
     --color-white: #fff;
     --color-black: #000;
 
@@ -11,25 +12,45 @@
     --color-accent:  #406aa6;
     --color-alert:   #d80606;
 
-    --color-blue-1: #ccdaeb;
-    --color-blue-2: #254473;
-    --color-blue-3: #1c2b3f;
+    --color-theme-1: #ccdaeb;
+    --color-theme-2: #254473;
+    --color-theme-3: #1c2b3f;
+    --color-theme-4: #c8cfd8;
+    --color-theme-5: #5b6773;
+    --color-theme-6: #c8cfd8;
 
-    --color-gray-1: #c8cfd8;
-    --color-gray-2: #5b6773;
-    --color-gray-3: #{rgba( #c8cfd8, .3 )};
+    /* BACKGROUND COLORS */
+    --color-background-header: var(--color-accent);
+    --color-background-main:   var(--color-white);
+    --color-background-body:   var(--color-white);
 
-    --padding-default: 30px;
-    --padding-small: 20px;
+    /** TEXT COLORS */
+    --color-text: #000;
 
+    /* LINKS COLORS */
+    --color-link:         var(--color-accent);
+    --color-link-visited: var(--color-accent);
+    --color-link-hover:   var(--color-primary);
+    --color-link-active:  var(--color-primary);
 
-    --button-background: var(--color-accent);
-    --button-background-hover: var(--color-blue-2);
-    --button-border-color: var(--color-accent);
-    --button-border-color-hover: var(--color-blue-2);
-    --button-color: var(--color-white);
-    --button-color-hover: var(--color-white);
-    --button-reverse-background-hover: var(--color-blue-1);
+    /** BUTTONS */
+    --button-background:               var(--color-accent);
+    --button-background-hover:         var(--color-theme-2);
+    --button-border-color:             var(--color-accent);
+    --button-border-color-hover:       var(--color-theme-2);
+    --button-color:                    var(--color-white);
+    --button-color-hover:              var(--color-white);
+    --button-reverse-background-hover: var(--color-theme-1);
 }
+    /** MARGIN & PADDING */
+    --padding-default: 20px;
+    --padding-small: 10px;
 
+    /** radius **/
+    --radius-default: 4px;
+
+    /** font-size **/
+    --font-size-default: 16px;
+    --font-size-small: 13px;
+}
 

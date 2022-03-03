@@ -5,36 +5,8 @@ html {
 }
 
 body {
-    background-color: var(--color-white);
-    color: var(--color-primary);
-    @include font_m;
-    a {
-        text-decoration: none;
-        color: var(--color-primary);
-        &:hover {
-            color: var(--color-accent);
-        }
-    }
-    article {
-        a {
-            color: var(--color-accent);
-            &:visited {
-                color: var(--color-accent);
-            }
-            &:hover {
-                text-decoration: underline;
-            }
-        }
-        h2 {
-            @include font(17);
-        }
-        h3 {
-            @include font(16);
-        }
-        h4 {
-            @include font(15);
-        }
-    }
+    background-color: var(--color-background-body);
+    color: var(--color-text);
 }
 
 @import 'elements/header.scss';
