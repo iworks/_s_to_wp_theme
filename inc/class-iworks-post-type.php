@@ -11,15 +11,8 @@ abstract class iWorks_Post_Type extends iWorks_Theme_Base {
 		/**
 		 * WordPress Hooks
 		 */
-		add_action( 'init', array( $this, 'custom_post_type' ), 0 );
 	}
 
-	/**
-	 * Register Custom Post Type
-	 *
-	 * @since 1.0.0
-	 */
-	abstract public function custom_post_type();
 
 }
 

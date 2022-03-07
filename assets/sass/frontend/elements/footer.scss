@@ -3,7 +3,6 @@
 .site-footer {
     border-top: 1px solid var(--color-theme-4);
     color: var(--color-theme-4);
-    @include font_s;
     margin-top: var(--padding-default);
     padding: var(--padding-small);
 }
