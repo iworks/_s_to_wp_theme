@@ -9,6 +9,7 @@ body {
     color: var(--color-text);
 }
 
+
 @import 'elements/header.scss';
 @import 'elements/layout.scss';
 @import 'elements/forms.scss';
@@ -16,5 +17,6 @@ body {
 @import 'elements/cookie-notice.scss';
 @import 'elements/lds-spinner.scss';
 @import 'elements/footer.scss';
+@import 'elements/commons.scss';
 
 

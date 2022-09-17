@@ -3,8 +3,7 @@
 #iworks-cookie-notice {
     background-color: var(--color-white);
     color: var(--color-black);
-    padding: 12px 0;
-    @include main-padding-lr;
+    padding: var(--padding-small) padding_clamp();
     .cookie-notice-container {
         text-align: center;
         display: grid;

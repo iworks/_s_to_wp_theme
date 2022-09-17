@@ -43,14 +43,18 @@
     --button-reverse-background-hover: var(--color-theme-1);
 
     /** MARGIN & PADDING */
+    --padding-large:   40px;
     --padding-default: 20px;
-    --padding-small: 10px;
+    --padding-small:   15px;
+    --padding-xsmall:  10px;
 
     /** radius **/
     --radius-default: 4px;
 
     /** font-size **/
+    --font-size-large:   20px;
     --font-size-default: 16px;
-    --font-size-small: 13px;
+    --font-size-small:   13px;
+    --font-size-xsmall:  12px;
 }
 

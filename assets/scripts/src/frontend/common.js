@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
                             navigator.clipboard.writeText(this.dataset.url);
                             return false;
                         }
-                        const area = document.createElement('textarea');
+                        var area = document.createElement('textarea');
                         event.preventDefault();
                         body.appendChild(area);
                         area.value = this.dataset.url;

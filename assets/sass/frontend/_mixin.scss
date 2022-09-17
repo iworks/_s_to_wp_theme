@@ -41,6 +41,15 @@ $image_root: 'assets/images/';
     }
 }
 
+@function iurlb( $image ) {
+    @return iurl( backgrounds/#{$image} );
+}
+
+
+@mixin bg( $image ) {
+    @include image( 'backgrounds/#{$image}' );
+}
+
 @mixin default_width() {
     margin: {
         left: auto;
@@ -49,6 +58,12 @@ $image_root: 'assets/images/';
     max-width: $default_width;
     @media print {
         max-width: 100%;
+    }
+    @media screen and ( max-width: #{ $width_x + 1px } ) {
+        margin: {
+            left: var(--padding-xsmall);
+            right: var(--padding-xsmall);
+        }
     }
 }
 
@@ -275,7 +290,6 @@ $image_root: 'assets/images/';
     }
 }
 
-
 @mixin button_before_image() {
     &:before {
         display: block;
@@ -293,7 +307,7 @@ $image_root: 'assets/images/';
 
 @mixin grid( $columns: 1 ) {
     display: grid;
-    column-gap: 9px;
+    column-gap: padding_clamp();
     grid-template-columns: repeat( #{ $columns }, 1fr );
 }
 
@@ -308,15 +322,10 @@ $image_root: 'assets/images/';
     }
 }
 
-@mixin main-padding-lr() {
-    padding: {
-        left: var(--padding-small);
-        right: var(--padding-small);
-    }
-}
-
-
 @mixin background_gradient( $color1: var(--color-white), $color2: $color_accent ) {
     background: transparent linear-gradient(90deg, $color1 0%, $color2 17%, $color2 83%, $color1 100%) 0% 0% no-repeat padding-box;
 }
 
+@function padding_clamp() {
+    @return clamp( var(--padding-xsmall), 2.5vw, var(--padding-default) );
+}

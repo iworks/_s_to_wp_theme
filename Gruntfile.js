@@ -33,7 +33,7 @@ module.exports = function(grunt) {
                 "assets/scripts/src/frontend/navigation.js",
                 "assets/scripts/src/frontend/cookie-notice-front.js",
                 // "assets/scripts/src/frontend/fonts.js",
-                "assets/scripts/src/frontend/slider.js",
+                // "assets/scripts/src/frontend/slider.js",
             ]
         },
 
@@ -428,7 +428,8 @@ module.exports = function(grunt) {
         'cssmin'
     ]);
     grunt.registerTask('build', ['release']);
-    grunt.registerTask('i18n', ['makepot', 'po2mo']);
+    // grunt.registerTask('i18n', ['makepot', 'po2mo']);
+    grunt.registerTask('i18n', ['makepot']);
     grunt.registerTask('js', ['eslint', 'concat', 'uglify']);
     grunt.registerTask('css', ['clean', 'sass', 'autoprefixer', 'concat_css', 'cssmin']);
 
