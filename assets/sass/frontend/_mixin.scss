@@ -45,7 +45,6 @@ $image_root: 'assets/images/';
     @return iurl( backgrounds/#{$image} );
 }
 
-
 @mixin bg( $image ) {
     @include image( 'backgrounds/#{$image}' );
 }
@@ -64,28 +63,6 @@ $image_root: 'assets/images/';
             left: var(--padding-xsmall);
             right: var(--padding-xsmall);
         }
-    }
-}
-
-@mixin default_width_with_media() {
-    @include default_width;
-    @media screen and (max-width: $default_width ) {
-        @include default_inner_padding;
-    }
-}
-
-@mixin default_inner_padding() {
-    padding: {
-        left: var(--padding-default);
-        right: var(--padding-default);
-    }
-}
-
-@mixin short_width() {
-    @include default_width;
-    max-width: 880px;
-    @media screen and ( max-width: #{ $width_s + 1px } ) {
-        max-width: 300px;
     }
 }
 
@@ -132,19 +109,23 @@ $image_root: 'assets/images/';
         clear: both;
     }
 }
+
 @mixin hide {
     opacity: 0;
     @include transition(opacity 0.4s);
 }
+
 @mixin show {
     opacity: 1;
     @include transition(opactiy 0.4s);
 }
+
 @mixin columns($columns) {
     -webkit-columns: $columns;
     -moz-columns: $columns;
     columns: $columns;
 }
+
 @mixin reset_min() {
     margin: 0;
     outline: 0;
@@ -180,13 +161,6 @@ $image_root: 'assets/images/';
     width: unset;
     height: unset;
     text-indent: unset;
-}
-
-@mixin background_size( $size)  {
-    -webkit-background-size: $size;
-    -moz-background-size: $size;
-    -o-background-size: $size;
-    background-size: $size;
 }
 
 @mixin transform($transforms) {
