@@ -19,6 +19,8 @@ module.exports = function(grunt) {
     require('load-grunt-tasks')(grunt);
 
     var buildtime = new Date().toISOString();
+    var buildyear = 1900 + new Date().getYear();
+    var buildtimestamp = new Date().getTime();
 
     var conf = {
         buildtime: buildtime,
@@ -58,13 +60,14 @@ module.exports = function(grunt) {
 
         // BUILD patterns to exclude code for specific builds.
         replaces: {
-            patterns: [{
-                match: /THEME_VERSION/g,
-                replace: "<%= pkg.version %>"
-            }, {
-                match: /BUILDTIME/g,
-                replace: buildtime
-            }, ],
+            patterns: [
+                { match: /AUTHOR_NAME/g, replace: '<%= pkg.author[0].name %>' },
+                { match: /AUTHOR_URI/g, replace: '<%= pkg.author[0].uri %>' },
+                { match: /THEME_VERSION/g, replace: "<%= pkg.version %>" },
+                { match: /BUILDTIMESTAMP/g, replace: buildtimestamp },
+                { match: /BUILDTIME/g, replace: buildtime },
+                { match: /BUILDYEAR/g, replace: buildyear },
+            ],
 
             // Files to apply above patterns to (not only php files).
             files: {
