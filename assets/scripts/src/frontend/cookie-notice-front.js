@@ -1,7 +1,15 @@
 document.addEventListener("DOMContentLoaded", function(event) {
     var value;
-    var cookie_container = document.getElementById(window.iworks_cookie.name);
-    var iworks_cookie_xml_http = new XMLHttpRequest();
+    var cookie_container;
+    var iworks_cookie_xml_http;
+    /**
+     * check
+     */
+    if ('object' !== typeof window.iworks_cookie) {
+        return;
+    }
+    cookie_container = document.getElementById(window.iworks_cookie.name);
+    iworks_cookie_xml_http = new XMLHttpRequest();
     /**
      * get cookie value
      */
