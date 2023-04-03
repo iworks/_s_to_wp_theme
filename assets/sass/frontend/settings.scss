@@ -9,8 +9,8 @@
     --color-black: #000;
 
     --color-primary: #2a2d2e;
-    --color-accent:  #406aa6;
-    --color-alert:   #d80606;
+    --color-accent: #406aa6;
+    --color-alert: #d80606;
 
     --color-theme-1: #ccdaeb;
     --color-theme-2: #254473;
@@ -21,40 +21,51 @@
 
     /* BACKGROUND COLORS */
     --color-background-header: var(--color-accent);
-    --color-background-main:   var(--color-white);
-    --color-background-body:   var(--color-white);
+    --color-background-main: var(--color-white);
+    --color-background-body: var(--color-white);
 
     /** TEXT COLORS */
     --color-text: #000;
 
     /* LINKS COLORS */
-    --color-link:         var(--color-accent);
+    --color-link: var(--color-accent);
     --color-link-visited: var(--color-accent);
-    --color-link-hover:   var(--color-primary);
-    --color-link-active:  var(--color-primary);
+    --color-link-hover: var(--color-primary);
+    --color-link-active: var(--color-primary);
+
+    /* BRANDS COLORS */
+    --color-facebook: #4267b2;
+    --color-instagram: #405de6;
+    --color-linkedin: #0a66c2;
+    --color-twitter: #1da1f2;
 
     /** BUTTONS */
-    --button-background:               var(--color-accent);
-    --button-background-hover:         var(--color-theme-2);
-    --button-border-color:             var(--color-accent);
-    --button-border-color-hover:       var(--color-theme-2);
-    --button-color:                    var(--color-white);
-    --button-color-hover:              var(--color-white);
+    --button-background: var(--color-accent);
+    --button-background-hover: var(--color-theme-2);
+    --button-border-color: var(--color-accent);
+    --button-border-color-hover: var(--color-theme-2);
+    --button-color: var(--color-white);
+    --button-color-hover: var(--color-white);
     --button-reverse-background-hover: var(--color-theme-1);
 
     /** MARGIN & PADDING */
-    --padding-large:   40px;
+    --padding-xlarge: 40px;
+    --padding-large: 30px;
     --padding-default: 20px;
-    --padding-small:   15px;
-    --padding-xsmall:  10px;
+    --padding-small: 15px;
+    --padding-xsmall: 10px;
 
     /** radius **/
     --radius-default: 4px;
 
     /** font-size **/
-    --font-size-large:   20px;
+    --font-size-large: 20px;
+    --font-size-medium: 18px;
     --font-size-default: 16px;
-    --font-size-small:   13px;
-    --font-size-xsmall:  12px;
-}
+    --font-size-small: 14px;
 
+    /** font-weight **/
+    --font-weight-bold: 700;
+    --font-weight-default: 400;
+    --font-weight-thin: 200;
+}
