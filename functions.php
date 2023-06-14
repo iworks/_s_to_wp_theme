@@ -17,3 +17,14 @@ require get_template_directory() . '/inc/template-tags.php';
  */
 require get_template_directory() . '/inc/template-functions.php';
 
+/**
+ * cookie
+ */
+// require_once 'inc/class-iworks-cookie-notice.php';
+// new iWorks_Cookie_Notice;
+
+/**
+ * TOC
+ */
+// require_once 'inc/class-iworks-toc.php';
+// new iWorks_Table_Of_Content;
