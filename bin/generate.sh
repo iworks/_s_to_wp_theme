@@ -36,6 +36,7 @@ wget https://github.com/iworks/_s_to_wp_theme/archive/refs/heads/master.zip
 
 unzip -o master.zip
 cp -r _s_to_wp_theme-master/* ${THEME}
+cp -r _s_to_wp_theme-master/.gitignore ${THEME}
 #
 # clean up
 #

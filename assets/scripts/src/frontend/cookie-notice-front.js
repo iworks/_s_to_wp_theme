@@ -9,6 +9,12 @@ document.addEventListener("DOMContentLoaded", function(event) {
         return;
     }
     cookie_container = document.getElementById(window.iworks_cookie.name);
+    /**
+     * check cookie_container
+     */
+    if (!cookie_container) {
+        return;
+    }
     iworks_cookie_xml_http = new XMLHttpRequest();
     /**
      * get cookie value
