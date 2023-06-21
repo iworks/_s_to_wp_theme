@@ -1,20 +1,15 @@
 document.addEventListener("DOMContentLoaded", function(event) {
-    var value;
-    var cookie_container;
-    var iworks_cookie_xml_http;
+    var value, cookie_container, iworks_cookie_xml_http;
     /**
-     * check
+     * check enviroment
      */
-    if ('object' !== typeof window.iworks_cookie) {
+    if ('undefined' === typeof window.iworks_cookie) {
+        return;
+    }
+    if ('undefined' === typeof window.iworks_cookie.name) {
         return;
     }
     cookie_container = document.getElementById(window.iworks_cookie.name);
-    /**
-     * check cookie_container
-     */
-    if (!cookie_container) {
-        return;
-    }
     iworks_cookie_xml_http = new XMLHttpRequest();
     /**
      * get cookie value
