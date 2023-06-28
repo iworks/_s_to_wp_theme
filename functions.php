@@ -28,3 +28,10 @@ require get_template_directory() . '/inc/template-functions.php';
  */
 // require_once 'inc/class-iworks-toc.php';
 // new iWorks_Table_Of_Content;
+
+/**
+ * Custom Post Type; Person
+ *
+ * use __return_true to turn it on
+ */
+add_filter( 'iworks/theme/load-post-type-person', '__return_false' );
