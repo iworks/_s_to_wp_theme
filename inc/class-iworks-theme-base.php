@@ -68,16 +68,31 @@ abstract class iWorks_Theme_Base {
 	 *
 	 * @param string $file File name.
 	 * @param string $group Group, default "images".
+     * @param boolean $add_version Add theme version, default "false", but always true for images.
 	 *
 	 * @return string URL into asset.
 	 */
-	protected function get_asset_url( $file, $group = 'images' ) {
+	protected function get_asset_url( $file, $group = 'images', $add_version = false ) {
 		$url = sprintf(
 			'%s/assets/%s/%s',
 			$this->url,
 			$group,
 			$file
 		);
+        /**
+         * add version
+         */
+        if (
+            $add_version
+            || 'images' === $group
+        ) {
+            $url = add_query_arg(
+                array(
+                    'ver' => $this->version,
+                ),
+                $url
+            );
+        }
 		return esc_url( $url );
 	}
 
