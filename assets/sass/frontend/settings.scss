@@ -49,11 +49,15 @@
     --button-reverse-background-hover: var(--color-theme-1);
 
     /** MARGIN & PADDING */
-    --padding-xlarge: 40px;
-    --padding-large: 30px;
-    --padding-default: 20px;
-    --padding-small: 15px;
-    --padding-xsmall: 10px;
+    --padding-base: 16px;
+
+    --padding-xxlarge: calc(4 * var(--padding-base));
+    --padding-xlarge: calc(3 * var(--padding-base));
+    --padding-large: calc(2 * var(--padding-base));
+    --padding-default: var(--padding-base);
+    --padding-small: calc(var(--padding-base)*4/5);
+    --padding-xsmall: calc(var(--padding-base)*3/5);
+    --padding-xxsmall: calc(var(--padding-base)/2);
 
     /** radius **/
     --radius-default: 4px;
@@ -66,6 +70,8 @@
 
     /** font-weight **/
     --font-weight-bold: 700;
+    --font-weight-medium: 500;
     --font-weight-default: 400;
+    --font-weight-light: 300;
     --font-weight-thin: 200;
 }
