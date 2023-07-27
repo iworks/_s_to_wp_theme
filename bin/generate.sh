@@ -44,7 +44,7 @@ cp -r _s_to_wp_theme-master/.gitignore ${THEME}
 rm -rf master.zip
 rm -rf _s_to_wp_theme-master
 rm -rf ${THEME_SLUG}.zip
-mv ${THEME_SLUG}/.eslintrc ${THEME_SLUG}
+mv ${THEME_SLUG}/bin/.eslintrc ${THEME_SLUG}/
 rm -rf ${THEME_SLUG}/bin
 
 cd ${THEME}
