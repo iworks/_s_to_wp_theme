@@ -25,6 +25,17 @@ class iWorks_Theme extends iWorks_Theme_Base {
 		include_once 'integrations/services/class-iworks-service-google-analytics.php';
 		new iWorks_Integration_Service_Google_Analitics;
 		/**
+		 * Post Types
+		 */
+		if ( apply_filters( 'iworks/theme/load-post-type-person', false ) ) {
+			include_once 'class-iworks-post-type-person.php';
+			new iWorks_Post_Type_Person;
+		}
+		if ( apply_filters( 'iworks/theme/load-post-type-faq', false ) ) {
+			include_once 'class-iworks-post-type-faq.php';
+			new iWorks_Post_Type_FAQ;
+		}
+		/**
 		 * hooks
 		 */
 		add_action( 'after_setup_theme', array( $this, 'add_image_sizes' ) );

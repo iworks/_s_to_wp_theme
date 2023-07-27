@@ -27,14 +27,14 @@ module.exports = function(grunt) {
 
         // Concatenate those JS files into a single file (target: [source, source, ...]).
         js_files_concat: {
-            "assets/scripts/customizer.js": [
-                "assets/scripts/src/admin/customizer.js",
-            ],
+            // "assets/scripts/customizer.js": [
+                // "assets/scripts/src/admin/customizer.js",
+            // ],
             "assets/scripts/frontend.js": [
                 "assets/scripts/src/frontend/common.js",
                 "assets/scripts/src/frontend/navigation.js",
                 "assets/scripts/src/frontend/cookie-notice-front.js",
-                "assets/scripts/src/frontend/wcag.js",
+                // "assets/scripts/src/frontend/wcag.js",
                 // "assets/scripts/src/frontend/fonts.js",
                 // "assets/scripts/src/frontend/slider.js",
             ]
@@ -62,12 +62,26 @@ module.exports = function(grunt) {
         // BUILD patterns to exclude code for specific builds.
         replaces: {
             patterns: [
-                { match: /AUTHOR_NAME/g, replace: '<%= pkg.author[0].name %>' },
-                { match: /AUTHOR_URI/g, replace: '<%= pkg.author[0].uri %>' },
-                { match: /THEME_VERSION/g, replace: "<%= pkg.version %>" },
                 { match: /BUILDTIMESTAMP/g, replace: buildtimestamp },
                 { match: /BUILDTIME/g, replace: buildtime },
                 { match: /BUILDYEAR/g, replace: buildyear },
+
+                { match: /THEME_AUTHOR_NAME/g, replace: '<%= pkg.author[0].name %>' },
+                { match: /THEME_AUTHOR_URI/g, replace: '<%= pkg.author[0].uri %>' },
+                { match: /THEME_DESCRIPTION/g, replace: '<%= pkg.description %>' },
+                { match: /THEME_NAME/g, replace: '<%= pkg.title %>' },
+                { match: /THEME_TEXT_DOMAIN/g, replace: '<%= pkg.name %>' },
+                { match: /THEME_REQUIRES_PHP/g, replace: '<%= pkg.requires.PHP %>' },
+                { match: /THEME_REQUIRES_WORDPRESS/g, replace: '<%= pkg.requires.WordPress %>' },
+                { match: /THEME_TAGLINE/g, replace: '<%= pkg.tagline %>' },
+                { match: /THEME_TAGS/g, replace: '<%= pkg.tags %>' },
+                { match: /THEME_TESTED_WORDPRESS/g, replace: '<%= pkg.tested.WordPress %>' },
+                { match: /THEME_TILL_YEAR/g, replace: buildyear },
+                { match: /THEME_TITLE/g, replace: '<%= pkg.title %>' },
+                { match: /THEME_URI/g, replace: '<%= pkg.uri %>' },
+                { match: /THEME_VERSION/g, replace: "<%= pkg.version %>" },
+                { match: /THEME_VERSION/g, replace: '<%= pkg.version %>' },
+                { match: /^Version: .+$/g, replace: 'Version: <%= pkg.version %>' },
             ],
 
             // Files to apply above patterns to (not only php files).
@@ -227,7 +241,9 @@ module.exports = function(grunt) {
 
         // CSS - Required for CSS-autoprefixer and maybe some SCSS function.
         compass: {
-            options: {},
+            options: {
+                sourcemap: false
+            },
             server: {
                 options: {
                     debugInfo: true
@@ -238,17 +254,7 @@ module.exports = function(grunt) {
         // CSS - Minify all .css files.
         cssmin: {
             options: {
-                banner: '/*!\n' +
-                    'Theme Name: <%= pkg.title %>\n' +
-                    'Theme URI: <%= pkg.uri %>\n' +
-                    'Author: <%= pkg.author %>\n' +
-                    'Author URI: <%= pkg.author_uri %>\n' +
-                    'Description: <%= pkg.description %>\n' +
-                    'Version: <%= pkg.version %>.<%= new Date().getTime() %>\n' +
-                    'License: GNU General Public License v2 or later\n' +
-                    'Text Domain: ' + conf.translation.textdomain + '\n' +
-                    '\n' +
-                    ' */\n'
+                format: 'beautify'
             },
             minify: {
                 expand: true,
