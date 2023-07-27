@@ -10,9 +10,6 @@ THEME_SLUG=$2
 THEME=${PWD}/${THEME_SLUG}
 ASSETS=${PWD}/${THEME_SLUG}/assets
 
-
-if false; then
-
 #
 # get "_s" theme
 #
@@ -49,16 +46,22 @@ rm -rf _s_to_wp_theme-master
 rm -rf ${THEME_SLUG}.zip
 rm -rf ${THEME_SLUG}/bin
 
-fi
-
 cd ${THEME}
 
-
-
-# perl -pi -e "s/THEME_SLUG/${THEME_SLUG}/g" $(grep -rl THEME_SLUG)
-# perl -pi -e "s/THEME_NAME/${THEME_NAME}/g" $(grep -rl THEME_NAME)
+perl -pi -e "s/THEME_SLUG/${THEME_SLUG}/g" $(grep -rl THEME_SLUG)
+perl -pi -e "s/THEME_NAME/${THEME_NAME}/g" $(grep -rl THEME_NAME)
 
 STYLE=assets/sass/frontend/_s/style.scss
 
-head -14 ${STYLE)
+perl -pi -e 's/^Theme Name.+$/Theme Name: THEME_NAME/' ${STYLE}
+perl -pi -e 's/^Theme URI.+$/Theme URI: THEME_URI/' ${STYLE}
+perl -pi -e 's/^Author:.+$/: THEME_AUTHOR_NAME/' ${STYLE}
+perl -pi -e 's/^Author URI:.+$/: THEME_AUTHOR_URI/' ${STYLE}
+perl -pi -e 's/^Description:.+$/: THEME_DESCRIPTION/' ${STYLE}
+perl -pi -e 's/^Version:.+$/Version: THEME_VERSION.BUILDTIMESTAMP/' ${STYLE}
+perl -pi -e 's/^Tested up to:.+$/Tested up to: THEME_TESTED_WORDPRESS/' ${STYLE}
+perl -pi -e 's/^Requires PHP:.+$/Requires: THEME_REQUIRES_PHP/' ${STYLE}
+perl -pi -e 's/^Text Domain:.+$/Text Domain: THEME_NAME/' ${STYLE}
+perl -pi -e 's/^Tags:.+$/Tags: THEME_TAGS/' ${STYLE}
+#perl -pi -e 's/^.+$/: THEME_/' ${STYLE}
 
