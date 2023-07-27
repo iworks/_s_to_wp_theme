@@ -9,6 +9,10 @@ THEME_SLUG=$2
 
 THEME=${PWD}/${THEME_SLUG}
 ASSETS=${PWD}/${THEME_SLUG}/assets
+
+
+if false; then
+
 #
 # get "_s" theme
 #
@@ -45,8 +49,16 @@ rm -rf _s_to_wp_theme-master
 rm -rf ${THEME_SLUG}.zip
 rm -rf ${THEME_SLUG}/bin
 
+fi
+
 cd ${THEME}
 
-perl -pi -e "s/THEME_SLUG/${THEME_SLUG}/g" $(grep -rl THEME_SLUG)
-perl -pi -e "s/THEME_NAME/${THEME_NAME}/g" $(grep -rl THEME_NAME)
+
+
+# perl -pi -e "s/THEME_SLUG/${THEME_SLUG}/g" $(grep -rl THEME_SLUG)
+# perl -pi -e "s/THEME_NAME/${THEME_NAME}/g" $(grep -rl THEME_NAME)
+
+STYLE=assets/sass/frontend/_s/style.scss
+
+head -14 ${STYLE)
 
