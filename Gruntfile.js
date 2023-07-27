@@ -79,7 +79,6 @@ module.exports = function(grunt) {
                 { match: /THEME_TILL_YEAR/g, replace: buildyear },
                 { match: /THEME_TITLE/g, replace: '<%= pkg.title %>' },
                 { match: /THEME_URI/g, replace: '<%= pkg.uri %>' },
-                { match: /THEME_VERSION/g, replace: "<%= pkg.version %>" },
                 { match: /THEME_VERSION/g, replace: '<%= pkg.version %>' },
                 { match: /^Version: .+$/g, replace: 'Version: <%= pkg.version %>' },
             ],
