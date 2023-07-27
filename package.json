@@ -1,7 +1,7 @@
 {
 	"name": "THEME_SLUG",
 	"title": "THEME_NAME",
-	"tagline": "OPI — Innowacje",
+	"tagline": "",
 	"uri": "http://iworks.pl/wordpress/theme/THEME_SLUG",
 	"description": "",
 	"version": "1.0.0",
@@ -62,12 +62,11 @@
 		"stylelint": "^9.5.0",
 		"stylelint-config-wordpress": "^13.0.0",
 		"stylelint-order": "^6.0.3",
+		"@wordpress/eslint-plugin": "^14",
+		"grunt-eslint": "^23",
 		"time-grunt": "^0.2.3"
 	},
 	"devDependenciesOff": {
-		"eslint": "^4.19.1",
-		"eslint-config-wordpress": "^2.0.0",
-		"grunt-eslint": "^23"
 	},
 	"browserslist": [
 		"> 1%",
