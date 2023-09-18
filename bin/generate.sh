@@ -44,7 +44,7 @@ cp -r _s_to_wp_theme-master/.gitignore ${THEME}
 rm -rf master.zip
 rm -rf _s_to_wp_theme-master
 rm -rf ${THEME_SLUG}.zip
-mv ${THEME_SLUG}/.eslintrc ${THEME_SLUG}
+mv ${THEME_SLUG}/bin/.eslintrc ${THEME_SLUG}/
 rm -rf ${THEME_SLUG}/bin
 
 cd ${THEME}
@@ -56,9 +56,9 @@ STYLE=assets/sass/frontend/_s/style.scss
 
 perl -pi -e 's/^Theme Name.+$/Theme Name: THEME_NAME/' ${STYLE}
 perl -pi -e 's/^Theme URI.+$/Theme URI: THEME_URI/' ${STYLE}
-perl -pi -e 's/^Author:.+$/: THEME_AUTHOR_NAME/' ${STYLE}
-perl -pi -e 's/^Author URI:.+$/: THEME_AUTHOR_URI/' ${STYLE}
-perl -pi -e 's/^Description:.+$/: THEME_DESCRIPTION/' ${STYLE}
+perl -pi -e 's/^Author:.+$/Author: THEME_AUTHOR_NAME/' ${STYLE}
+perl -pi -e 's/^Author URI:.+$/Author URI: THEME_AUTHOR_URI/' ${STYLE}
+perl -pi -e 's/^Description:.+$/Description: THEME_DESCRIPTION/' ${STYLE}
 perl -pi -e 's/^Version:.+$/Version: THEME_VERSION.BUILDTIMESTAMP/' ${STYLE}
 perl -pi -e 's/^Tested up to:.+$/Tested up to: THEME_TESTED_WORDPRESS/' ${STYLE}
 perl -pi -e 's/^Requires PHP:.+$/Requires: THEME_REQUIRES_PHP/' ${STYLE}
