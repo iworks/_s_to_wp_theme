@@ -36,6 +36,17 @@ class iWorks_Theme extends iWorks_Theme_Base {
 			new iWorks_Post_Type_FAQ;
 		}
 		/**
+		 * functionalities
+		 */
+		if ( apply_filters( 'iworks/theme/load-cookies', false ) ) {
+			include_once 'class-iworks-cookie-notice.php';
+			new iWorks_Cookie_Notice;
+		}
+		if ( apply_filters( 'iworks/theme/load-faq', false ) ) {
+			include_once 'class-iworks-toc.php';
+			new iWorks_Table_Of_Content;
+		}
+		/**
 		 * hooks
 		 */
 		add_action( 'after_setup_theme', array( $this, 'add_image_sizes' ) );
@@ -48,6 +59,9 @@ class iWorks_Theme extends iWorks_Theme_Base {
 		add_action( 'after_setup_theme', array( $this, 'load_theme_textdomain' ) );
 		add_action( 'after_setup_theme', array( $this, 'setup' ) );
 		add_action( 'after_setup_theme', array( $this, 'content_width' ) );
+		if ( apply_filters( 'iworks/theme/show/reusable_blocks_admin_menu', false ) ) {
+			add_action( 'admin_menu', array( $this, 'action_admin_menu_add_reusable_blocks_admin_menu' ) );
+		}
 		/**
 		 * js
 		 */
@@ -108,6 +122,10 @@ class iWorks_Theme extends iWorks_Theme_Base {
 		);
 		$data = array(
 			'ajaxurl' => admin_url( 'admin-ajax.php' ),
+			'i18n'    => array(
+				'messages' => array(),
+				'modules'  => array(),
+			),
 		);
 		$data = apply_filters( 'wp_localize_script_iworks_theme', $data );
 		wp_localize_script( 'THEME_SLUG', 'iworks_theme', $data );
@@ -252,5 +270,16 @@ class iWorks_Theme extends iWorks_Theme_Base {
 		$GLOBALS['content_width'] = apply_filters( 'iworks_content_width', 640 );
 	}
 
+	public function action_admin_menu_add_reusable_blocks_admin_menu() {
+		add_menu_page(
+			__( 'Patterns', 'THEME_SLUG' ),
+			__( 'Patterns', 'THEME_SLUG' ),
+			'edit_posts',
+			add_query_arg( 'post_type', 'wp_block', 'edit.php' ),
+			'',
+			'dashicons-editor-table',
+			22
+		);
+	}
 }
 

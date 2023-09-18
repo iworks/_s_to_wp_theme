@@ -42,11 +42,11 @@ class iWorks_Post_Type_Person {
 		$content .= '<div class="wp-block-group__inner-container">';
 		$content .= sprintf(
 			'<h2>%s</h2>',
-			esc_html__( 'Learn what our employees are saying.', 'filtry' )
+			esc_html__( 'Learn what our employees are saying.', 'THEME_SLUG' )
 		);
 		$content .= sprintf(
 			'<p class="become-one-of-them">%s</p>',
-			esc_html__( 'Become one of them!', 'filtry' )
+			esc_html__( 'Become one of them!', 'THEME_SLUG' )
 		);
 		$content .= '<ul>';
 		while ( $the_query->have_posts() ) {
@@ -89,34 +89,34 @@ class iWorks_Post_Type_Person {
 	 */
 	private function custom_post_type() {
 		$labels = array(
-			'name'                  => _x( 'Persons', 'Post Type General Name', 'filtry' ),
-			'singular_name'         => _x( 'Person', 'Post Type Singular Name', 'filtry' ),
-			'menu_name'             => __( 'Persons', 'filtry' ),
-			'name_admin_bar'        => __( 'Persons', 'filtry' ),
-			'archives'              => __( 'Persons', 'filtry' ),
-			'all_items'             => __( 'Persons', 'filtry' ),
-			'add_new_item'          => __( 'Add New Person', 'filtry' ),
-			'add_new'               => __( 'Add New', 'filtry' ),
-			'new_item'              => __( 'New Person', 'filtry' ),
-			'edit_item'             => __( 'Edit Person', 'filtry' ),
-			'update_item'           => __( 'Update Person', 'filtry' ),
-			'view_item'             => __( 'View Person', 'filtry' ),
-			'view_items'            => __( 'View Person', 'filtry' ),
-			'search_items'          => __( 'Search Person', 'filtry' ),
-			'not_found'             => __( 'Not found', 'filtry' ),
-			'not_found_in_trash'    => __( 'Not found in Trash', 'filtry' ),
-			'items_list'            => __( 'Person list', 'filtry' ),
-			'items_list_navigation' => __( 'Person list navigation', 'filtry' ),
-			'filter_items_list'     => __( 'Filter items list', 'filtry' ),
+			'name'                  => _x( 'Persons', 'Post Type General Name', 'THEME_SLUG' ),
+			'singular_name'         => _x( 'Person', 'Post Type Singular Name', 'THEME_SLUG' ),
+			'menu_name'             => __( 'Persons', 'THEME_SLUG' ),
+			'name_admin_bar'        => __( 'Persons', 'THEME_SLUG' ),
+			'archives'              => __( 'Persons', 'THEME_SLUG' ),
+			'all_items'             => __( 'Persons', 'THEME_SLUG' ),
+			'add_new_item'          => __( 'Add New Person', 'THEME_SLUG' ),
+			'add_new'               => __( 'Add New', 'THEME_SLUG' ),
+			'new_item'              => __( 'New Person', 'THEME_SLUG' ),
+			'edit_item'             => __( 'Edit Person', 'THEME_SLUG' ),
+			'update_item'           => __( 'Update Person', 'THEME_SLUG' ),
+			'view_item'             => __( 'View Person', 'THEME_SLUG' ),
+			'view_items'            => __( 'View Person', 'THEME_SLUG' ),
+			'search_items'          => __( 'Search Person', 'THEME_SLUG' ),
+			'not_found'             => __( 'Not found', 'THEME_SLUG' ),
+			'not_found_in_trash'    => __( 'Not found in Trash', 'THEME_SLUG' ),
+			'items_list'            => __( 'Person list', 'THEME_SLUG' ),
+			'items_list_navigation' => __( 'Person list navigation', 'THEME_SLUG' ),
+			'filter_items_list'     => __( 'Filter items list', 'THEME_SLUG' ),
 		);
 		$args   = array(
 			'can_export'          => true,
 			'capability_type'     => 'page',
-			'description'         => __( 'Person', 'filtry' ),
+			'description'         => __( 'Person', 'THEME_SLUG' ),
 			'exclude_from_search' => true,
 			'has_archive'         => false,
 			'hierarchical'        => false,
-			'label'               => __( 'Persons', 'filtry' ),
+			'label'               => __( 'Persons', 'THEME_SLUG' ),
 			'labels'              => $labels,
 			'menu_icon'           => 'dashicons-businessperson',
 			'public'              => true,
@@ -127,7 +127,7 @@ class iWorks_Post_Type_Person {
 			'show_in_rest'        => false,
 			'supports'            => array( 'title', 'thumbnail', 'editor', 'revisions' ),
 			'rewrite'             => array(
-				'slug' => _x( 'person', 'iWorks Post Type Person SLUG', 'filtry' ),
+				'slug' => _x( 'person', 'iWorks Post Type Person SLUG', 'THEME_SLUG' ),
 			),
 		);
 		register_post_type( $this->post_type_name, $args );
@@ -140,26 +140,26 @@ class iWorks_Post_Type_Person {
 	 */
 	private function custom_taxonomy() {
 		$labels = array(
-			'name'                       => _x( 'Roles', 'Role General Name', 'filtry' ),
-			'singular_name'              => _x( 'Role', 'Role Singular Name', 'filtry' ),
-			'menu_name'                  => __( 'Roles', 'filtry' ),
-			'all_items'                  => __( 'All Roles', 'filtry' ),
-			'parent_item'                => __( 'Parent Role', 'filtry' ),
-			'parent_item_colon'          => __( 'Parent Role:', 'filtry' ),
-			'new_item_name'              => __( 'New Role Name', 'filtry' ),
-			'add_new_item'               => __( 'Add New Role', 'filtry' ),
-			'edit_item'                  => __( 'Edit Role', 'filtry' ),
-			'update_item'                => __( 'Update Role', 'filtry' ),
-			'view_item'                  => __( 'View Role', 'filtry' ),
-			'separate_items_with_commas' => __( 'Separate items with commas', 'filtry' ),
-			'add_or_remove_items'        => __( 'Add or remove items', 'filtry' ),
-			'choose_from_most_used'      => __( 'Choose from the most used', 'filtry' ),
-			'popular_items'              => __( 'Popular Roles', 'filtry' ),
-			'search_items'               => __( 'Search Roles', 'filtry' ),
-			'not_found'                  => __( 'Not Found', 'filtry' ),
-			'no_terms'                   => __( 'No items', 'filtry' ),
-			'items_list'                 => __( 'Roles list', 'filtry' ),
-			'items_list_navigation'      => __( 'Roles list navigation', 'filtry' ),
+			'name'                       => _x( 'Roles', 'Role General Name', 'THEME_SLUG' ),
+			'singular_name'              => _x( 'Role', 'Role Singular Name', 'THEME_SLUG' ),
+			'menu_name'                  => __( 'Roles', 'THEME_SLUG' ),
+			'all_items'                  => __( 'All Roles', 'THEME_SLUG' ),
+			'parent_item'                => __( 'Parent Role', 'THEME_SLUG' ),
+			'parent_item_colon'          => __( 'Parent Role:', 'THEME_SLUG' ),
+			'new_item_name'              => __( 'New Role Name', 'THEME_SLUG' ),
+			'add_new_item'               => __( 'Add New Role', 'THEME_SLUG' ),
+			'edit_item'                  => __( 'Edit Role', 'THEME_SLUG' ),
+			'update_item'                => __( 'Update Role', 'THEME_SLUG' ),
+			'view_item'                  => __( 'View Role', 'THEME_SLUG' ),
+			'separate_items_with_commas' => __( 'Separate items with commas', 'THEME_SLUG' ),
+			'add_or_remove_items'        => __( 'Add or remove items', 'THEME_SLUG' ),
+			'choose_from_most_used'      => __( 'Choose from the most used', 'THEME_SLUG' ),
+			'popular_items'              => __( 'Popular Roles', 'THEME_SLUG' ),
+			'search_items'               => __( 'Search Roles', 'THEME_SLUG' ),
+			'not_found'                  => __( 'Not Found', 'THEME_SLUG' ),
+			'no_terms'                   => __( 'No items', 'THEME_SLUG' ),
+			'items_list'                 => __( 'Roles list', 'THEME_SLUG' ),
+			'items_list_navigation'      => __( 'Roles list navigation', 'THEME_SLUG' ),
 		);
 		$args   = array(
 			'labels'            => $labels,
@@ -168,7 +168,7 @@ class iWorks_Post_Type_Person {
 			'show_admin_column' => true,
 			'show_tagcloud'     => false,
 			'rewrite'           => array(
-				'slug' => _x( 'role', 'iWorks Post Type Person SLUG', 'filtry' ),
+				'slug' => _x( 'role', 'iWorks Post Type Person SLUG', 'THEME_SLUG' ),
 			),
 		);
 		register_taxonomy( $this->taxonomy_name, array( $this->post_type_name ), $args );

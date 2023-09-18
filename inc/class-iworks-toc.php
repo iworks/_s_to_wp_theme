@@ -11,6 +11,9 @@ class iWorks_Table_Of_Content {
 	}
 
 	public function filter_the_content_add( $content ) {
+		if ( ! is_singular() ) {
+			return $content;
+		}
 		if ( ! in_array( get_post_type(), $this->post_types ) ) {
 			return $content;
 		}

@@ -47,28 +47,31 @@ class iWorks_Cookie_Notice extends iWorks_Theme_Base {
 			return;
 		}
 		$id         = 'iworks-cookie-notice';
-		$this->data = array(
-			'name'    => $id,
-			'cookie'  => array(
-				'domain'   => defined( 'COOKIE_DOMAIN' ) && COOKIE_DOMAIN ? COOKIE_DOMAIN : '',
-				'name'     => $this->cookie_name,
-				'path'     => defined( 'COOKIEPATH' ) && COOKIEPATH ? COOKIEPATH : '/',
-				'secure'   => is_ssl() ? 'on' : 'off',
-				'timezone' => HOUR_IN_SECONDS * get_option( 'gmt_offset' ),
-				'value'    => YEAR_IN_SECONDS,
-			),
-			'ajaxurl' => admin_url( 'admin-ajax.php' ),
-			'logged'  => is_user_logged_in() ? 'yes' : 'no',
-			'user_id' => get_current_user_id(),
-			'nonce'   => wp_create_nonce( __CLASS__ ),
-			'text'    => sprintf(
-				__( 'We use cookies and similar technologies to provide services and to gather information for statistical and other purposes. You can change the way you want the cookies to be stored or accessed on your device in the settings of your browser. If you do not agree, change the settings of your browser. For more information, refer to our %s.', 'THEME_SLUG' ),
-				sprintf(
-					'<a href="%s">%s</a>',
-					get_privacy_policy_url(),
-					_x( 'Privacy Policy', 'in cookie message, mayby propoer form', 'THEME_SLUG' )
-				)
-			),
+		$this->data = apply_filters(
+			'iworks/theme/cookie/data',
+			array(
+				'name'    => $id,
+				'cookie'  => array(
+					'domain'   => defined( 'COOKIE_DOMAIN' ) && COOKIE_DOMAIN ? COOKIE_DOMAIN : '',
+					'name'     => $this->cookie_name,
+					'path'     => defined( 'COOKIEPATH' ) && COOKIEPATH ? COOKIEPATH : '/',
+					'secure'   => is_ssl() ? 'on' : 'off',
+					'timezone' => HOUR_IN_SECONDS * get_option( 'gmt_offset' ),
+					'value'    => YEAR_IN_SECONDS,
+				),
+				'ajaxurl' => admin_url( 'admin-ajax.php' ),
+				'logged'  => is_user_logged_in() ? 'yes' : 'no',
+				'user_id' => get_current_user_id(),
+				'nonce'   => wp_create_nonce( __CLASS__ ),
+				'text'    => sprintf(
+					__( 'We use cookies and similar technologies to provide services and to gather information for statistical and other purposes. You can change the way you want the cookies to be stored or accessed on your device in the settings of your browser. If you do not agree, change the settings of your browser. For more information, refer to our %s.', 'THEME_SLUG' ),
+					sprintf(
+						'<a href="%s">%s</a>',
+						get_privacy_policy_url(),
+						_x( 'Privacy Policy', 'in cookie message, mayby propoer form', 'THEME_SLUG' )
+					)
+				),
+			)
 		);
 	}
 
