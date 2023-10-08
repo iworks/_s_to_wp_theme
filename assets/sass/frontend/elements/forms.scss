@@ -77,7 +77,7 @@ form {
 
 .wp-block-file {
     @media screen and (max-width: #{ $width_s - 1px }) {
-        padding-top: var(--padding-small);
+        padding-top: var(--spacer-10);
 
         .wp-block-file__button {
             width: 100%;

@@ -1,7 +1,7 @@
 #iworks-cookie-notice {
     background-color: var(--color-white);
     color: var(--color-black);
-    padding: var(--padding-small) padding_clamp();
+    padding: var(--spacer-10) padding_clamp();
 
     .cookie-notice-container {
         text-align: center;
