@@ -22,13 +22,16 @@ class iWorks_Post_Type_Person {
 	 * @return string $content
 	 */
 	public function get_list( $atts, $content = '' ) {
-		$args      = array(
-			'post_type'      => $this->post_type_name,
-			'orderby'        => 'rand',
-			'posts_per_page' => -1,
-			'post_status'    => 'publish',
+		$args                = wp_parse_args(
+			$atts,
+			array(
+				'orderby'        => 'rand',
+				'posts_per_page' => -1,
+			)
 		);
-		$the_query = new WP_Query( $args );
+		$args['post_type']   = $this->post_type_name;
+		$args['post_status'] = 'publish';
+		$the_query           = new WP_Query( $args );
 		/**
 		 * No data!
 		 */
@@ -38,37 +41,23 @@ class iWorks_Post_Type_Person {
 		/**
 		 * Content
 		 */
-		$content .= '<div class="wp-block-group alignfull work-with-us work-with-us-heroes">';
-		$content .= '<div class="wp-block-group__inner-container">';
-		$content .= sprintf(
-			'<h2>%s</h2>',
-			esc_html__( 'Learn what our employees are saying.', 'THEME_SLUG' )
-		);
-		$content .= sprintf(
-			'<p class="become-one-of-them">%s</p>',
-			esc_html__( 'Become one of them!', 'THEME_SLUG' )
-		);
-		$content .= '<ul>';
+		ob_start();
+		get_template_part( 'template-parts/heroes/header' );
+		$join = rand( 0, 2 );
+		$i    = 0;
 		while ( $the_query->have_posts() ) {
 			$the_query->the_post();
-			$content .= sprintf( '<li class="%s">', implode( ' ', get_post_class() ) );
-			$content .= sprintf( '<h3>%s</h3>', get_the_title() );
-			$content .= '<div class="post-inner">';
-			$content .= '<blockquote class="post-content">';
-			$content .= get_the_content();
-			$content .= '</blockquote>';
-			$content .= '</div>';
-			$content .= get_the_post_thumbnail( get_the_ID(), 'full' );
-			$content .= '<div class="post-excerpt">';
-			$content .= get_the_excerpt();
-			$content .= '</div>';
-			$content .= '</li>';
+			$args = array(
+				'join' => $join,
+				'i'    => $i++,
+			);
+			get_template_part( 'template-parts/heroes/one', get_post_type(), $args );
 		}
 		/* Restore original Post Data */
 		wp_reset_postdata();
-		$content .= '</ul>';
-		$content .= '</div>';
-		$content .= '</div>';
+		get_template_part( 'template-parts/heroes/footer' );
+		$content = ob_get_contents();
+		ob_end_clean();
 		return $content;
 	}
 
