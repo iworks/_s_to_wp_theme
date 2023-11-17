@@ -258,7 +258,7 @@ class iWorks_Post_Type_FAQ extends iWorks_Post_Type {
 				get_the_content()
 			);
 		}
-		echo '</dl>';
+		$content = '</dl>';
 		wp_reset_postdata();
 		$content .= '</div>';
 		$content .= sprintf( '</%s>', $args['tag'] );

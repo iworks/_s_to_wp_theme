@@ -14,6 +14,13 @@ add_filter( 'iworks/theme/load-post-type-person', '__return_false' );
 add_filter( 'iworks/theme/load-post-type-faq', '__return_false' );
 
 /**
+ * WP Cron
+ *
+ * use __return_true to turn it on
+ */
+add_filter( 'iworks/theme/load-wp-cron', '__return_false' );
+
+/**
  * cookie
  */
 add_filter( 'iworks/theme/load-cookies', '__return_false' );

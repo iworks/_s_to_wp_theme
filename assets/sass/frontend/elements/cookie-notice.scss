@@ -25,6 +25,10 @@
                 position: 50%;
                 @include icon('close.svg');
             }
+            &:focus,
+            &:focus-within {
+                border: 2px solid var(--color-accent);
+            }
         }
 
         a {

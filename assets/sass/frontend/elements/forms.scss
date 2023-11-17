@@ -1,13 +1,6 @@
 form {
 
     button,
-    input,
-    select,
-    textarea {
-        @include font(14, 17);
-    }
-
-    button,
     input[type=submit] {
         @include button;
     }
@@ -20,7 +13,7 @@ form {
         @include radius;
         background-color: var(--color-white);
         border-color: var(--color-black);
-        padding: 6px 10px;
+        padding: var(--spacer-8);
         width: 100%;
     }
 
@@ -91,6 +84,5 @@ form {
 
     .wp-block-file__button {
         @include button_reverse;
-        ;
     }
 }

@@ -119,7 +119,10 @@ class iWorks_Post_Type_Person {
 				'slug' => _x( 'person', 'iWorks Post Type Person SLUG', 'THEME_SLUG' ),
 			),
 		);
-		register_post_type( $this->post_type_name, $args );
+		register_post_type(
+			$this->post_type_name,
+			apply_filters( 'iworks_post_type_person_args', $args )
+		);
 	}
 
 	/**
