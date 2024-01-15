@@ -5,13 +5,23 @@ require_once 'class-iworks-theme-base.php';
 abstract class iWorks_Post_Type extends iWorks_Theme_Base {
 
 	protected $post_type_name = array(
-		'faq' => 'faq',
+		'faq'     => 'faq',
+		'opinion' => 'iworks_opinion',
+		'person'  => 'iworks_person',
 	);
 
 	protected $taxonomy_name = array(
-		'faq' => 'faq_cat',
+		'faq'         => 'faq_cat',
+		'person_role' => 'iworks_person_role',
 	);
 
+
+	protected $meta_boxes = array();
+
+	/**
+	 * post meta prefix
+	 */
+	protected $post_meta_prefix = '_';
 
 	public function __construct() {
 		parent::__construct();
@@ -25,5 +35,151 @@ abstract class iWorks_Post_Type extends iWorks_Theme_Base {
 	abstract public function register_post_type();
 	abstract public function register_taxonomy();
 
+	protected function get_select_array( $post_type, $atts = array() ) {
+		$args      = wp_parse_args(
+			$atts,
+			array(
+				'order'          => 'ASC',
+				'orderby'        => 'title',
+				'posts_per_page' => -1,
+				'post_type'      => $post_type,
+				'post_status'    => 'publish',
+			)
+		);
+		$list[0]   = __( '&mdash; Select &mdash;', 'sellspark-io-theme-adjc-pl' );
+		$the_query = new WP_Query( $args );
+		foreach ( $the_query->posts as $post ) {
+			$list[ $post->ID ] = $post->post_title;
+		}
+		return $list;
+	}
+
+	protected function add_meta_boxes( $post_type ) {
+		if ( empty( $this->meta_boxes ) ) {
+			return;
+		}
+		if ( ! isset( $this->meta_boxes[ $post_type ] ) ) {
+			return;
+		}
+		foreach ( $this->meta_boxes[ $post_type ] as $id => $data ) {
+			add_meta_box(
+				$id,
+				$data['title'],
+				array( $this, 'render_meta_box_content' ),
+				$post_type,
+				isset( $data['context'] ) ? $data['context'] : 'advanced',
+				isset( $data['priority'] ) ? $data['priority'] : 'default',
+				array(
+					'post_type_name' => $post_type,
+					'id'             => $id,
+				)
+			);
+		}
+	}
+
+	private function render_meta_select( $post, $one ) {
+		$value = get_post_meta( $post->ID, $one['name'], true );
+		echo '<p>';
+		echo '<label>';
+		if ( isset( $one['label'] ) ) {
+			echo $one['label'];
+			echo '<br />';
+		}
+		printf(
+			'<select name="%s">',
+			esc_attr( $one['name'] )
+		);
+		printf( '<option value="">%s</option>', __( '&mdash; Select &mdash;', 'sellspark-io-theme-adjc-pl' ) );
+		foreach ( $one['options'] as $option_value => $option_name ) {
+			printf(
+				'<option value="%s" %s>%s</option>',
+				esc_attr( $option_value ),
+				selected( $option_value, $value, false ),
+				$option_name
+			);
+		}
+		echo '</select>';
+		echo '</label>';
+		echo '</p>';
+
+	}
+
+	private function render( $post, $one ) {
+		$method = sprintf( 'render_meta_%s', $one['type'] );
+		if ( method_exists( $this, $method ) ) {
+			$this->$method( $post, $one );
+			return;
+		}
+		$value   = get_post_meta( $post->ID, $one['name'], true );
+		$classes = array(
+			'iworks-field',
+			sprintf( 'iworks-field-%s', $one['type'] ),
+		);
+		if ( isset( $one['classes'] ) ) {
+			$classes = wp_parse_args(
+				$one['classes'],
+				$classes
+			);
+		}
+		printf( '<div class="%s">', esc_attr( implode( ' ', $classes ) ) );
+		echo '<p>';
+		echo '<label>';
+		if ( isset( $one['label'] ) ) {
+			echo $one['label'];
+			echo '<br />';
+		}
+		printf(
+			'<input type="%s" value="%s" name="%s" class="large-text" />',
+			esc_attr( $one['type'] ),
+			esc_attr( $value ),
+			esc_attr( $one['name'] )
+		);
+		echo '</label>';
+		if ( isset( $one['description'] ) ) {
+			printf( '<span class="description">%s</span>', $one['description'] );
+		}
+		echo '</p>';
+		echo '</div>';
+	}
+
+	public function render_meta_box_content( $post, $args ) {
+		$post_type_name = $args['args']['post_type_name'];
+		$id             = $args['args']['id'];
+		wp_nonce_field( $this->nonce_value, $this->get_post_meta_name( $id ) );
+		foreach ( $this->meta_boxes[ $post_type_name ][ $id ]['fields'] as $one ) {
+			$this->render( $post, $one );
+		}
+	}
+
+	protected function save_meta( $post_id, $post, $update, $post_type ) {
+		if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) {
+			return;
+		}
+		if ( get_post_type( $post ) !== $post_type ) {
+			return;
+		}
+		if ( ! isset( $this->meta_boxes[ $post_type ] ) ) {
+			return;
+		}
+		foreach ( $this->meta_boxes[ $post_type ] as $id => $data ) {
+			$nonce_name  = $this->get_post_meta_name( $id );
+			$nonce_value = filter_input( INPUT_POST, $nonce_name );
+			if ( ! wp_verify_nonce( $nonce_value, $this->nonce_value ) ) {
+				return;
+			}
+			foreach ( $data['fields'] as $one ) {
+				$value = '';
+				switch ( $one['type'] ) {
+					case 'url':
+						$value = filter_input( INPUT_POST, $one['name'], FILTER_SANITIZE_URL );
+						break;
+					default:
+						$value = wp_kses_post( filter_input( INPUT_POST, $one['name'], FILTER_UNSAFE_RAW ) );
+						break;
+				}
+				$this->update_meta( $post_id, $one['name'], $value );
+			}
+		}
+	}
 }
 

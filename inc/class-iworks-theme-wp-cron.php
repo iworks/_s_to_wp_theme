@@ -4,8 +4,7 @@ require_once 'class-iworks-theme-base.php';
 
 class iWorks_Theme_WP_Cron extends iWorks_Theme_Base {
 
-	private $database_data_url = 'http://wordpress/ln.json';
-	private $hook              = 'opi-people-of-science';
+	private $hook = 'THEME_SLUG';
 
 	public function __construct() {
 		add_action( 'iworks_theme_wp_cron', array( $this, 'get_section_database_data' ) );
