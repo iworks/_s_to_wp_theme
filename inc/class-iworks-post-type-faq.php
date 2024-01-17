@@ -94,7 +94,7 @@ class iWorks_Post_Type_FAQ extends iWorks_Post_Type {
 			'show_in_rest'        => true,
 			'rest_base'           => apply_filters(
 				'iworks/theme/register_post_type/faq/rest_base',
-				__( 'faqs', 'THEME_SLUG' )
+				defined( 'ICL_SITEPRESS_VERSION' ) ? 'faqs' : __( 'faqs', 'THEME_SLUG' )
 			),
 		);
 		register_post_type(
@@ -143,7 +143,10 @@ class iWorks_Post_Type_FAQ extends iWorks_Post_Type {
 			'show_in_nav_menus'   => true,
 			'show_tagcloud'       => false,
 			'show_in_rest'        => true,
-			'rest_base'           => apply_filters( 'iworks/theme/register_taxonomy/faq/rest_base', __( 'faq_groups', 'THEME_SLUG' ) ),
+			'rest_base'           => apply_filters(
+				'iworks/theme/register_taxonomy/faq/rest_base',
+				defined( 'ICL_SITEPRESS_VERSION' ) ? 'faq_groups' : __( 'faq_groups', 'THEME_SLUG' )
+			),
 		);
 
 		register_taxonomy(

@@ -116,7 +116,7 @@ class iWorks_Post_Type_Person {
 			'show_in_rest'        => false,
 			'supports'            => array( 'title', 'thumbnail', 'editor', 'revisions' ),
 			'rewrite'             => array(
-				'slug' => _x( 'person', 'iWorks Post Type Person SLUG', 'THEME_SLUG' ),
+				'slug' => defined( 'ICL_SITEPRESS_VERSION' ) ? 'person' : _x( 'person', 'iWorks Post Type Person SLUG', 'THEME_SLUG' ),
 			),
 		);
 		register_post_type(
@@ -160,7 +160,7 @@ class iWorks_Post_Type_Person {
 			'show_admin_column' => true,
 			'show_tagcloud'     => false,
 			'rewrite'           => array(
-				'slug' => _x( 'role', 'iWorks Post Type Person SLUG', 'THEME_SLUG' ),
+				'slug' => defined( 'ICL_SITEPRESS_VERSION' ) ? 'role' : _x( 'role', 'iWorks Post Type Person SLUG', 'THEME_SLUG' ),
 			),
 		);
 		register_taxonomy( $this->taxonomy_name, array( $this->post_type_name ), $args );
