@@ -36,6 +36,14 @@ class iWorks_Theme extends iWorks_Theme_Base {
 			new iWorks_Post_Type_FAQ;
 		}
 		/**
+		/**
+		 * opinion
+		 */
+		if ( apply_filters( 'iworks/theme/load-post-type-opinion', false ) ) {
+			include_once 'class-iworks-post-type-opinion.php';
+			new iWorks_Post_Type_Opinion;
+		}
+		/**
 		 * WP Cron
 		 */
 		if ( apply_filters( 'iworks/theme/load-wp-cron', false ) ) {
@@ -71,6 +79,7 @@ class iWorks_Theme extends iWorks_Theme_Base {
 		if ( apply_filters( 'iworks/theme/show/reusable_blocks_admin_menu', false ) ) {
 			add_action( 'admin_menu', array( $this, 'action_admin_menu_add_reusable_blocks_admin_menu' ) );
 		}
+		add_shortcode( 'iworks_last_posts', array( $this, 'shortcode_iworks_last_posts' ) );
 		/**
 		 * js
 		 */
@@ -290,6 +299,35 @@ class iWorks_Theme extends iWorks_Theme_Base {
 			'dashicons-editor-table',
 			22
 		);
+	}
+	public function shortcode_iworks_last_posts( $atts, $content ) {
+		$args      = array(
+			'post_type'      => 'post',
+			'post_status'    => 'publish',
+			'posts_per_page' => 3,
+		);
+		$the_query = new WP_Query( $args );
+		/**
+		 * No data!
+		 */
+		if ( ! $the_query->have_posts() ) {
+			return $content;
+		}
+		/**
+		 * Content
+		 */
+		ob_start();
+		get_template_part( 'template-parts/last/header' );
+		while ( $the_query->have_posts() ) {
+			$the_query->the_post();
+			get_template_part( 'template-parts/last/one', get_post_type() );
+		}
+		/* Restore original Post Data */
+		wp_reset_postdata();
+		get_template_part( 'template-parts/last/footer' );
+		$content = ob_get_contents();
+		ob_end_clean();
+		return $content;
 	}
 }
 

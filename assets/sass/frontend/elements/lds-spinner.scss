@@ -19,7 +19,7 @@ $scale: .43;
             width: #{ $scale * 6px };
             height: #{ $scale * 18px };
             border-radius: 20%;
-            background: var(--color-primary);
+            background: var(--color-theme-primary);
         }
 
         &:nth-child(1) {

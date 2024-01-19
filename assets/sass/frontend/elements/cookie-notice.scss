@@ -1,6 +1,6 @@
 #iworks-cookie-notice {
-    background-color: var(--color-white);
-    color: var(--color-black);
+    background-color: var(--color-theme-white);
+    color: var(--color-theme-black);
     padding: var(--spacer-10) padding_clamp();
 
     .cookie-notice-container {
@@ -25,14 +25,15 @@
                 position: 50%;
                 @include icon('close.svg');
             }
+
             &:focus,
             &:focus-within {
-                border: 2px solid var(--color-accent);
+                border: 2px solid var(--color-theme-accent);
             }
         }
 
         a {
-            color: var(--color-accent);
+            color: var(--color-theme-accent);
         }
     }
 }

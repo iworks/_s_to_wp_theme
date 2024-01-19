@@ -11,8 +11,8 @@ form {
     select,
     textarea {
         @include radius;
-        background-color: var(--color-white);
-        border-color: var(--color-black);
+        background-color: var(--color-theme-white);
+        border-color: var(--color-theme-black);
         padding: var(--spacer-8);
         width: 100%;
     }
@@ -21,7 +21,7 @@ form {
 
     .required-descrpition {
         strong {
-            color: var(--color-alert);
+            color: var(--color-theme-alert);
         }
     }
 
@@ -30,7 +30,7 @@ form {
             span {
                 &:after {
                     content: "*";
-                    color: var(--color-alert);
+                    color: var(--color-theme-alert);
                 }
             }
 

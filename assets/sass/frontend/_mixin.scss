@@ -195,18 +195,18 @@ $image_root: 'assets/images/';
 
 @mixin link() {
     text-decoration: none;
-    color: var(--color-link);
+    color: var(--color-theme-link);
 
     &:visited {
-        color: var(--color-link-visited);
+        color: var(--color-theme-link-visited);
     }
 
     &:hover {
-        color: var(--color-link-hover);
+        color: var(--color-theme-link-hover);
     }
 
     &:active {
-        color: var(--color-link-active);
+        color: var(--color-theme-link-active);
     }
 }
 
@@ -263,7 +263,7 @@ $image_root: 'assets/images/';
 
     &:hover {
         background-color: var(--button-background-hover);
-        border-color: var(--button-border-color-hover);
+        border-color: var(--button-border-color-theme-hover);
         color: var(--button-color);
     }
 
@@ -309,17 +309,17 @@ $image_root: 'assets/images/';
 
 @mixin a_color_primary() {
     a {
-        color: var(--color-primary);
+        color: var(--color-theme-primary);
         text-decoration: none;
         border-bottom: 1px solid transparent;
 
         &:focus {
-            border-bottom: 1px dashed var(--color-primary);
+            border-bottom: 1px dashed var(--color-theme-primary);
         }
     }
 }
 
-@mixin background_gradient($color1: var(--color-white), $color2: $color_accent ) {
+@mixin background_gradient($color1: var(--color-theme-white), $color2: $color_accent ) {
     background: transparent linear-gradient(90deg, $color1 0%, $color2 17%, $color2 83%, $color1 100%) 0% 0% no-repeat padding-box;
 }
 

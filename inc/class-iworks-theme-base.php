@@ -68,7 +68,7 @@ abstract class iWorks_Theme_Base {
 	 *
 	 * @param string $file File name.
 	 * @param string $group Group, default "images".
-     * @param boolean $add_version Add theme version, default "false", but always true for images.
+	 * @param boolean $add_version Add theme version, default "false", but always true for images.
 	 *
 	 * @return string URL into asset.
 	 */
@@ -79,20 +79,20 @@ abstract class iWorks_Theme_Base {
 			$group,
 			$file
 		);
-        /**
-         * add version
-         */
-        if (
-            $add_version
-            || 'images' === $group
-        ) {
-            $url = add_query_arg(
-                array(
-                    'ver' => $this->version,
-                ),
-                $url
-            );
-        }
+		/**
+		 * add version
+		 */
+		if (
+			$add_version
+			|| 'images' === $group
+		) {
+			$url = add_query_arg(
+				array(
+					'ver' => $this->version,
+				),
+				$url
+			);
+		}
 		return esc_url( $url );
 	}
 
@@ -203,6 +203,14 @@ abstract class iWorks_Theme_Base {
 	 */
 	protected function is_rest_request() {
 		return defined( 'REST_REQUEST' ) && REST_REQUEST;
+	}
+
+	protected function get_post_meta_name( $name ) {
+		return sprintf(
+			'%s_%s',
+			$this->post_meta_prefix,
+			esc_attr( $name )
+		);
 	}
 }
 

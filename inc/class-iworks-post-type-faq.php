@@ -19,6 +19,8 @@ require_once 'class-iworks-post-type.php';
  */
 class iWorks_Post_Type_FAQ extends iWorks_Post_Type {
 
+	private $list = array();
+
 	public function __construct() {
 		parent::__construct();
 		add_filter( 'manage_' . $this->post_type_name['faq'] . '_posts_columns', array( $this, 'filter_add_mendu_order_column' ) );
@@ -210,12 +212,25 @@ class iWorks_Post_Type_FAQ extends iWorks_Post_Type {
 		if ( 'show' === $args['header'] ) {
 			$content .= '<div class="iworks-faq-header">';
 			$content .= sprintf( '<h2 class="iworks-faq-header-title">%s</h2>', $term->name );
-			$content .= sprintf(
-				'<button class="iworks-faq-header-toggle" aria-label="%s" aria-expanded="false" data-target-id="%s" data-expanded="false">%s</button>',
-				esc_attr__( 'Expand All', 'THEME_SLUG' ),
-				esc_attr( $args['id'] ),
-				esc_html__( 'Expand All', 'THEME_SLUG' )
-			);
+			if ( 'show' === $args['header-button'] ) {
+				$content .= sprintf(
+					'<button class="iworks-faq-header-toggle" aria-label="%s" aria-expanded="false" data-target-id="%s" data-expanded="false">%s</button>',
+					esc_attr__( 'Expand All', 'THEME_SLUG' ),
+					esc_attr( $args['id'] ),
+					esc_html__( 'Expand All', 'THEME_SLUG' )
+				);
+			}
+			if ( 'show' === $args['description'] ) {
+				$description = term_description( $args['term_id'] );
+				if ( ! is_wp_error( $description ) ) {
+					$description = trim( $description );
+					if ( $description ) {
+						$content .= '<div class="polon-faq-header-description">';
+						$content .= wpautop( $description );
+						$content .= '</div>';
+					}
+				}
+			}
 			$content .= '</div>';
 		}
 		$content .= '<div class="iworks-faq-container">';

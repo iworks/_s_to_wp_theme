@@ -5,12 +5,12 @@
     --font-family-sans-serif: sans-serif;
 
     /* COLORS */
-    --color-white: #fff;
-    --color-black: #000;
+    --color-theme-white: #fff;
+    --color-theme-black: #000;
 
-    --color-primary: #2a2d2e;
-    --color-accent: #406aa6;
-    --color-alert: #d80606;
+    --color-theme-primary: #2a2d2e;
+    --color-theme-accent: #406aa6;
+    --color-theme-alert: #d80606;
 
     --color-theme-1: #ccdaeb;
     --color-theme-2: #254473;
@@ -20,32 +20,32 @@
     --color-theme-6: #c8cfd8;
 
     /* BACKGROUND COLORS */
-    --color-background-header: var(--color-accent);
-    --color-background-main: var(--color-white);
-    --color-background-body: var(--color-white);
+    --color-theme-background-header: var(--color-theme-accent);
+    --color-theme-background-main: var(--color-theme-white);
+    --color-theme-background-body: var(--color-theme-white);
 
     /** TEXT COLORS */
-    --color-text: #000;
+    --color-theme-text: #000;
 
     /* LINKS COLORS */
-    --color-link: var(--color-accent);
-    --color-link-visited: var(--color-accent);
-    --color-link-hover: var(--color-primary);
-    --color-link-active: var(--color-primary);
+    --color-theme-link: var(--color-theme-accent);
+    --color-theme-link-visited: var(--color-theme-accent);
+    --color-theme-link-hover: var(--color-theme-primary);
+    --color-theme-link-active: var(--color-theme-primary);
 
     /* BRANDS COLORS */
-    --color-facebook: #4267b2;
-    --color-instagram: #405de6;
-    --color-linkedin: #0a66c2;
-    --color-twitter: #1da1f2;
+    --color-theme-facebook: #4267b2;
+    --color-theme-instagram: #405de6;
+    --color-theme-linkedin: #0a66c2;
+    --color-theme-twitter: #1da1f2;
 
     /** BUTTONS */
-    --button-background: var(--color-accent);
+    --button-background: var(--color-theme-accent);
     --button-background-hover: var(--color-theme-2);
-    --button-border-color: var(--color-accent);
-    --button-border-color-hover: var(--color-theme-2);
-    --button-color: var(--color-white);
-    --button-color-hover: var(--color-white);
+    --button-border-color: var(--color-theme-accent);
+    --button-border-color-theme-hover: var(--color-theme-2);
+    --button-color: var(--color-theme-white);
+    --button-color-theme-hover: var(--color-theme-white);
     --button-reverse-background-hover: var(--color-theme-1);
 
     /** MARGIN & PADDING */

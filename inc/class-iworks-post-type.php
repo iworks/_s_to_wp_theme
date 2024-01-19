@@ -15,7 +15,6 @@ abstract class iWorks_Post_Type extends iWorks_Theme_Base {
 		'person_role' => 'iworks_person_role',
 	);
 
-
 	protected $meta_boxes = array();
 
 	/**
@@ -101,10 +100,35 @@ abstract class iWorks_Post_Type extends iWorks_Theme_Base {
 		echo '</select>';
 		echo '</label>';
 		echo '</p>';
-
 	}
 
-	private function render( $post, $one ) {
+	private function render_meta_radio( $post, $one ) {
+		$value = get_post_meta( $post->ID, $one['name'], true );
+		echo '<p>';
+		if ( isset( $one['label'] ) ) {
+			echo '<label>';
+			echo $one['label'];
+			echo '<br />';
+			echo '</label>';
+		}
+		echo '</p>';
+		printf(
+			'<ul name="%s">',
+			esc_attr( $one['name'] )
+		);
+		foreach ( $one['options'] as $option_value => $option_name ) {
+			printf(
+				'<li><label><input name="%s" type="radio" value="%s" %s>%s</label></li>',
+				esc_attr( $one['name'] ),
+				esc_attr( $option_value ),
+				checked( $option_value, $value, false ),
+				$option_name
+			);
+		}
+		echo '</ul>';
+	}
+
+	protected function render( $post, $one ) {
 		$method = sprintf( 'render_meta_%s', $one['type'] );
 		if ( method_exists( $this, $method ) ) {
 			$this->$method( $post, $one );
