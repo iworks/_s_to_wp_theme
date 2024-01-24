@@ -65,7 +65,10 @@ class iWorks_Theme extends iWorks_Theme_Base {
 		 * hooks
 		 */
 		add_action( 'after_setup_theme', array( $this, 'add_image_sizes' ) );
+		add_action( 'after_setup_theme', array( $this, 'content_width' ) );
 		add_action( 'after_setup_theme', array( $this, 'load_theme_textdomain' ) );
+		add_action( 'after_setup_theme', array( $this, 'load_theme_textdomain' ) );
+		add_action( 'after_setup_theme', array( $this, 'setup' ) );
 		add_action( 'after_setup_theme', array( $this, 'setup' ) );
 		add_action( 'init', array( $this, 'register_scripts' ) );
 		add_action( 'plugins_loaded', array( $this, 'set_iworks_cache_keys' ) );
@@ -73,9 +76,10 @@ class iWorks_Theme extends iWorks_Theme_Base {
 		add_action( 'wp_head', array( $this, 'html_head' ), PHP_INT_MAX );
 		add_filter( 'body_class', array( $this, 'body_classses' ) );
 		add_filter( 'excerpt_more', array( $this, 'excerpt_more' ) );
-		add_action( 'after_setup_theme', array( $this, 'load_theme_textdomain' ) );
-		add_action( 'after_setup_theme', array( $this, 'setup' ) );
-		add_action( 'after_setup_theme', array( $this, 'content_width' ) );
+		add_filter( 'get_edit_post_link', '__return_empty_string' );
+		/**
+		 * iworks
+		 */
 		if ( apply_filters( 'iworks/theme/show/reusable_blocks_admin_menu', false ) ) {
 			add_action( 'admin_menu', array( $this, 'action_admin_menu_add_reusable_blocks_admin_menu' ) );
 		}
@@ -98,13 +102,13 @@ class iWorks_Theme extends iWorks_Theme_Base {
 		/**
 		 * clear generaor type
 		 */
-		add_filter( 'get_the_generator_html', '__return_empty_string' );
-		add_filter( 'get_the_generator_xhtml', '__return_empty_string' );
 		add_filter( 'get_the_generator_atom', '__return_empty_string' );
-		add_filter( 'get_the_generator_rss2', '__return_empty_string' );
-		add_filter( 'get_the_generator_rdf', '__return_empty_string' );
 		add_filter( 'get_the_generator_comment', '__return_empty_string' );
 		add_filter( 'get_the_generator_export', '__return_empty_string' );
+		add_filter( 'get_the_generator_html', '__return_empty_string' );
+		add_filter( 'get_the_generator_rdf', '__return_empty_string' );
+		add_filter( 'get_the_generator_rss2', '__return_empty_string' );
+		add_filter( 'get_the_generator_xhtml', '__return_empty_string' );
 		/**
 		 * Plugin: Simple History
 		 */
