@@ -76,7 +76,6 @@ class iWorks_Theme extends iWorks_Theme_Base {
 		add_action( 'wp_head', array( $this, 'html_head' ), PHP_INT_MAX );
 		add_filter( 'body_class', array( $this, 'body_classses' ) );
 		add_filter( 'excerpt_more', array( $this, 'excerpt_more' ) );
-		add_filter( 'get_edit_post_link', '__return_empty_string' );
 		/**
 		 * iworks
 		 */
