@@ -26,9 +26,9 @@ add_filter( 'iworks/theme/load-wp-cron', '__return_false' );
 add_filter( 'iworks/theme/load-cookies', '__return_false' );
 
 /**
- * TOC
+ * Table of Content
  */
-add_filter( 'iworks/theme/load-faq', '__return_false' );
+add_filter( 'iworks/theme/load-toc', '__return_false' );
 
 /**
  * Load theme class
