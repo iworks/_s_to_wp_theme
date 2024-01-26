@@ -10,7 +10,7 @@ class iWorks_Table_Of_Content {
 	private $used = array();
 
 	public function __construct() {
-		add_filter( 'the_content', array( $this, 'filter_the_content_add' ) );
+		add_filter( 'the_content', array( $this, 'filter_the_content_add' ), 1 );
 	}
 
 	private function get_anchor( $text ) {
