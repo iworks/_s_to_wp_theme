@@ -14,12 +14,12 @@ class iWorks_Post_Type_Opinion extends iWorks_Post_Type {
 		add_action( 'save_post_' . $this->post_type_name['opinion'], array( $this, 'action_save_post_page' ), 10, 3 );
 		$this->meta_boxes[ $this->post_type_name['opinion'] ] = array(
 			'opinion-data' => array(
-				'title'  => __( 'Opinion Data', 'sellspark-io-theme-adjc-pl' ),
+				'title'  => __( 'Opinion Data', 'THEME_SLUG' ),
 				'fields' => array(
 					array(
 						'name'    => 'stars',
 						'type'    => 'select',
-						'label'   => esc_html__( 'The Opinion Stars', 'sellspark-io-theme-adjc-pl' ),
+						'label'   => esc_html__( 'The Opinion Stars', 'THEME_SLUG' ),
 						'options' => array(
 							'5' => '&bigstar;&bigstar;&bigstar;&bigstar;&bigstar;',
 							'4' => '&bigstar;&bigstar;&bigstar;&bigstar;',
@@ -31,12 +31,12 @@ class iWorks_Post_Type_Opinion extends iWorks_Post_Type {
 					array(
 						'name'  => 'opinion_url',
 						'type'  => 'url',
-						'label' => esc_html__( 'The Opinion URL', 'sellspark-io-theme-adjc-pl' ),
+						'label' => esc_html__( 'The Opinion URL', 'THEME_SLUG' ),
 					),
 					array(
 						'name'  => 'author_url',
 						'type'  => 'url',
-						'label' => esc_html__( 'The Opinion Author URL', 'sellspark-io-theme-adjc-pl' ),
+						'label' => esc_html__( 'The Opinion Author URL', 'THEME_SLUG' ),
 					),
 				),
 			),
@@ -100,34 +100,34 @@ class iWorks_Post_Type_Opinion extends iWorks_Post_Type {
 	 */
 	public function register_post_type() {
 		$labels = array(
-			'name'                  => _x( 'Opinions', 'Post Type General Name', 'sellspark-io-theme-adjc-pl' ),
-			'singular_name'         => _x( 'Opinion', 'Post Type Singular Name', 'sellspark-io-theme-adjc-pl' ),
-			'menu_name'             => __( 'Opinions', 'sellspark-io-theme-adjc-pl' ),
-			'name_admin_bar'        => __( 'Opinions', 'sellspark-io-theme-adjc-pl' ),
-			'archives'              => __( 'Opinions', 'sellspark-io-theme-adjc-pl' ),
-			'all_items'             => __( 'Opinions', 'sellspark-io-theme-adjc-pl' ),
-			'add_new_item'          => __( 'Add New Opinion', 'sellspark-io-theme-adjc-pl' ),
-			'add_new'               => __( 'Add New', 'sellspark-io-theme-adjc-pl' ),
-			'new_item'              => __( 'New Opinion', 'sellspark-io-theme-adjc-pl' ),
-			'edit_item'             => __( 'Edit Opinion', 'sellspark-io-theme-adjc-pl' ),
-			'update_item'           => __( 'Update Opinion', 'sellspark-io-theme-adjc-pl' ),
-			'view_item'             => __( 'View Opinion', 'sellspark-io-theme-adjc-pl' ),
-			'view_items'            => __( 'View Opinion', 'sellspark-io-theme-adjc-pl' ),
-			'search_items'          => __( 'Search Opinion', 'sellspark-io-theme-adjc-pl' ),
-			'not_found'             => __( 'Not found', 'sellspark-io-theme-adjc-pl' ),
-			'not_found_in_trash'    => __( 'Not found in Trash', 'sellspark-io-theme-adjc-pl' ),
-			'items_list'            => __( 'Opinion list', 'sellspark-io-theme-adjc-pl' ),
-			'items_list_navigation' => __( 'Opinion list navigation', 'sellspark-io-theme-adjc-pl' ),
-			'filter_items_list'     => __( 'Filter items list', 'sellspark-io-theme-adjc-pl' ),
+			'name'                  => _x( 'Opinions', 'Post Type General Name', 'THEME_SLUG' ),
+			'singular_name'         => _x( 'Opinion', 'Post Type Singular Name', 'THEME_SLUG' ),
+			'menu_name'             => __( 'Opinions', 'THEME_SLUG' ),
+			'name_admin_bar'        => __( 'Opinions', 'THEME_SLUG' ),
+			'archives'              => __( 'Opinions', 'THEME_SLUG' ),
+			'all_items'             => __( 'Opinions', 'THEME_SLUG' ),
+			'add_new_item'          => __( 'Add New Opinion', 'THEME_SLUG' ),
+			'add_new'               => __( 'Add New', 'THEME_SLUG' ),
+			'new_item'              => __( 'New Opinion', 'THEME_SLUG' ),
+			'edit_item'             => __( 'Edit Opinion', 'THEME_SLUG' ),
+			'update_item'           => __( 'Update Opinion', 'THEME_SLUG' ),
+			'view_item'             => __( 'View Opinion', 'THEME_SLUG' ),
+			'view_items'            => __( 'View Opinion', 'THEME_SLUG' ),
+			'search_items'          => __( 'Search Opinion', 'THEME_SLUG' ),
+			'not_found'             => __( 'Not found', 'THEME_SLUG' ),
+			'not_found_in_trash'    => __( 'Not found in Trash', 'THEME_SLUG' ),
+			'items_list'            => __( 'Opinion list', 'THEME_SLUG' ),
+			'items_list_navigation' => __( 'Opinion list navigation', 'THEME_SLUG' ),
+			'filter_items_list'     => __( 'Filter items list', 'THEME_SLUG' ),
 		);
 		$args   = array(
 			'can_export'          => true,
 			'capability_type'     => 'page',
-			'description'         => __( 'Opinion', 'sellspark-io-theme-adjc-pl' ),
+			'description'         => __( 'Opinion', 'THEME_SLUG' ),
 			'exclude_from_search' => true,
 			'has_archive'         => false,
 			'hierarchical'        => false,
-			'label'               => __( 'Opinions', 'sellspark-io-theme-adjc-pl' ),
+			'label'               => __( 'Opinions', 'THEME_SLUG' ),
 			'labels'              => $labels,
 			'menu_icon'           => 'dashicons-businessopinion',
 			'public'              => false,
@@ -139,7 +139,7 @@ class iWorks_Post_Type_Opinion extends iWorks_Post_Type {
 			'show_in_rest'        => false,
 			'supports'            => array( 'title', 'thumbnail', 'editor', 'revisions' ),
 			'rewrite'             => array(
-				'slug' => _x( 'opinion', 'iWorks Post Type Opinion SLUG', 'sellspark-io-theme-adjc-pl' ),
+				'slug' => _x( 'opinion', 'iWorks Post Type Opinion SLUG', 'THEME_SLUG' ),
 			),
 		);
 		register_post_type(

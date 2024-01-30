@@ -35,6 +35,10 @@ class iWorks_Theme extends iWorks_Theme_Base {
 			include_once 'class-iworks-post-type-faq.php';
 			new iWorks_Post_Type_FAQ;
 		}
+		if ( apply_filters( 'iworks/theme/load-post-type-project', false ) ) {
+			include_once 'class-iworks-post-type-project.php';
+			new iWorks_Post_Type_Project;
+		}
 		/**
 		/**
 		 * opinion

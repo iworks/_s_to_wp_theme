@@ -8,11 +8,12 @@ abstract class iWorks_Post_Type extends iWorks_Theme_Base {
 		'faq'     => 'faq',
 		'opinion' => 'iworks_opinion',
 		'person'  => 'iworks_person',
+		'project' => 'iworks_project',
 	);
 
 	protected $taxonomy_name = array(
 		'faq'         => 'faq_cat',
-		'person_role' => 'iworks_person_role',
+		'person_role' => 'on_role',
 	);
 
 	protected $meta_boxes = array();
@@ -45,7 +46,7 @@ abstract class iWorks_Post_Type extends iWorks_Theme_Base {
 				'post_status'    => 'publish',
 			)
 		);
-		$list[0]   = __( '&mdash; Select &mdash;', 'sellspark-io-theme-adjc-pl' );
+		$list[0]   = __( '&mdash; Select &mdash;', 'opi-feng' );
 		$the_query = new WP_Query( $args );
 		foreach ( $the_query->posts as $post ) {
 			$list[ $post->ID ] = $post->post_title;
@@ -88,7 +89,7 @@ abstract class iWorks_Post_Type extends iWorks_Theme_Base {
 			'<select name="%s">',
 			esc_attr( $one['name'] )
 		);
-		printf( '<option value="">%s</option>', __( '&mdash; Select &mdash;', 'sellspark-io-theme-adjc-pl' ) );
+		printf( '<option value="">%s</option>', __( '&mdash; Select &mdash;', 'opi-feng' ) );
 		foreach ( $one['options'] as $option_value => $option_name ) {
 			printf(
 				'<option value="%s" %s>%s</option>',

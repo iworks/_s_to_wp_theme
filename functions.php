@@ -14,6 +14,12 @@ add_filter( 'iworks/theme/load-post-type-person', '__return_false' );
 add_filter( 'iworks/theme/load-post-type-faq', '__return_false' );
 
 /**
+ * Custom Post Type: project
+ *
+ * use __return_true to turn it on
+ */
+add_filter( 'iworks/theme/load-post-type-project', '__return_true' );
+/**
  * WP Cron
  *
  * use __return_true to turn it on
