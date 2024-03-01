@@ -189,7 +189,7 @@ $image_root: 'assets/images/';
     width: 100%;
 }
 
-@mixin random_border_color() {
+@mixin rbc() {
     border: 1px solid rgb(random(255), random(255), random(255));
 }
 

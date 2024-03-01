@@ -206,5 +206,20 @@ abstract class iWorks_Post_Type extends iWorks_Theme_Base {
 			}
 		}
 	}
+	public function filter_add_menu_order_column( $columns ) {
+		$columns['menu_order'] = __( 'Order', 'sellspark-io-theme-adjc-pl' );
+		return $columns;
+	}
+
+	public function action_add_menu_order_value( $column, $post_id ) {
+		switch ( $column ) {
+			case 'menu_order':
+				printf(
+					'<span class="alignright">%d</span>',
+					get_post_field( $column, $post_id )
+				);
+				return;
+		}
+	}
 }
 

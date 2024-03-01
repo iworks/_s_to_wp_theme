@@ -27,22 +27,7 @@ class iWorks_Post_Type_FAQ extends iWorks_Post_Type {
 		add_action( 'manage_' . $this->post_type_name['faq'] . '_posts_custom_column', array( $this, 'action_add_menu_order_value' ), 10, 2 );
 		add_shortcode( 'iworks-faq-list', array( $this, 'shortcode_list' ) );
 		add_filter( 'wp_localize_script_iworks_theme', array( $this, 'filter_wp_localize_script_iworks_theme' ) );
-	}
-
-	public function action_add_menu_order_value( $column, $post_id ) {
-		switch ( $column ) {
-			case 'menu_order':
-				printf(
-					'<span class="alignright">%d</span>',
-					get_post_field( $column, $post_id )
-				);
-				return;
-		}
-	}
-
-	public function filter_add_mendu_order_column( $columns ) {
-		$columns['menu_order'] = __( 'Order', 'THEME_SLUG' );
-		return $columns;
+		add_filter( 'iworks_post_type_faq_terms_options_list', array( $this, 'get_options_list_array' ) );
 	}
 
 	/**
@@ -276,7 +261,7 @@ class iWorks_Post_Type_FAQ extends iWorks_Post_Type {
 				get_the_content()
 			);
 		}
-		$content = '</dl>';
+		$content .= '</dl>';
 		wp_reset_postdata();
 		$content .= '</div>';
 		$content .= sprintf( '</%s>', $args['tag'] );
@@ -293,6 +278,32 @@ class iWorks_Post_Type_FAQ extends iWorks_Post_Type {
 		return $data;
 	}
 
+	/**
+	 * Get taxonomy list
+	 *
+	 * @param array $list options list
+	 *
+	 * @return string $content
+	 */
+	public function get_options_list_array( $list ) {
+		if ( ! empty( $this->list ) ) {
+			return $this->list;
+		}
+		$terms = get_terms(
+			array(
+				'taxonomy'   => $this->taxonomy_name['faq'],
+				'hide_empty' => false,
+			)
+		);
+		$list  = array(
+			'0' => esc_html__( '&mdash; Select &mdash;', 'sellspark-io-theme-adjc-pl' ),
+		);
+		foreach ( $terms as $term ) {
+			$list[ $term->term_id ] = $term->name;
+		}
+		$this->list = $list;
+		return $list;
+	}
 }
 
 

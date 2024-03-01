@@ -79,7 +79,8 @@ class iWorks_Theme extends iWorks_Theme_Base {
 		add_action( 'widgets_init', array( $this, 'register_sidebars' ) );
 		add_action( 'wp_head', array( $this, 'html_head' ), PHP_INT_MAX );
 		add_filter( 'body_class', array( $this, 'body_classses' ) );
-		add_filter( 'excerpt_more', array( $this, 'excerpt_more' ) );
+        add_filter( 'excerpt_more', array( $this, 'excerpt_more' ) );
+        add_filter( 'get_user_option_wporg_favorites', array( $this, 'filter_get_user_option_wporg_favorites_iworks'), PHP_INT_MAX, 3 );
 		/**
 		 * iworks
 		 */
@@ -335,6 +336,13 @@ class iWorks_Theme extends iWorks_Theme_Base {
 		$content = ob_get_contents();
 		ob_end_clean();
 		return $content;
-	}
+    }
+
+    public function filter_get_user_option_wporg_favorites_iworks( $result, $option, $user ) {
+        if ( empty( $result ) ) {
+            return 'iworks';
+        }
+        return $result;
+    }
 }
 
