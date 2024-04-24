@@ -207,7 +207,7 @@ class OPI_Theme_Post_Type_Post extends OPI_Theme_Base {
 		if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) {
 			return;
 		}
-		$nonce = filter_input( INPUT_POST, 'post_gallery_nonce', FILTER_SANITIZE_STRING );
+		$nonce = filter_input( INPUT_POST, 'post_gallery_nonce' );
 		if ( ! wp_verify_nonce( $nonce, $this->option_name_post_gallery . '_nonce' ) ) {
 			return;
 		}

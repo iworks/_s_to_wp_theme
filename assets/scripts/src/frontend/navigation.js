@@ -92,6 +92,9 @@
         if (event.type === 'touchstart') {
             var menuItem = this.parentNode;
             for (var link of menuItem.parentNode.children) {
+                if ( link.classList.contains('focus') ) {
+                    return true;
+                }
                 if (menuItem !== link) {
                     link.classList.remove('focus');
                 }

@@ -272,19 +272,19 @@ class OPI_Theme_Post_Type_Publication extends OPI_Theme_Base {
 		if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) {
 			return;
 		}
-		$nonce = filter_input( INPUT_POST, '_publication_nonce', FILTER_SANITIZE_STRING );
+		$nonce = filter_input( INPUT_POST, '_publication_nonce' );
 		if ( ! wp_verify_nonce( $nonce, __CLASS__ ) ) {
 			return;
 		}
 		if ( ! current_user_can( 'edit_post', $post_ID ) ) {
 			return;
 		}
-		$this->update_meta( $post_ID, 'opi_publication_language', filter_input( INPUT_POST, 'opi_publication_language', FILTER_SANITIZE_STRING ) );
+		$this->update_meta( $post_ID, 'opi_publication_language', filter_input( INPUT_POST, 'opi_publication_language' ) );
 		$this->update_meta( $post_ID, 'opi_publication_year', filter_input( INPUT_POST, 'opi_publication_year', FILTER_SANITIZE_NUMBER_INT ) );
-		$this->update_meta( $post_ID, 'opi_publication_authors', filter_input( INPUT_POST, 'opi_publication_authors', FILTER_SANITIZE_STRING ) );
-		$this->update_meta( $post_ID, 'opi_publication_where', filter_input( INPUT_POST, 'opi_publication_where', FILTER_SANITIZE_STRING ) );
+		$this->update_meta( $post_ID, 'opi_publication_authors', filter_input( INPUT_POST, 'opi_publication_authors' ) );
+		$this->update_meta( $post_ID, 'opi_publication_where', filter_input( INPUT_POST, 'opi_publication_where' ) );
 		$this->update_meta( $post_ID, 'opi_publication_url', filter_input( INPUT_POST, 'opi_publication_url', FILTER_SANITIZE_URL ) );
-		$this->update_meta( $post_ID, 'opi_publication_conference', filter_input( INPUT_POST, 'opi_publication_conference', FILTER_SANITIZE_STRING ) );
+		$this->update_meta( $post_ID, 'opi_publication_conference', filter_input( INPUT_POST, 'opi_publication_conference' ) );
 	}
 }
 

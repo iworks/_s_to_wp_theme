@@ -450,7 +450,7 @@ class OPI_Theme_Post_Type_Project extends OPI_Theme_Base {
 		if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) {
 			return;
 		}
-		$nonce = filter_input( INPUT_POST, '_project_nonce', FILTER_SANITIZE_STRING );
+		$nonce = filter_input( INPUT_POST, '_project_nonce' );
 		if ( ! wp_verify_nonce( $nonce, __CLASS__ ) ) {
 			return;
 		}
@@ -459,7 +459,7 @@ class OPI_Theme_Post_Type_Project extends OPI_Theme_Base {
 		}
 		$this->set_fields();
 		foreach ( $this->fields as $key => $one ) {
-			$value = filter_input( INPUT_POST, $key, FILTER_SANITIZE_STRING );
+			$value = filter_input( INPUT_POST, $key );
 			if ( isset( $one['sanitize'] ) ) {
 				$value = $one['sanitize']( $value );
 			}
@@ -476,7 +476,7 @@ class OPI_Theme_Post_Type_Project extends OPI_Theme_Base {
 					&& is_array( $_POST[ $this->option_name_partners ][ $type ] )
 				) {
 					foreach ( $_POST[ $this->option_name_partners ][ $type ] as $one ) {
-						$one = filter_var( $one, FILTER_SANITIZE_STRING );
+						$one = filter_var( $one );
 						if ( empty( $one ) ) {
 							continue;
 						}
