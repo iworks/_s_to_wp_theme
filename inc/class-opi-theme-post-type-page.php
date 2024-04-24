@@ -421,45 +421,45 @@ class OPI_Theme_Post_Type_Page extends OPI_Theme_Base {
 					ob_end_clean();
 				} else {
 					$post = get_post( $id );
-                    if ( is_a( $post, 'WP_Post' ) ) {
-                        $class = get_post_meta( $id, $this->option_name_class, true );
-                        if ( 'git-readme' === $class ) {
-                            $content           .= '<div class="git-readme">';
-                        }
-                        $content           .= sprintf(
-                            '<span class="section-title">%s</span>',
-                            get_the_title( $id )
-                        );
-                        $content           .= sprintf(
-                            '<article class="%s" id="post-%d">',
-                            esc_attr( implode( ' ', get_post_class( '', $id ) ) ),
-                            $id
-                        );
-                        $post_content       = apply_filters( 'the_content', $post->post_content );
-                        if ( 'git-readme' === $class ) {
-                            $split              = '<h3';
-                            $post_content_array = preg_split( '/' . $split . '/', $post_content );
-                            if ( is_array( $post_content_array ) && ! empty( $post_content_array ) ) {
-                                for ( $i = 1; $i < 4; $i++ ) {
-                                    if ( isset( $post_content_array[0] ) ) {
-                                        if ( ! empty( $post_content_array ) ) {
-                                            if ( 1 < $i ) {
-                                                $content .= $split;
-                                            }
-                                            $content .= array_shift( $post_content_array );
-                                        }
-                                    }
-                                }
-                            }
-                        } else {
-                            $content .= $post_content;
-                        }
-                        $content    .= '</article>';
-                        if ( 'git-readme' === $class ) {
-                            $content    .= '</div>';
-                            $button_text = __( 'See other models', 'THEME_SLUG' );
-                        }
-                    }
+					if ( is_a( $post, 'WP_Post' ) ) {
+						$class = get_post_meta( $id, $this->option_name_class, true );
+						if ( 'git-readme' === $class ) {
+							$content .= '<div class="git-readme">';
+						}
+						$content     .= sprintf(
+							'<span class="section-title">%s</span>',
+							get_the_title( $id )
+						);
+						$content     .= sprintf(
+							'<article class="%s" id="post-%d">',
+							esc_attr( implode( ' ', get_post_class( '', $id ) ) ),
+							$id
+						);
+						$post_content = apply_filters( 'the_content', $post->post_content );
+						if ( 'git-readme' === $class ) {
+							$split              = '<h3';
+							$post_content_array = preg_split( '/' . $split . '/', $post_content );
+							if ( is_array( $post_content_array ) && ! empty( $post_content_array ) ) {
+								for ( $i = 1; $i < 4; $i++ ) {
+									if ( isset( $post_content_array[0] ) ) {
+										if ( ! empty( $post_content_array ) ) {
+											if ( 1 < $i ) {
+												$content .= $split;
+											}
+											$content .= array_shift( $post_content_array );
+										}
+									}
+								}
+							}
+						} else {
+							$content .= $post_content;
+						}
+						$content .= '</article>';
+						if ( 'git-readme' === $class ) {
+							$content    .= '</div>';
+							$button_text = __( 'See other models', 'THEME_SLUG' );
+						}
+					}
 				}
 		}
 		$classes = array(

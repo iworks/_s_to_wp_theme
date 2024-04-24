@@ -4,44 +4,44 @@ require_once 'class-opi-theme-base.php';
 
 class OPI_Theme_Post_Type_Newsletter extends OPI_Theme_Base {
 
-	private array $data = array();
-	private string $post_type_name = 'opi_newsletter';
-	private string $option_name_button = '_newsletter_generate_button';
-	private string $option_name_banner_active = '_newsletter_banner_active';
-	private string $option_name_banner_img = '_newsletter_banner_img';
-	private string $option_name_banner_url = '_newsletter_banner_url';
-	private string $option_name_banner_title = '_newsletter_banner_title';
-	private string $option_name_news_active = '_newsletter_news_active';
-	private string $option_name_news = '_newsletter_news';
-	private string $option_name_news_img = '_newsletter_news_img';
-	private string $option_name_systems_active = '_newsletter_systems_active';
-	private string $option_name_systems = '_newsletter_systems';
-	private string $option_name_systems_img = '_newsletter_systems_img';
-	private string $option_name_events_active = '_newsletter_events_active';
-	private string $option_name_events = '_newsletter_events';
-	private string $option_name_events_img = '_newsletter_events_img';
-	private string $option_name_navoica_active = '_newsletter_navoica_active';
-	private string $option_name_navoica = '_newsletter_navoica';
-	private string $option_name_navoica_img = '_newsletter_navoica_img';
-	private string $option_name_eu_projects_active = '_newsletter_eu_projects_active';
-	private string $option_name_eu_projects = '_newsletter_eu_projects';
-	private string $option_name_eu_projects_img = '_newsletter_eu_projects_img';
-	private string $option_name_number_of_month = '_newsletter_number_of_month';
+	private array $data                                     = array();
+	private string $post_type_name                          = 'opi_newsletter';
+	private string $option_name_button                      = '_newsletter_generate_button';
+	private string $option_name_banner_active               = '_newsletter_banner_active';
+	private string $option_name_banner_img                  = '_newsletter_banner_img';
+	private string $option_name_banner_url                  = '_newsletter_banner_url';
+	private string $option_name_banner_title                = '_newsletter_banner_title';
+	private string $option_name_news_active                 = '_newsletter_news_active';
+	private string $option_name_news                        = '_newsletter_news';
+	private string $option_name_news_img                    = '_newsletter_news_img';
+	private string $option_name_systems_active              = '_newsletter_systems_active';
+	private string $option_name_systems                     = '_newsletter_systems';
+	private string $option_name_systems_img                 = '_newsletter_systems_img';
+	private string $option_name_events_active               = '_newsletter_events_active';
+	private string $option_name_events                      = '_newsletter_events';
+	private string $option_name_events_img                  = '_newsletter_events_img';
+	private string $option_name_navoica_active              = '_newsletter_navoica_active';
+	private string $option_name_navoica                     = '_newsletter_navoica';
+	private string $option_name_navoica_img                 = '_newsletter_navoica_img';
+	private string $option_name_eu_projects_active          = '_newsletter_eu_projects_active';
+	private string $option_name_eu_projects                 = '_newsletter_eu_projects';
+	private string $option_name_eu_projects_img             = '_newsletter_eu_projects_img';
+	private string $option_name_number_of_month             = '_newsletter_number_of_month';
 	private string $option_name_number_of_month_description = '_newsletter_number_of_month_description';
-	private string $option_name_questions_active = '_newsletter_question_active';
-	private string $option_name_first_name_last_name = '_newsletter_first_name_last_name';
-	private string $option_name_job_position = '_newsletter_job_position';
-	private string $option_name_questions_img = '_newsletter_questions_img';
-	private string $option_name_question_1 = '_newsletter_question_1';
-	private string $option_name_question_2 = '_newsletter_question_2';
-	private string $option_name_question_3 = '_newsletter_question_3';
-	private string $option_name_answer_1 = '_newsletter_answer_1';
-	private string $option_name_answer_2 = '_newsletter_answer_2';
-	private string $option_name_answer_3 = '_newsletter_answer_3';
-	private string $newsletter_opi_base_dir = 'newsletter-opi';
-	private string $section_name = 'newsletter';
-	private string $option_group_newsletter = 'newsletter-options';
-	private string $newsletter_settings_page_capability = 'manage_categories';
+	private string $option_name_questions_active            = '_newsletter_question_active';
+	private string $option_name_first_name_last_name        = '_newsletter_first_name_last_name';
+	private string $option_name_job_position                = '_newsletter_job_position';
+	private string $option_name_questions_img               = '_newsletter_questions_img';
+	private string $option_name_question_1                  = '_newsletter_question_1';
+	private string $option_name_question_2                  = '_newsletter_question_2';
+	private string $option_name_question_3                  = '_newsletter_question_3';
+	private string $option_name_answer_1                    = '_newsletter_answer_1';
+	private string $option_name_answer_2                    = '_newsletter_answer_2';
+	private string $option_name_answer_3                    = '_newsletter_answer_3';
+	private string $newsletter_opi_base_dir                 = 'newsletter-opi';
+	private string $section_name                            = 'newsletter';
+	private string $option_group_newsletter                 = 'newsletter-options';
+	private string $newsletter_settings_page_capability     = 'manage_categories';
 
 	public function __construct() {
 		parent::__construct();
@@ -63,10 +63,12 @@ class OPI_Theme_Post_Type_Newsletter extends OPI_Theme_Base {
 		add_action( 'wp_localize_script_opi_pib_theme', array( $this, 'add_newsletter_data' ) );
 		add_action( 'admin_init', array( $this, 'settings_init' ) );
 		add_action( 'admin_menu', array( $this, 'options_page' ) );
-		add_filter( sprintf( 'option_page_capability_%s', $this->option_group_newsletter ),
+		add_filter(
+			sprintf( 'option_page_capability_%s', $this->option_group_newsletter ),
 			array( $this, 'editor_permissions' ),
 			10,
-			1 );
+			1
+		);
 	}
 
 	/**
@@ -202,8 +204,9 @@ class OPI_Theme_Post_Type_Newsletter extends OPI_Theme_Base {
 
 	public function html_generate_newsletter( $post ) {
 		wp_nonce_field( $this->option_name_button, 'generate_newsletter_nonce' );
-		printf( '<button id="%s" type="button" class="button">%s</button>',
-			"generate-newsletter",
+		printf(
+			'<button id="%s" type="button" class="button">%s</button>',
+			'generate-newsletter',
 			_x( 'Generate newsletter zip package', 'newsletter', 'THEME_SLUG' ),
 		);
 
@@ -221,15 +224,19 @@ class OPI_Theme_Post_Type_Newsletter extends OPI_Theme_Base {
 		$this->html_section_active( $this->option_name_banner_active, $section_active );
 		$this->html_section_image( 'banner', $this->option_name_banner_img, $banner_img );
 
-		printf( '<label>%s <input type="text" name="%s" value="%s" style="width: 100%%;"></label>',
-			esc_html_x( 'Link - at the beginning, enter https:// eg. https://opi.org.pl',
+		printf(
+			'<label>%s <input type="text" name="%s" value="%s" style="width: 100%%;"></label>',
+			esc_html_x(
+				'Link - at the beginning, enter https:// eg. https://opi.org.pl',
 				'newsletter',
-				'THEME_SLUG' ),
+				'THEME_SLUG'
+			),
 			esc_attr( $this->option_name_banner_url ),
 			$banner_link ? esc_html( $banner_link ) : ''
 		);
 
-		printf( '<label>%s <input type="text" name="%s" value="%s" style="width: 100%%;"></label>',
+		printf(
+			'<label>%s <input type="text" name="%s" value="%s" style="width: 100%%;"></label>',
 			esc_html_x( 'Title - description of the event.', 'newsletter', 'THEME_SLUG' ),
 			esc_attr( $this->option_name_banner_title ),
 			$banner_title ? esc_html( $banner_title ) : ''
@@ -253,23 +260,29 @@ class OPI_Theme_Post_Type_Newsletter extends OPI_Theme_Base {
 		$banner_link   = $_REQUEST[ $this->option_name_banner_url ] ? trim( $_REQUEST[ $this->option_name_banner_url ] ) : 0;
 		$banner_title  = $_REQUEST[ $this->option_name_banner_title ] ?? 0;
 
-		$this->update_meta( $post_id,
+		$this->update_meta(
+			$post_id,
 			$this->option_name_banner_active,
 			intval( $banner_active )
 		);
 
-		$this->update_meta( $post_id,
+		$this->update_meta(
+			$post_id,
 			$this->option_name_banner_img,
 			intval( $banner_img )
 		);
 
-		$this->update_meta( $post_id,
+		$this->update_meta(
+			$post_id,
 			$this->option_name_banner_url,
-			filter_var( $banner_link,
-				FILTER_VALIDATE_URL ) === false ? '' : sanitize_url( $banner_link )
+			filter_var(
+				$banner_link,
+				FILTER_VALIDATE_URL
+			) === false ? '' : sanitize_url( $banner_link )
 		);
 
-		$this->update_meta( $post_id,
+		$this->update_meta(
+			$post_id,
 			$this->option_name_banner_title,
 			wp_strip_all_tags( $banner_title )
 		);
@@ -304,17 +317,20 @@ class OPI_Theme_Post_Type_Newsletter extends OPI_Theme_Base {
 		$news_items  = $_REQUEST[ $this->option_name_news ] ?? 0;
 		$news_img    = $_REQUEST[ $this->option_name_news_img ] ?? 0;
 
-		$this->update_meta( $post_id,
+		$this->update_meta(
+			$post_id,
 			$this->option_name_news_active,
 			intval( $news_active )
 		);
 
-		$this->update_meta( $post_id,
+		$this->update_meta(
+			$post_id,
 			$this->option_name_news_img,
 			intval( $news_img )
 		);
 
-		$this->update_meta( $post_id,
+		$this->update_meta(
+			$post_id,
 			$this->option_name_news,
 			$this->sanitized_items_data( $news_items )
 		);
@@ -330,11 +346,13 @@ class OPI_Theme_Post_Type_Newsletter extends OPI_Theme_Base {
 
 		$this->html_section_active( $this->option_name_systems_active, $section_active );
 		$this->html_section_image( 'systems', $this->option_name_systems_img, $systems_img );
-		$this->html_section_items( 'systems',
+		$this->html_section_items(
+			'systems',
 			$this->option_name_systems,
 			$systems_items,
 			$another_item_text,
-			$remove_item_text );
+			$remove_item_text
+		);
 	}
 
 	public function systems_save( $post_id ) {
@@ -353,17 +371,20 @@ class OPI_Theme_Post_Type_Newsletter extends OPI_Theme_Base {
 		$systems_items  = $_REQUEST[ $this->option_name_systems ] ?? 0;
 		$systems_img    = $_REQUEST[ $this->option_name_systems_img ] ?? 0;
 
-		$this->update_meta( $post_id,
+		$this->update_meta(
+			$post_id,
 			$this->option_name_systems_active,
 			intval( $systems_active )
 		);
 
-		$this->update_meta( $post_id,
+		$this->update_meta(
+			$post_id,
 			$this->option_name_systems_img,
 			intval( $systems_img )
 		);
 
-		$this->update_meta( $post_id,
+		$this->update_meta(
+			$post_id,
 			$this->option_name_systems,
 			$this->sanitized_items_data( $systems_items )
 		);
@@ -379,11 +400,13 @@ class OPI_Theme_Post_Type_Newsletter extends OPI_Theme_Base {
 
 		$this->html_section_active( $this->option_name_events_active, $section_active );
 		$this->html_section_image( 'events', $this->option_name_events_img, $events_img );
-		$this->html_section_items( 'events',
+		$this->html_section_items(
+			'events',
 			$this->option_name_events,
 			$events_items,
 			$another_item_text,
-			$remove_item_text );
+			$remove_item_text
+		);
 	}
 
 	public function events_save( $post_id ) {
@@ -402,17 +425,20 @@ class OPI_Theme_Post_Type_Newsletter extends OPI_Theme_Base {
 		$events_items  = $_REQUEST[ $this->option_name_events ] ?? 0;
 		$events_img    = $_REQUEST[ $this->option_name_events_img ] ?? 0;
 
-		$this->update_meta( $post_id,
+		$this->update_meta(
+			$post_id,
 			$this->option_name_events_active,
 			intval( $events_active )
 		);
 
-		$this->update_meta( $post_id,
+		$this->update_meta(
+			$post_id,
 			$this->option_name_events_img,
 			intval( $events_img )
 		);
 
-		$this->update_meta( $post_id,
+		$this->update_meta(
+			$post_id,
 			$this->option_name_events,
 			$this->sanitized_items_data( $events_items )
 		);
@@ -428,11 +454,13 @@ class OPI_Theme_Post_Type_Newsletter extends OPI_Theme_Base {
 
 		$this->html_section_active( $this->option_name_navoica_active, $active );
 		$this->html_section_image( 'navoica', $this->option_name_navoica_img, $img );
-		$this->html_section_items( 'navoica',
+		$this->html_section_items(
+			'navoica',
 			$this->option_name_navoica,
 			$items,
 			$another_item_text,
-			$remove_item_text );
+			$remove_item_text
+		);
 	}
 
 	public function navoica_save( $post_id ) {
@@ -451,17 +479,20 @@ class OPI_Theme_Post_Type_Newsletter extends OPI_Theme_Base {
 		$items  = $_REQUEST[ $this->option_name_navoica ] ?? 0;
 		$img    = $_REQUEST[ $this->option_name_navoica_img ] ?? 0;
 
-		$this->update_meta( $post_id,
+		$this->update_meta(
+			$post_id,
 			$this->option_name_navoica_active,
 			intval( $active )
 		);
 
-		$this->update_meta( $post_id,
+		$this->update_meta(
+			$post_id,
 			$this->option_name_navoica_img,
 			intval( $img )
 		);
 
-		$this->update_meta( $post_id,
+		$this->update_meta(
+			$post_id,
 			$this->option_name_navoica,
 			$this->sanitized_items_data( $items )
 		);
@@ -477,11 +508,13 @@ class OPI_Theme_Post_Type_Newsletter extends OPI_Theme_Base {
 
 		$this->html_section_active( $this->option_name_eu_projects_active, $active );
 		$this->html_section_image( 'eu-projects', $this->option_name_eu_projects_img, $img );
-		$this->html_section_items( 'eu-projects',
+		$this->html_section_items(
+			'eu-projects',
 			$this->option_name_eu_projects,
 			$items,
 			$another_item_text,
-			$remove_item_text );
+			$remove_item_text
+		);
 	}
 
 	public function eu_projects_save( $post_id ) {
@@ -500,17 +533,20 @@ class OPI_Theme_Post_Type_Newsletter extends OPI_Theme_Base {
 		$items  = $_REQUEST[ $this->option_name_eu_projects ] ?? 0;
 		$img    = $_REQUEST[ $this->option_name_eu_projects_img ] ?? 0;
 
-		$this->update_meta( $post_id,
+		$this->update_meta(
+			$post_id,
 			$this->option_name_eu_projects_active,
 			intval( $active )
 		);
 
-		$this->update_meta( $post_id,
+		$this->update_meta(
+			$post_id,
 			$this->option_name_eu_projects_img,
 			intval( $img )
 		);
 
-		$this->update_meta( $post_id,
+		$this->update_meta(
+			$post_id,
 			$this->option_name_eu_projects,
 			$this->sanitized_items_data( $items )
 		);
@@ -519,14 +555,16 @@ class OPI_Theme_Post_Type_Newsletter extends OPI_Theme_Base {
 	public function html_number_of_month( $post ) {
 		wp_nonce_field( sprintf( '%s_%s', __CLASS__, 'number_of_month' ), 'number_of_month_nonce' );
 		$value = $this->get_value( $post->ID, $this->option_name_number_of_month );
-		printf( '<label>%s <input type="text" name="%s" value="%s" style="width: 100%%;"></label>',
+		printf(
+			'<label>%s <input type="text" name="%s" value="%s" style="width: 100%%;"></label>',
 			esc_html_x( 'Number of month', 'newsletter', 'THEME_SLUG' ),
 			esc_attr( $this->option_name_number_of_month ),
 			$value ? esc_html( $value ) : ''
 		);
 
 		$value = $this->get_value( $post->ID, $this->option_name_number_of_month_description );
-		printf( '<label>%s <textarea name="%s" rows="4" cols="50" style="width: 100%%;">%s</textarea></label>',
+		printf(
+			'<label>%s <textarea name="%s" rows="4" cols="50" style="width: 100%%;">%s</textarea></label>',
 			esc_html_x( 'Explain what this number means and what it refers to', 'newsletter', 'THEME_SLUG' ),
 			esc_attr( $this->option_name_number_of_month_description ),
 			$value ? esc_textarea( $value ) : ''
@@ -544,11 +582,13 @@ class OPI_Theme_Post_Type_Newsletter extends OPI_Theme_Base {
 		if ( ! current_user_can( 'edit_post', $post_id ) ) {
 			return;
 		}
-		$this->update_meta( $post_id,
+		$this->update_meta(
+			$post_id,
 			$this->option_name_number_of_month,
 			wp_strip_all_tags( $_REQUEST[ $this->option_name_number_of_month ] )
 		);
-		$this->update_meta( $post_id,
+		$this->update_meta(
+			$post_id,
 			$this->option_name_number_of_month_description,
 			wp_strip_all_tags( $_REQUEST[ $this->option_name_number_of_month_description ] )
 		);
@@ -558,7 +598,8 @@ class OPI_Theme_Post_Type_Newsletter extends OPI_Theme_Base {
 		wp_nonce_field( sprintf( '%s_%s', __CLASS__, 'questions' ), 'questions_nonce' );
 
 		$value_questions_active = $this->get_value( $post->ID, $this->option_name_questions_active );
-		printf( '<label style="display: block;">%s <input type="checkbox" name="%s" value="1" %s /></label>',
+		printf(
+			'<label style="display: block;">%s <input type="checkbox" name="%s" value="1" %s /></label>',
 			esc_html_x( 'Add a section to your newsletter', 'newsletter', 'THEME_SLUG' ),
 			esc_attr( $this->option_name_questions_active ),
 			checked( intval( $value_questions_active ), 1, false )
@@ -568,66 +609,74 @@ class OPI_Theme_Post_Type_Newsletter extends OPI_Theme_Base {
 		$this->html_section_image( 'questions', $this->option_name_questions_img, $questions_img );
 
 		$value_first_name_last_name = $this->get_value( $post->ID, $this->option_name_first_name_last_name );
-		printf( '<label style="display: block;">%s <input type="text" name="%s" value="%s" style="width: 100%%;"></label>',
+		printf(
+			'<label style="display: block;">%s <input type="text" name="%s" value="%s" style="width: 100%%;"></label>',
 			esc_html_x( 'First name and last name', 'newsletter', 'THEME_SLUG' ),
 			esc_attr( $this->option_name_first_name_last_name ),
 			$value_first_name_last_name ? esc_html( $value_first_name_last_name ) : ''
 		);
 
 		$value_job_position = $this->get_value( $post->ID, $this->option_name_job_position );
-		printf( '<label style="display: block;">%s <input type="text" name="%s" value="%s" style="width: 100%%;"></label>',
+		printf(
+			'<label style="display: block;">%s <input type="text" name="%s" value="%s" style="width: 100%%;"></label>',
 			esc_html_x( 'Job position', 'newsletter', 'THEME_SLUG' ),
 			esc_attr( $this->option_name_job_position ),
 			$value_job_position ? esc_html( $value_job_position ) : ''
 		);
 
 		$value_question_1 = $this->get_value( $post->ID, $this->option_name_question_1 );
-		printf( '<label>%s <textarea name="%s" rows="4" cols="50" style="width: 100%%;">%s</textarea></label>',
+		printf(
+			'<label>%s <textarea name="%s" rows="4" cols="50" style="width: 100%%;">%s</textarea></label>',
 			esc_html_x( 'Question 1', 'newsletter', 'THEME_SLUG' ),
 			esc_attr( $this->option_name_question_1 ),
 			$value_question_1 ? esc_textarea( $value_question_1 ) : ''
 		);
 
 		$value_answer_1 = $this->get_value( $post->ID, $this->option_name_answer_1 );
-		printf( '<label>%s <textarea name="%s" rows="4" cols="50" style="width: 100%%;">%s</textarea></label>',
+		printf(
+			'<label>%s <textarea name="%s" rows="4" cols="50" style="width: 100%%;">%s</textarea></label>',
 			esc_html_x( 'Answer 1', 'newsletter', 'THEME_SLUG' ),
 			esc_attr( $this->option_name_answer_1 ),
 			$value_answer_1 ? esc_textarea( $value_answer_1 ) : ''
 		);
 
 		$value_question_2 = $this->get_value( $post->ID, $this->option_name_question_2 );
-		printf( '<label>%s <textarea name="%s" rows="4" cols="50" style="width: 100%%;">%s</textarea></label>',
+		printf(
+			'<label>%s <textarea name="%s" rows="4" cols="50" style="width: 100%%;">%s</textarea></label>',
 			esc_html_x( 'Question 2', 'newsletter', 'THEME_SLUG' ),
 			esc_attr( $this->option_name_question_2 ),
 			$value_question_2 ? esc_textarea( $value_question_2 ) : ''
 		);
 
 		$value_answer_2 = $this->get_value( $post->ID, $this->option_name_answer_2 );
-		printf( '<label>%s <textarea name="%s" rows="4" cols="50" style="width: 100%%;">%s</textarea></label>',
+		printf(
+			'<label>%s <textarea name="%s" rows="4" cols="50" style="width: 100%%;">%s</textarea></label>',
 			esc_html_x( 'Answer 2', 'newsletter', 'THEME_SLUG' ),
 			esc_attr( $this->option_name_answer_2 ),
 			$value_answer_2 ? esc_textarea( $value_answer_2 ) : ''
 		);
 
 		$value_question_3 = $this->get_value( $post->ID, $this->option_name_question_3 );
-		printf( '<label>%s <textarea name="%s" rows="4" cols="50" style="width: 100%%;">%s</textarea></label>',
+		printf(
+			'<label>%s <textarea name="%s" rows="4" cols="50" style="width: 100%%;">%s</textarea></label>',
 			esc_html_x( 'Question 3', 'newsletter', 'THEME_SLUG' ),
 			esc_attr( $this->option_name_question_3 ),
 			$value_question_3 ? esc_textarea( $value_question_3 ) : ''
 		);
 
 		$value_answer_3 = $this->get_value( $post->ID, $this->option_name_answer_3 );
-		printf( '<label>%s <textarea name="%s" rows="4" cols="50" style="width: 100%%;">%s</textarea></label>',
+		printf(
+			'<label>%s <textarea name="%s" rows="4" cols="50" style="width: 100%%;">%s</textarea></label>',
 			esc_html_x( 'Answer 3', 'newsletter', 'THEME_SLUG' ),
 			esc_attr( $this->option_name_answer_3 ),
 			$value_answer_3 ? esc_textarea( $value_answer_3 ) : ''
 		);
 
-//		printf( '<label>%s<textarea name="%s" rows="4" cols="50" style="width: 100%%;">%s</textarea></label>',
-//			esc_html__( 'Explain what this number means and what it refers to', 'THEME_SLUG' ),
-//			esc_attr( $this->option_name_number_of_month_description ),
-//			$value ? esc_attr( $value ) : ''
-//		);
+		//      printf( '<label>%s<textarea name="%s" rows="4" cols="50" style="width: 100%%;">%s</textarea></label>',
+		//          esc_html__( 'Explain what this number means and what it refers to', 'THEME_SLUG' ),
+		//          esc_attr( $this->option_name_number_of_month_description ),
+		//          $value ? esc_attr( $value ) : ''
+		//      );
 	}
 
 	public function questions_save( $post_id ) {
@@ -645,52 +694,62 @@ class OPI_Theme_Post_Type_Newsletter extends OPI_Theme_Base {
 		$questions_active = $_REQUEST[ $this->option_name_questions_active ] ?? 0;
 		$questions_img    = $_REQUEST[ $this->option_name_questions_img ] ?? 0;
 
-		$this->update_meta( $post_id,
+		$this->update_meta(
+			$post_id,
 			$this->option_name_questions_active,
 			intval( $questions_active )
 		);
 
-		$this->update_meta( $post_id,
+		$this->update_meta(
+			$post_id,
 			$this->option_name_questions_img,
 			intval( $questions_img )
 		);
 
-		$this->update_meta( $post_id,
+		$this->update_meta(
+			$post_id,
 			$this->option_name_first_name_last_name,
 			wp_strip_all_tags( $_REQUEST[ $this->option_name_first_name_last_name ] )
 		);
 
-		$this->update_meta( $post_id,
+		$this->update_meta(
+			$post_id,
 			$this->option_name_job_position,
 			wp_strip_all_tags( $_REQUEST[ $this->option_name_job_position ] )
 		);
 
-		$this->update_meta( $post_id,
+		$this->update_meta(
+			$post_id,
 			$this->option_name_question_1,
 			wp_strip_all_tags( $_REQUEST[ $this->option_name_question_1 ] )
 		);
 
-		$this->update_meta( $post_id,
+		$this->update_meta(
+			$post_id,
 			$this->option_name_question_2,
 			wp_strip_all_tags( $_REQUEST[ $this->option_name_question_2 ] )
 		);
 
-		$this->update_meta( $post_id,
+		$this->update_meta(
+			$post_id,
 			$this->option_name_question_3,
 			wp_strip_all_tags( $_REQUEST[ $this->option_name_question_3 ] )
 		);
 
-		$this->update_meta( $post_id,
+		$this->update_meta(
+			$post_id,
 			$this->option_name_answer_1,
 			wp_strip_all_tags( $_REQUEST[ $this->option_name_answer_1 ] )
 		);
 
-		$this->update_meta( $post_id,
+		$this->update_meta(
+			$post_id,
 			$this->option_name_answer_2,
 			wp_strip_all_tags( $_REQUEST[ $this->option_name_answer_2 ] )
 		);
 
-		$this->update_meta( $post_id,
+		$this->update_meta(
+			$post_id,
 			$this->option_name_answer_3,
 			wp_strip_all_tags( $_REQUEST[ $this->option_name_answer_3 ] )
 		);
@@ -747,55 +806,87 @@ class OPI_Theme_Post_Type_Newsletter extends OPI_Theme_Base {
 			array(
 				'ajaxurl' => admin_url( 'admin-ajax.php' ),
 				'i18n'    => array(
-					'newsletter_download_text'       => _x( 'Download package',
+					'newsletter_download_text'       => _x(
+						'Download package',
 						'newsletter admin',
-						'THEME_SLUG' ),
-					'no_preheader'                   => _x( 'The preheader is missing',
+						'THEME_SLUG'
+					),
+					'no_preheader'                   => _x(
+						'The preheader is missing',
 						'newsletter admin validation',
-						'THEME_SLUG' ),
-					'no_newsletter_title'            => _x( 'Newsletter title is missing',
+						'THEME_SLUG'
+					),
+					'no_newsletter_title'            => _x(
+						'Newsletter title is missing',
 						'newsletter admin validation',
-						'THEME_SLUG' ),
-					'no_subtitle'                    => _x( 'Newsletter subtitle is missing',
+						'THEME_SLUG'
+					),
+					'no_subtitle'                    => _x(
+						'Newsletter subtitle is missing',
 						'newsletter admin validation',
-						'THEME_SLUG' ),
-					'no_heading'                     => _x( 'Heading is missing',
+						'THEME_SLUG'
+					),
+					'no_heading'                     => _x(
+						'Heading is missing',
 						'newsletter admin validation',
-						'THEME_SLUG' ),
-					'no_number_of_month'             => _x( 'The month number is missing',
+						'THEME_SLUG'
+					),
+					'no_number_of_month'             => _x(
+						'The month number is missing',
 						'newsletter admin validation',
-						'THEME_SLUG' ),
-					'no_number_of_month_description' => _x( 'There is no description of the number of the month',
+						'THEME_SLUG'
+					),
+					'no_number_of_month_description' => _x(
+						'There is no description of the number of the month',
 						'newsletter admin validation',
-						'THEME_SLUG' ),
-					'no_picture'                     => _x( 'Picture is missing',
+						'THEME_SLUG'
+					),
+					'no_picture'                     => _x(
+						'Picture is missing',
 						'newsletter admin validation',
-						'THEME_SLUG' ),
-					'no_link'                        => _x( 'The url is missing',
+						'THEME_SLUG'
+					),
+					'no_link'                        => _x(
+						'The url is missing',
 						'newsletter admin validation',
-						'THEME_SLUG' ),
-					'no_title'                       => _x( 'Link title is missing',
+						'THEME_SLUG'
+					),
+					'no_title'                       => _x(
+						'Link title is missing',
 						'newsletter admin validation',
-						'THEME_SLUG' ),
-					'no_content'                     => _x( 'No news content',
+						'THEME_SLUG'
+					),
+					'no_content'                     => _x(
+						'No news content',
 						'newsletter admin validation',
-						'THEME_SLUG' ),
-					'no_person_name'                 => _x( 'Name is missing',
+						'THEME_SLUG'
+					),
+					'no_person_name'                 => _x(
+						'Name is missing',
 						'newsletter admin validation',
-						'THEME_SLUG' ),
-					'no_job_position'                => _x( 'No job position',
+						'THEME_SLUG'
+					),
+					'no_job_position'                => _x(
+						'No job position',
 						'newsletter admin validation',
-						'THEME_SLUG' ),
-					'no_question'                    => _x( 'The question is missing',
+						'THEME_SLUG'
+					),
+					'no_question'                    => _x(
+						'The question is missing',
 						'newsletter admin validation',
-						'THEME_SLUG' ),
-					'no_answer'                      => _x( 'The answer is missing',
+						'THEME_SLUG'
+					),
+					'no_answer'                      => _x(
+						'The answer is missing',
 						'newsletter admin validation',
-						'THEME_SLUG' ),
-					'section'                        => _x( 'Section',
+						'THEME_SLUG'
+					),
+					'section'                        => _x(
+						'Section',
 						'newsletter admin validation',
-						'THEME_SLUG' ),
-				)
+						'THEME_SLUG'
+					),
+				),
 			)
 		);
 	}
@@ -807,10 +898,14 @@ class OPI_Theme_Post_Type_Newsletter extends OPI_Theme_Base {
 	public function ajax_generate_newsletter(): void {
 		global $wp_filesystem;
 		if ( ! wp_verify_nonce( $_REQUEST['_wpnonce'], $this->option_name_button ) ) {
-			wp_send_json_error( array(
-				'message' => esc_html__( 'Something went wrong.',
-					'THEME_SLUG' )
-			) );
+			wp_send_json_error(
+				array(
+					'message' => esc_html__(
+						'Something went wrong.',
+						'THEME_SLUG'
+					),
+				)
+			);
 		}
 
 		$post_id = filter_input( INPUT_POST, 'post_id', FILTER_SANITIZE_NUMBER_INT );
@@ -831,10 +926,18 @@ class OPI_Theme_Post_Type_Newsletter extends OPI_Theme_Base {
 		$preheader                   = $this->get_section_value( 'preheader' );
 		$newsletter_title            = $post->post_title;
 		$subtitle                    = $this->get_section_value( 'subtitle' );
-		$number_of_month             = $this->orphans( $this->get_value( $post_id,
-			$this->option_name_number_of_month ) );
-		$number_of_month_description = $this->orphans( $this->get_value( $post_id,
-			$this->option_name_number_of_month_description ) );
+		$number_of_month             = $this->orphans(
+			$this->get_value(
+				$post_id,
+				$this->option_name_number_of_month
+			)
+		);
+		$number_of_month_description = $this->orphans(
+			$this->get_value(
+				$post_id,
+				$this->option_name_number_of_month_description
+			)
+		);
 
 		$errors = array();
 
@@ -851,10 +954,12 @@ class OPI_Theme_Post_Type_Newsletter extends OPI_Theme_Base {
 		}
 
 		if ( $errors ) {
-			wp_send_json_error( array(
-				'errors'  => $errors,
-				'section' => _x( 'Settings', 'newsletter', 'THEME_SLUG' )
-			) );
+			wp_send_json_error(
+				array(
+					'errors'  => $errors,
+					'section' => _x( 'Settings', 'newsletter', 'THEME_SLUG' ),
+				)
+			);
 		}
 
 		if ( ! $number_of_month ) {
@@ -866,18 +971,20 @@ class OPI_Theme_Post_Type_Newsletter extends OPI_Theme_Base {
 		}
 
 		if ( $errors ) {
-			wp_send_json_error( array(
-				'errors'  => $errors,
-				'section' => _x( 'Number of month', 'newsletter', 'THEME_SLUG' )
-			) );
+			wp_send_json_error(
+				array(
+					'errors'  => $errors,
+					'section' => _x( 'Number of month', 'newsletter', 'THEME_SLUG' ),
+				)
+			);
 		}
 
 		$placeholders = array(
-			"{{preheader}}"                   => $preheader,
-			"{{newsletter_title}}"            => $newsletter_title,
-			"{{newsletter_subtitle}}"         => $subtitle,
-			"{{number_of_month}}"             => $number_of_month,
-			"{{number_of_month_description}}" => $number_of_month_description
+			'{{preheader}}'                   => $preheader,
+			'{{newsletter_title}}'            => $newsletter_title,
+			'{{newsletter_subtitle}}'         => $subtitle,
+			'{{number_of_month}}'             => $number_of_month,
+			'{{number_of_month_description}}' => $number_of_month_description,
 		);
 
 		$value_news_banner_active = $this->get_value( $post->ID, $this->option_name_banner_active );
@@ -920,26 +1027,36 @@ class OPI_Theme_Post_Type_Newsletter extends OPI_Theme_Base {
 			}
 
 			if ( $errors ) {
-				wp_send_json_error( array(
-					'errors'  => $errors,
-					'section' => _x( 'Banner', 'newsletter', 'THEME_SLUG' )
-				) );
+				wp_send_json_error(
+					array(
+						'errors'  => $errors,
+						'section' => _x( 'Banner', 'newsletter', 'THEME_SLUG' ),
+					)
+				);
 			}
 
 			$section_images[] = $img_id;
 			$banner           = $template_banner;
-			$banner           = str_replace( '{{banner_img_url}}',
+			$banner           = str_replace(
+				'{{banner_img_url}}',
 				sprintf( '%s/%s', $images_directory_name, $this->get_file_name( $section_image[0] ) ),
-				$banner );
-			$banner           = str_replace( '{{banner_img_height}}',
+				$banner
+			);
+			$banner           = str_replace(
+				'{{banner_img_height}}',
 				$this->image_height( $section_image ),
-				$banner );
-			$banner           = str_replace( '{{banner_href_url}}',
+				$banner
+			);
+			$banner           = str_replace(
+				'{{banner_href_url}}',
 				esc_url( $link ),
-				$banner );
-			$banner           = str_replace( '{{banner_title}}',
+				$banner
+			);
+			$banner           = str_replace(
+				'{{banner_title}}',
 				esc_html( $title ),
-				$banner );
+				$banner
+			);
 			//$template         .= $template_spacer_1;
 			$template .= $template_header;
 			$template .= $template_header_img;
@@ -960,22 +1077,26 @@ class OPI_Theme_Post_Type_Newsletter extends OPI_Theme_Base {
 			$errors = $this->validate_news_items( $items, $section_image, $heading );
 
 			if ( $errors ) {
-				wp_send_json_error( array(
-					'errors'  => $errors,
-					'section' => _x( 'News', 'newsletter', 'THEME_SLUG' )
-				) );
+				wp_send_json_error(
+					array(
+						'errors'  => $errors,
+						'section' => _x( 'News', 'newsletter', 'THEME_SLUG' ),
+					)
+				);
 			}
 
 			$section_images[] = $img_id;
-			$template         .= str_replace( '{{section_title}}', $heading, $template_heading );
+			$template        .= str_replace( '{{section_title}}', $heading, $template_heading );
 			$img_temp         = $template_img;
-			$img_temp         = str_replace( '{{img_url}}',
+			$img_temp         = str_replace(
+				'{{img_url}}',
 				sprintf( '%s/%s', $images_directory_name, $this->get_file_name( $section_image[0] ) ),
-				$img_temp );
+				$img_temp
+			);
 			$img_temp         = str_replace( '{{height}}', $this->image_height( $section_image ), $img_temp );
-			$template         .= $img_temp;
-			$template         .= $this->html_links( $items, $template_item, $template_spacer_2 );
-			$template         .= $template_spacer_1;
+			$template        .= $img_temp;
+			$template        .= $this->html_links( $items, $template_item, $template_spacer_2 );
+			$template        .= $template_spacer_1;
 		}
 
 		if ( 1 === intval( $value_systems_active ) ) {
@@ -987,22 +1108,26 @@ class OPI_Theme_Post_Type_Newsletter extends OPI_Theme_Base {
 			$errors = $this->validate_news_items( $items, $section_image, $heading );
 
 			if ( $errors ) {
-				wp_send_json_error( array(
-					'errors'  => $errors,
-					'section' => _x( 'Our systems', 'newsletter', 'THEME_SLUG' )
-				) );
+				wp_send_json_error(
+					array(
+						'errors'  => $errors,
+						'section' => _x( 'Our systems', 'newsletter', 'THEME_SLUG' ),
+					)
+				);
 			}
 
 			$section_images[] = $img_id;
-			$template         .= str_replace( '{{section_title}}', $heading, $template_heading );
+			$template        .= str_replace( '{{section_title}}', $heading, $template_heading );
 			$img_temp         = $template_img;
-			$img_temp         = str_replace( '{{img_url}}',
+			$img_temp         = str_replace(
+				'{{img_url}}',
 				sprintf( '%s/%s', $images_directory_name, $this->get_file_name( $section_image[0] ) ),
-				$img_temp );
+				$img_temp
+			);
 			$img_temp         = str_replace( '{{height}}', $this->image_height( $section_image ), $img_temp );
-			$template         .= $img_temp;
-			$template         .= $this->html_links( $items, $template_item, $template_spacer_2 );
-			$template         .= $template_spacer_1;
+			$template        .= $img_temp;
+			$template        .= $this->html_links( $items, $template_item, $template_spacer_2 );
+			$template        .= $template_spacer_1;
 		}
 
 		if ( 1 === intval( $value_events_active ) ) {
@@ -1014,22 +1139,26 @@ class OPI_Theme_Post_Type_Newsletter extends OPI_Theme_Base {
 			$errors = $this->validate_news_items( $items, $section_image, $heading );
 
 			if ( $errors ) {
-				wp_send_json_error( array(
-					'errors'  => $errors,
-					'section' => _x( 'Events', 'newsletter', 'THEME_SLUG' )
-				) );
+				wp_send_json_error(
+					array(
+						'errors'  => $errors,
+						'section' => _x( 'Events', 'newsletter', 'THEME_SLUG' ),
+					)
+				);
 			}
 
 			$section_images[] = $img_id;
-			$template         .= str_replace( '{{section_title}}', $heading, $template_heading );
+			$template        .= str_replace( '{{section_title}}', $heading, $template_heading );
 			$img_temp         = $template_img;
-			$img_temp         = str_replace( '{{img_url}}',
+			$img_temp         = str_replace(
+				'{{img_url}}',
 				sprintf( '%s/%s', $images_directory_name, $this->get_file_name( $section_image[0] ) ),
-				$img_temp );
+				$img_temp
+			);
 			$img_temp         = str_replace( '{{height}}', $this->image_height( $section_image ), $img_temp );
-			$template         .= $img_temp;
-			$template         .= $this->html_links( $items, $template_item, $template_spacer_2 );
-			$template         .= $template_spacer_1;
+			$template        .= $img_temp;
+			$template        .= $this->html_links( $items, $template_item, $template_spacer_2 );
+			$template        .= $template_spacer_1;
 		}
 
 		if ( 1 === intval( $value_navoica_active ) ) {
@@ -1041,22 +1170,26 @@ class OPI_Theme_Post_Type_Newsletter extends OPI_Theme_Base {
 			$errors = $this->validate_news_items( $items, $section_image, $heading );
 
 			if ( $errors ) {
-				wp_send_json_error( array(
-					'errors'  => $errors,
-					'section' => _x( 'Navoica', 'newsletter', 'THEME_SLUG' )
-				) );
+				wp_send_json_error(
+					array(
+						'errors'  => $errors,
+						'section' => _x( 'Navoica', 'newsletter', 'THEME_SLUG' ),
+					)
+				);
 			}
 
 			$section_images[] = $img_id;
-			$template         .= str_replace( '{{section_title}}', $heading, $template_heading );
+			$template        .= str_replace( '{{section_title}}', $heading, $template_heading );
 			$img_temp         = $template_img;
-			$img_temp         = str_replace( '{{img_url}}',
+			$img_temp         = str_replace(
+				'{{img_url}}',
 				sprintf( '%s/%s', $images_directory_name, $this->get_file_name( $section_image[0] ) ),
-				$img_temp );
+				$img_temp
+			);
 			$img_temp         = str_replace( '{{height}}', $this->image_height( $section_image ), $img_temp );
-			$template         .= $img_temp;
-			$template         .= $this->html_links( $items, $template_item, $template_spacer_2 );
-			$template         .= $template_spacer_1;
+			$template        .= $img_temp;
+			$template        .= $this->html_links( $items, $template_item, $template_spacer_2 );
+			$template        .= $template_spacer_1;
 		}
 
 		if ( 1 === intval( $value_eu_projects_active ) ) {
@@ -1068,44 +1201,80 @@ class OPI_Theme_Post_Type_Newsletter extends OPI_Theme_Base {
 			$errors = $this->validate_news_items( $items, $section_image, $heading );
 
 			if ( $errors ) {
-				wp_send_json_error( array(
-					'errors'  => $errors,
-					'section' => _x( 'EU projects', 'newsletter', 'THEME_SLUG' )
-				) );
+				wp_send_json_error(
+					array(
+						'errors'  => $errors,
+						'section' => _x( 'EU projects', 'newsletter', 'THEME_SLUG' ),
+					)
+				);
 			}
 
 			$section_images[] = $img_id;
-			$template         .= str_replace( '{{section_title}}', $heading, $template_heading );
+			$template        .= str_replace( '{{section_title}}', $heading, $template_heading );
 			$img_temp         = $template_img;
-			$img_temp         = str_replace( '{{img_url}}',
+			$img_temp         = str_replace(
+				'{{img_url}}',
 				sprintf( '%s/%s', $images_directory_name, $this->get_file_name( $section_image[0] ) ),
-				$img_temp );
+				$img_temp
+			);
 			$img_temp         = str_replace( '{{height}}', $this->image_height( $section_image ), $img_temp );
-			$template         .= $img_temp;
-			$template         .= $this->html_links( $items, $template_item, $template_spacer_2 );
-			$template         .= $template_spacer_1;
+			$template        .= $img_temp;
+			$template        .= $this->html_links( $items, $template_item, $template_spacer_2 );
+			$template        .= $template_spacer_1;
 		}
 
 		if ( 1 === intval( $value_questions_active ) ) {
 			$errors                 = array();
 			$value_questions_img_id = $this->get_value( $post->ID, $this->option_name_questions_img );
 			$section_image          = wp_get_attachment_image_src( $value_questions_img_id, 'full' );
-			$name                   = $this->orphans( $this->get_value( $post->ID,
-				$this->option_name_first_name_last_name ) );
-			$job_position           = $this->orphans( $this->get_value( $post->ID,
-				$this->option_name_job_position ) );
-			$question_1             = $this->orphans( $this->get_value( $post->ID,
-				$this->option_name_question_1 ) );
-			$question_2             = $this->orphans( $this->get_value( $post->ID,
-				$this->option_name_question_2 ) );
-			$question_3             = $this->orphans( $this->get_value( $post->ID,
-				$this->option_name_question_3 ) );
-			$answer_1               = $this->orphans( $this->get_value( $post->ID,
-				$this->option_name_answer_1 ) );
-			$answer_2               = $this->orphans( $this->get_value( $post->ID,
-				$this->option_name_answer_2 ) );
-			$answer_3               = $this->orphans( $this->get_value( $post->ID,
-				$this->option_name_answer_3 ) );
+			$name                   = $this->orphans(
+				$this->get_value(
+					$post->ID,
+					$this->option_name_first_name_last_name
+				)
+			);
+			$job_position           = $this->orphans(
+				$this->get_value(
+					$post->ID,
+					$this->option_name_job_position
+				)
+			);
+			$question_1             = $this->orphans(
+				$this->get_value(
+					$post->ID,
+					$this->option_name_question_1
+				)
+			);
+			$question_2             = $this->orphans(
+				$this->get_value(
+					$post->ID,
+					$this->option_name_question_2
+				)
+			);
+			$question_3             = $this->orphans(
+				$this->get_value(
+					$post->ID,
+					$this->option_name_question_3
+				)
+			);
+			$answer_1               = $this->orphans(
+				$this->get_value(
+					$post->ID,
+					$this->option_name_answer_1
+				)
+			);
+			$answer_2               = $this->orphans(
+				$this->get_value(
+					$post->ID,
+					$this->option_name_answer_2
+				)
+			);
+			$answer_3               = $this->orphans(
+				$this->get_value(
+					$post->ID,
+					$this->option_name_answer_3
+				)
+			);
 
 			$heading = $this->get_section_value( 'heading_questions' );
 
@@ -1150,23 +1319,29 @@ class OPI_Theme_Post_Type_Newsletter extends OPI_Theme_Base {
 			}
 
 			if ( $errors ) {
-				wp_send_json_error( array(
-					'errors'  => $errors,
-					'section' => _x( '3 questions to', 'newsletter', 'THEME_SLUG' )
-				) );
+				wp_send_json_error(
+					array(
+						'errors'  => $errors,
+						'section' => _x( '3 questions to', 'newsletter', 'THEME_SLUG' ),
+					)
+				);
 			}
 
 			$section_images[] = $value_questions_img_id;
-			$template         .= $template_heading;
+			$template        .= $template_heading;
 			$img_temp         = $template_img;
-			$img_temp         = str_replace( '{{img_url}}',
+			$img_temp         = str_replace(
+				'{{img_url}}',
 				sprintf( '%s/%s', $images_directory_name, $this->get_file_name( $section_image[0] ) ),
-				$img_temp );
-			$img_temp         = str_replace( '{{height}}',
+				$img_temp
+			);
+			$img_temp         = str_replace(
+				'{{height}}',
 				$this->image_height( $section_image ),
-				$img_temp );
-			$template         .= $img_temp;
-			$template         .= file_get_contents( get_stylesheet_directory() . '/assets/newsletter/template_questions.html' );
+				$img_temp
+			);
+			$template        .= $img_temp;
+			$template        .= file_get_contents( get_stylesheet_directory() . '/assets/newsletter/template_questions.html' );
 
 			$placeholders['{{first_name_last_name}}'] = $name;
 			$placeholders['{{job_position}}']         = $job_position;
@@ -1177,7 +1352,7 @@ class OPI_Theme_Post_Type_Newsletter extends OPI_Theme_Base {
 			$placeholders['{{answer_2}}']             = $answer_2;
 			$placeholders['{{answer_3}}']             = $answer_3;
 
-			$template = str_replace( '{{section_title}}', $heading, $template );
+			$template  = str_replace( '{{section_title}}', $heading, $template );
 			$template .= $template_spacer_1;
 		}
 
@@ -1202,7 +1377,7 @@ class OPI_Theme_Post_Type_Newsletter extends OPI_Theme_Base {
 			$file_name_zip
 		);
 
-		$file = fopen( $new_file_path, "w" ) or die( "Unable to open file!" );
+		$file = fopen( $new_file_path, 'w' ) or die( 'Unable to open file!' );
 		foreach ( $placeholders as $key => $value ) {
 			$template = str_replace( $key, $value, $template );
 		}
@@ -1220,18 +1395,24 @@ class OPI_Theme_Post_Type_Newsletter extends OPI_Theme_Base {
 				foreach ( $section_images as $img_id ) {
 					$image_server_path = wp_get_original_image_path( $img_id );
 					$file_info         = $this->get_file_info( $image_server_path );
-					copy( $image_server_path,
-						$newsletter_opi_directory_basedir . '/' . $images_directory_name . '/' . $file_info['basename'] );
+					copy(
+						$image_server_path,
+						$newsletter_opi_directory_basedir . '/' . $images_directory_name . '/' . $file_info['basename']
+					);
 				}
 			}
 		}
 
 		if ( ! extension_loaded( 'zip' ) ) {
-			wp_send_json_error( array(
-				'message' => esc_html_x( 'Zip module is not installed.',
-					'newsletter',
-					'THEME_SLUG' )
-			) );
+			wp_send_json_error(
+				array(
+					'message' => esc_html_x(
+						'Zip module is not installed.',
+						'newsletter',
+						'THEME_SLUG'
+					),
+				)
+			);
 		}
 
 		$path_to_zip = $newsletter_opi_directory_basedir . '/' . $file_name_zip;
@@ -1261,7 +1442,7 @@ class OPI_Theme_Post_Type_Newsletter extends OPI_Theme_Base {
 
 		wp_send_json_success(
 			array(
-				'url' => $file_url
+				'url' => $file_url,
 			)
 		);
 	}
@@ -1330,12 +1511,16 @@ class OPI_Theme_Post_Type_Newsletter extends OPI_Theme_Base {
 		$this->data = array(
 			'email_error_empty'        => _x( 'Enter your email address.', 'newsletter', 'THEME_SLUG' ),
 			'email_error_invalid'      => _x( 'The e-mail address is invalid.', 'newsletter', 'THEME_SLUG' ),
-			'statute_error_required'   => _x( 'Mark the consent to activate the subscription in accordance with the regulations.',
+			'statute_error_required'   => _x(
+				'Mark the consent to activate the subscription in accordance with the regulations.',
 				'newsletter',
-				'THEME_SLUG' ),
-			'acymailing_callout_close' => _x( 'Close the window with the subscription to the newsletter',
+				'THEME_SLUG'
+			),
+			'acymailing_callout_close' => _x(
+				'Close the window with the subscription to the newsletter',
 				'newsletter',
-				'THEME_SLUG' )
+				'THEME_SLUG'
+			),
 		);
 	}
 
@@ -1348,33 +1533,61 @@ class OPI_Theme_Post_Type_Newsletter extends OPI_Theme_Base {
 	private function html_section_image( $section, $option, $val ) {
 		?>
 		<div class="description-wide" style="margin: 5px 0;">
-			<label for="image-for-<?php
-			printf( '%s', esc_attr( $section ) ); ?>">
-				<span class="description" style="display:block;"><?php
-					printf( '%s', esc_html_x( 'Picture', 'newsletter', 'THEME_SLUG' ) ); ?></span>
+			<label for="image-for-
+			<?php
+			printf( '%s', esc_attr( $section ) );
+			?>
+			">
+				<span class="description" style="display:block;">
+				<?php
+					printf( '%s', esc_html_x( 'Picture', 'newsletter', 'THEME_SLUG' ) );
+				?>
+				</span>
 
-				<input type="hidden" class="section-image" name="<?php
-				printf( '%s', $option ); ?>" value="<?php
-				printf( '%s', esc_attr( $val ) ); ?>"/>
+				<input type="hidden" class="section-image" name="
+				<?php
+				printf( '%s', $option );
+				?>
+				" value="
+				<?php
+				printf( '%s', esc_attr( $val ) );
+				?>
+				"/>
 
 				<button type="button" class="button button-secondary add_image"
-						id="image-for-<?php
-						printf( '%s', esc_attr( $section ) ); ?>"><?php
-					printf( '%s', esc_html_x( 'Add picture', 'newsletter', 'THEME_SLUG' ) ); ?></button>
+						id="image-for-
+						<?php
+						printf( '%s', esc_attr( $section ) );
+						?>
+						">
+						<?php
+						printf( '%s', esc_html_x( 'Add picture', 'newsletter', 'THEME_SLUG' ) );
+						?>
+						</button>
 				<button type="button" class="button button-secondary remove_image"
-						id="<?php
-						printf( 'remove-image-for-%s', esc_attr( $section ) ); ?>"><?php
-					printf( '%s', esc_html_x( 'Remove picture', 'newsletter', 'THEME_SLUG' ) ); ?></button>
+						id="
+						<?php
+						printf( 'remove-image-for-%s', esc_attr( $section ) );
+						?>
+						">
+						<?php
+						printf( '%s', esc_html_x( 'Remove picture', 'newsletter', 'THEME_SLUG' ) );
+						?>
+						</button>
 
 				<?php
-				if ( ! empty( $val ) ) : ?>
+				if ( ! empty( $val ) ) :
+					?>
 					<?php
-					echo wp_get_attachment_image( $val, 'thumbnail' ); ?>
-				<?php
-				else : ?>
+					echo wp_get_attachment_image( $val, 'thumbnail' );
+					?>
+					<?php
+				else :
+					?>
 					<img src="" alt="">
-				<?php
-				endif; ?>
+					<?php
+				endif;
+				?>
 			</label>
 		</div>
 		<?php
@@ -1395,7 +1608,8 @@ class OPI_Theme_Post_Type_Newsletter extends OPI_Theme_Base {
 	}
 
 	private function html_section_active( $option, $val ) {
-		printf( '<label style="display: block;">%s <input type="checkbox" name="%s" value="1" %s /></label>',
+		printf(
+			'<label style="display: block;">%s <input type="checkbox" name="%s" value="1" %s /></label>',
 			esc_html_x( 'Add a section to your newsletter', 'newsletter', 'THEME_SLUG' ),
 			esc_attr( $option ),
 			checked( intval( $val ), 1, false )
@@ -1404,71 +1618,88 @@ class OPI_Theme_Post_Type_Newsletter extends OPI_Theme_Base {
 
 	private function html_section_items( $section, $option, $val, $another_item_text, $remove_item_text ) {
 		$remove_button         = '<button class="%s">%s</button>';
-		$main_div_style        = "margin-bottom: 40px;";
+		$main_div_style        = 'margin-bottom: 40px;';
 		$remove_button_classes = array( 'button', 'remove-newsletter-item' );
 		$item_classes          = array( 'item' );
 		$title_text            = esc_html_x( 'Title', 'newsletter news', 'THEME_SLUG' );
 		$content_text          = esc_html_x( 'Content', 'newsletter news', 'THEME_SLUG' );
-		$link_text             = esc_html_x( 'Link - at the beginning, enter https:// eg. https://opi.org.pl',
+		$link_text             = esc_html_x(
+			'Link - at the beginning, enter https:// eg. https://opi.org.pl',
 			'newsletter news',
-			'THEME_SLUG' );
+			'THEME_SLUG'
+		);
 		$title_field           = '<label>%s <textarea name="%s" rows="4" cols="50" style="width: 100%%;">%s</textarea></label>';
 		$content_field         = '<label>%s <textarea name="%s" rows="4" cols="50" style="width: 100%%;">%s</textarea></label>';
 		$url_field             = '<label>%s <input type="text" name="%s" value="%s" style="width: 100%%;"></label>';
 
 		if ( $val ) {
 			foreach ( $val as $key => $item ) {
-				printf( '<div id="%s-%s" class="%s" style="%s">',
+				printf(
+					'<div id="%s-%s" class="%s" style="%s">',
 					esc_attr( $section ),
 					esc_attr( $key ),
-					esc_attr( implode( " ", $item_classes ) ),
-					esc_attr( $main_div_style ) );
-				printf( $title_field,
+					esc_attr( implode( ' ', $item_classes ) ),
+					esc_attr( $main_div_style )
+				);
+				printf(
+					$title_field,
 					$title_text,
 					sprintf( '%s[%s][%s]', esc_attr( $option ), esc_attr( $key ), esc_attr( 'title' ) ),
 					isset( $item['title'] ) ? esc_html( $item['title'] ) : ''
 				);
-				printf( $content_field,
+				printf(
+					$content_field,
 					$content_text,
 					sprintf( '%s[%s][%s]', esc_attr( $option ), esc_attr( $key ), esc_attr( 'content' ) ),
 					isset( $item['content'] ) ? esc_html( $item['content'] ) : ''
 				);
-				printf( $url_field,
+				printf(
+					$url_field,
 					$link_text,
 					sprintf( '%s[%s][%s]', esc_attr( $option ), esc_attr( $key ), esc_attr( 'url' ) ),
 					isset( $item['url'] ) ? esc_url( $item['url'] ) : ''
 				);
-				printf( $remove_button,
-					esc_attr( implode( " ", $remove_button_classes ) ),
-					$remove_item_text );
+				printf(
+					$remove_button,
+					esc_attr( implode( ' ', $remove_button_classes ) ),
+					$remove_item_text
+				);
 				echo '</div>';
 			}
 		} else {
-			printf( '<div id="%s-first" class="%s" style="%s">',
+			printf(
+				'<div id="%s-first" class="%s" style="%s">',
 				esc_attr( $section ),
-				esc_attr( implode( " ", $item_classes ) ),
-				esc_attr( $main_div_style ) );
-			printf( $title_field,
+				esc_attr( implode( ' ', $item_classes ) ),
+				esc_attr( $main_div_style )
+			);
+			printf(
+				$title_field,
 				$title_text,
 				sprintf( '%s[%s][%s]', esc_attr( $option ), esc_attr( 'first' ), esc_attr( 'title' ) ),
 				''
 			);
-			printf( $content_field,
+			printf(
+				$content_field,
 				$content_text,
 				sprintf( '%s[%s][%s]', esc_attr( $option ), esc_attr( 'first' ), esc_attr( 'content' ) ),
 				''
 			);
-			printf( $url_field,
+			printf(
+				$url_field,
 				$link_text,
 				sprintf( '%s[%s][%s]', esc_attr( $option ), esc_attr( 'first' ), esc_attr( 'url' ) ),
 				''
 			);
-			printf( $remove_button,
-				esc_attr( implode( " ", $remove_button_classes ) ),
-				$remove_item_text );
+			printf(
+				$remove_button,
+				esc_attr( implode( ' ', $remove_button_classes ) ),
+				$remove_item_text
+			);
 			echo '</div>';
 		}
-		printf( '<button id="another-%s" type="button" class="button add-another-item">%s</button>',
+		printf(
+			'<button id="another-%s" type="button" class="button add-another-item">%s</button>',
 			esc_attr( $section ),
 			$another_item_text,
 		);
@@ -1488,8 +1719,10 @@ class OPI_Theme_Post_Type_Newsletter extends OPI_Theme_Base {
 							break;
 						case 'url':
 							$item_val          = trim( $item_val );
-							$temp2[ $key_val ] = filter_var( $item_val,
-								FILTER_VALIDATE_URL ) === false ? '' : sanitize_url( $item_val );
+							$temp2[ $key_val ] = filter_var(
+								$item_val,
+								FILTER_VALIDATE_URL
+							) === false ? '' : sanitize_url( $item_val );
 							break;
 					}
 				}
@@ -1508,10 +1741,10 @@ class OPI_Theme_Post_Type_Newsletter extends OPI_Theme_Base {
 		$i                = 0;
 		$links_html       = '';
 		foreach ( $items as $key => $item ) {
-			$temp       = $template_item;
-			$temp       = $this->orphans( str_replace( '{{title}}', esc_html( $item['title'] ), $temp ) );
-			$temp       = $this->orphans( str_replace( '{{content}}', esc_html( $item['content'] ), $temp ) );
-			$temp       = str_replace( '{{url}}', esc_url( $item['url'] ), $temp );
+			$temp        = $template_item;
+			$temp        = $this->orphans( str_replace( '{{title}}', esc_html( $item['title'] ), $temp ) );
+			$temp        = $this->orphans( str_replace( '{{content}}', esc_html( $item['content'] ), $temp ) );
+			$temp        = str_replace( '{{url}}', esc_url( $item['url'] ), $temp );
 			$links_html .= $temp;
 			if ( ++ $i !== $value_news_count ) {
 				$links_html .= $template_spacer_2;
@@ -1539,16 +1772,18 @@ class OPI_Theme_Post_Type_Newsletter extends OPI_Theme_Base {
 	}
 
 	private function orphans( $string ): string {
-		return preg_replace( "/\s(\S)\s+/", " $1&nbsp;", $string );
+		return preg_replace( '/\s(\S)\s+/', ' $1&nbsp;', $string );
 	}
 
 	/**
 	 * custom option and settings
 	 */
 	public function settings_init() {
-		register_setting( $this->option_group_newsletter,
+		register_setting(
+			$this->option_group_newsletter,
 			$this->section_name,
-			array( $this, 'newsletter_options_sanitize' ) );
+			array( $this, 'newsletter_options_sanitize' )
+		);
 
 		add_settings_section(
 			'newsletter_settings',
@@ -1648,9 +1883,15 @@ class OPI_Theme_Post_Type_Newsletter extends OPI_Theme_Base {
 
 	public function section_headings_cb( $args ) {
 		?>
-		<p id="<?php
-		echo esc_attr( $args['id'] ); ?>"><?php
-			esc_html_e( 'Enter the headlines', 'THEME_SLUG' ); ?></p>
+		<p id="
+		<?php
+		echo esc_attr( $args['id'] );
+		?>
+		">
+		<?php
+			esc_html_e( 'Enter the headlines', 'THEME_SLUG' );
+		?>
+		</p>
 		<?php
 	}
 
@@ -1783,14 +2024,21 @@ class OPI_Theme_Post_Type_Newsletter extends OPI_Theme_Base {
 	 * @return void
 	 */
 	public function options_page_html(): void {
-		if ( ! current_user_can( apply_filters( 'newsletters_settings_page_capability',
-			$this->newsletter_settings_page_capability ) ) ) {
+		if ( ! current_user_can(
+			apply_filters(
+				'newsletters_settings_page_capability',
+				$this->newsletter_settings_page_capability
+			)
+		) ) {
 			return;
 		}
 		?>
 		<div class="wrap">
-			<h1><?php
-				echo esc_html( get_admin_page_title() ); ?></h1>
+			<h1>
+			<?php
+				echo esc_html( get_admin_page_title() );
+			?>
+			</h1>
 			<form action="options.php" method="post">
 				<?php
 				// output security fields for the registered setting "wporg"
