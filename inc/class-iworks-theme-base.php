@@ -3,10 +3,25 @@
 abstract class iWorks_Theme_Base {
 
 	/**
-	 * Theme url.
+	 * Theme option name
 	 *
 	 * @since 1.0.0
-	 * @var string $url Base url for theme files..
+	 */
+	protected $option_name = 'iworks_theme';
+
+	/**
+	 * Theme root.
+	 *
+	 * @since 1.0.0
+	 * @var string $option_name_icon Option name ICON.
+	 */
+	protected $root = '';
+
+	/**
+	 * Child theme url.
+	 *
+	 * @since 1.0.0
+	 * @var string $option_name_icon Option name ICON.
 	 */
 	protected $url = '';
 
@@ -94,6 +109,23 @@ abstract class iWorks_Theme_Base {
 			);
 		}
 		return esc_url( $url );
+	}
+
+	/**
+	 * Build nonce name
+	 *
+	 * @since 1.0.0
+	 *
+	 * @param string $value Name
+	 * @param string $prefix Prefix of a name
+	 *
+	 * @return string Nonce name.
+	 */
+	protected function get_nonce_name( $value, $prefix = '' ) {
+		if ( empty( $prefix ) ) {
+			return sprintf( 'iworks-theme-%s', $value );
+		}
+		return sprintf( 'iworks-theme-%s-%s', $prefix, $value );
 	}
 
 	/**
@@ -199,6 +231,72 @@ abstract class iWorks_Theme_Base {
 	}
 
 	/**
+	 * get file content
+	 *
+	 * @since 2.0.0
+	 *
+	 * @param string $path Path to file.
+	 */
+	protected function get_file( $path ) {
+		$path = realpath( $path );
+		if ( ! $path || ! @is_file( $path ) ) {
+			return '';
+		}
+		return @file_get_contents( $path );
+	}
+
+	protected function add_meta_box_meta_description( $post_type ) {
+		add_meta_box(
+			'opi-meta-description',
+			__( 'HTML Meta Description', 'opi-pib-theme' ),
+			array( $this, 'meta_bo_description_html' ),
+			$post_type,
+			'normal',
+			'default'
+		);
+	}
+
+	public function meta_bo_description_html( $post ) {
+		wp_nonce_field( $this->option_name_meta_description . '_nonce', 'meta_description_nonce' );
+		$value = get_post_meta( $post->ID, $this->option_name_meta_description, true );
+		printf(
+			'<textarea name="%s" rows="5" class="large-text code">%s</textarea>',
+			esc_attr( $this->option_name_meta_description ),
+			esc_html( $value )
+		);
+	}
+
+	/**
+	 * Save meta Description;
+	 *
+	 * @since 2.0.0
+	 *
+	 * @param integer $post_id Post ID.
+	 */
+	public function save_meta_description( $post_id ) {
+		if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) {
+			return;
+		}
+		$nonce = filter_input( INPUT_POST, 'meta_description_nonce', FILTER_SANITIZE_STRING );
+		if ( ! wp_verify_nonce( $nonce, $this->option_name_meta_description . '_nonce' ) ) {
+			return;
+		}
+		if ( ! current_user_can( 'edit_post', $post_id ) ) {
+			return;
+		}
+		$value = trim( preg_replace( '/\s+/', ' ', filter_input( INPUT_POST, $this->option_name_meta_description, FILTER_SANITIZE_STRING ) ) );
+		if ( empty( $value ) ) {
+			delete_post_meta( $post_id, $this->option_name_meta_description );
+		} else {
+			$result = update_post_meta( $post_id, $this->option_name_meta_description, $value );
+			if ( ! $result ) {
+				add_post_meta( $post_id, $this->option_name_meta_description, $value, true );
+			}
+		}
+	}
+
+
+	/**
 	 * Check is REST API request handler
 	 */
 	protected function is_rest_request() {
@@ -211,6 +309,54 @@ abstract class iWorks_Theme_Base {
 			$this->post_meta_prefix,
 			esc_attr( $name )
 		);
+	}
+
+	private function input( $type, $name, $value, $label, $attributes = array() ) {
+		$content = '<p>';
+		if ( ! empty( $label ) ) {
+			$content .= sprintf(
+				'<label>%s<br />',
+				$label
+			);
+		}
+		$atts = '';
+		foreach ( $attributes as $attribute_key => $attribute_value ) {
+			$atts .= sprintf(
+				' %s="%s"',
+				esc_html( $attribute_key ),
+				esc_attr( $attribute_value )
+			);
+		}
+		$content .= sprintf(
+			'<input type="%s" name="%s" value="%s" %s />',
+			esc_attr( $type ),
+			esc_attr( $name ),
+			esc_attr( $value ),
+			$atts
+		);
+		if ( ! empty( $label ) ) {
+			$content .= '</label>';
+		}
+		return $content;
+	}
+
+	protected function input_date( $name, $value, $label = '' ) {
+		return $this->input( 'date', $name, $value, $label );
+	}
+
+	protected function input_url( $name, $value, $label = '' ) {
+		return $this->input( 'url', $name, $value, $label );
+	}
+
+	protected function input_number( $name, $value, $label = '' ) {
+		$attributes = array(
+			'min' => 0,
+		);
+		return $this->input( 'number', $name, $value, $label, $attributes );
+	}
+
+	protected function input_text( $name, $value, $label = '' ) {
+		return $this->input( 'text', $name, $value, $label );
 	}
 }
 
