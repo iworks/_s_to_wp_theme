@@ -296,7 +296,7 @@ class iWorks_Post_Type_FAQ extends iWorks_Post_Type {
 			)
 		);
 		$list  = array(
-			'0' => esc_html__( '&mdash; Select &mdash;', 'sellspark-io-theme-adjc-pl' ),
+			'0' => esc_html__( '&mdash; Select &mdash;', 'THEME_SLUG' ),
 		);
 		foreach ( $terms as $term ) {
 			$list[ $term->term_id ] = $term->name;

@@ -248,7 +248,7 @@ abstract class iWorks_Theme_Base {
 	protected function add_meta_box_meta_description( $post_type ) {
 		add_meta_box(
 			'opi-meta-description',
-			__( 'HTML Meta Description', 'opi-pib-theme' ),
+			__( 'HTML Meta Description', 'THEME_SLUG' ),
 			array( $this, 'meta_bo_description_html' ),
 			$post_type,
 			'normal',

@@ -345,7 +345,7 @@ class OPI_Theme_Post_Type_Page extends OPI_Theme_Base {
 		$posts_per_page = filter_input( INPUT_POST, 'posts_per_page', FILTER_DEFAULT );
 		$action         = $this->get_nonce_name( $id, 'systems' );
 		if ( ! wp_verify_nonce( $nonce, $action ) ) {
-			wp_send_json_error( __( 'Security check failed!', 'opi_pib_theme' ) );
+			wp_send_json_error( __( 'Security check failed!', 'THEME_SLUG' ) );
 		}
 		if ( empty( $posts_per_page ) ) {
 			$posts_per_page = 3;

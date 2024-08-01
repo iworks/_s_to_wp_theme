@@ -46,7 +46,7 @@ abstract class iWorks_Post_Type extends iWorks_Theme_Base {
 				'post_status'    => 'publish',
 			)
 		);
-		$list[0]   = __( '&mdash; Select &mdash;', 'opi-feng' );
+		$list[0]   = __( '&mdash; Select &mdash;', 'THEME_SLUG' );
 		$the_query = new WP_Query( $args );
 		foreach ( $the_query->posts as $post ) {
 			$list[ $post->ID ] = $post->post_title;
@@ -89,7 +89,7 @@ abstract class iWorks_Post_Type extends iWorks_Theme_Base {
 			'<select name="%s">',
 			esc_attr( $one['name'] )
 		);
-		printf( '<option value="">%s</option>', __( '&mdash; Select &mdash;', 'opi-feng' ) );
+		printf( '<option value="">%s</option>', __( '&mdash; Select &mdash;', 'THEME_SLUG' ) );
 		foreach ( $one['options'] as $option_value => $option_name ) {
 			printf(
 				'<option value="%s" %s>%s</option>',
@@ -207,7 +207,7 @@ abstract class iWorks_Post_Type extends iWorks_Theme_Base {
 		}
 	}
 	public function filter_add_menu_order_column( $columns ) {
-		$columns['menu_order'] = __( 'Order', 'sellspark-io-theme-adjc-pl' );
+		$columns['menu_order'] = __( 'Order', 'THEME_SLUG' );
 		return $columns;
 	}
 

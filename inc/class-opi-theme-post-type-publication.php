@@ -64,7 +64,7 @@ class OPI_Theme_Post_Type_Publication extends OPI_Theme_Base {
 		if ( 'pl_PL' === get_locale() ) {
 			$content .= '<span class="section-title">Publikacje Naukowe OPI PIB</span>';
 		} else {
-			$content .= sprintf( '<span class="section-title">%s</span>', esc_html__( 'Scientific publications of OPI PIB', 'courses' ) );
+			$content .= sprintf( '<span class="section-title">%s</span>', esc_html__( 'Scientific publications of OPI PIB', 'THEME_SLUG' ) );
 		}
 		if ( $the_query->have_posts() ) {
 			ob_start();

@@ -1,88 +1,88 @@
 form {
 
-    button,
-    input[type=submit] {
-        @include button;
-    }
+	button,
+	input[type=submit] {
+		@include button;
+	}
 
-    input[type=text],
-    input[type=email],
-    input[type=password],
-    select,
-    textarea {
-        @include radius;
-        background-color: var(--color-theme-white);
-        border-color: var(--color-theme-black);
-        padding: var(--spacer-8);
-        width: 100%;
-    }
+	input[type=text],
+	input[type=email],
+	input[type=password],
+	select,
+	textarea {
+		@include radius;
+		background-color: var(--color-theme-white);
+		border-color: var(--color-theme-black);
+		padding: var(--spacer-8);
+		width: 100%;
+	}
 
-    label {}
+	label {}
 
-    .required-descrpition {
-        strong {
-            color: var(--color-theme-alert);
-        }
-    }
+	.required-descrpition {
+		strong {
+			color: var(--color-theme-alert);
+		}
+	}
 
-    .required {
-        label {
-            span {
-                &:after {
-                    content: "*";
-                    color: var(--color-theme-alert);
-                }
-            }
+	.required {
+		label {
+			span {
+				&:after {
+					content: "*";
+					color: var(--color-theme-alert);
+				}
+			}
 
-            div {
-                span {
-                    &:after {
-                        content: "";
-                        display: none;
-                    }
-                }
-            }
-        }
-    }
+			div {
+				span {
+					&:after {
+						content: "";
+						display: none;
+					}
+				}
+			}
+		}
+	}
 
-    [disabled],
-    [readonly] {
-        opacity: .5;
+	[disabled],
+	[readonly] {
+		opacity: .5;
 
-        &:hover {
-            cursor: default;
-        }
-    }
+		&:hover {
+			cursor: default;
+		}
+	}
 
-    fieldset {
-        border: 0;
-    }
+	fieldset {
+		border: 0;
+	}
 
-    .select2-container {
-        width: 100% !important;
-    }
+	.select2-container {
+		width: 100% !important;
+	}
 }
 
 .button,
 .wp-element-button {
-    @include button;
+	@include button;
 }
 
 .wp-block-file {
-    @media screen and (max-width: #{ $width_s - 1px }) {
-        padding-top: var(--spacer-10);
+	@media screen and (max-width: #{ $width_s - 1px }) {
+		padding-top: var(--spacer-10);
 
-        .wp-block-file__button {
-            width: 100%;
-            text-align: center;
-        }
-    }
+		.wp-block-file__button {
+			width: 100%;
+			text-align: center;
+		}
+	}
 
-    @media screen and (min-width: $width_s) {
-        text-align: right;
-    }
+	@media screen and (min-width: $width_s) {
+		text-align: right;
+	}
 
-    .wp-block-file__button {
-        @include button_reverse;
-    }
+	.wp-block-file__button {
+		@include button_reverse;
+	}
 }

@@ -54,7 +54,7 @@ class iWorks_Table_Of_Content {
 			$toc .= '<div class="iworks-toc">';
 			$toc .= sprintf(
 				'<p class="iworks-toc-title">%s</p>',
-				esc_attr__( 'Table of content', 'seo-profi' )
+				esc_attr__( 'Table of content', 'THEME_SLUG' )
 			);
 			$toc .= '<ol class="iworks-toc-list">';
 			for ( $i = 0; $i < count( $matches[0] ); $i++ ) {
