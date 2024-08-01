@@ -1,8 +1,8 @@
 <?php
 
-require_once 'class-opi-theme-base.php';
+require_once 'class-iworks-post-type.php';
 
-class OPI_Theme_Post_Type_Hero extends OPI_Theme_Base {
+class iWorks_Post_Type_Hero extends iWorks_Post_Type {
 
 	private $post_type_name = 'opi_hero';
 

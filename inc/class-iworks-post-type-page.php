@@ -1,8 +1,8 @@
 <?php
 
-require_once 'class-opi-theme-base.php';
+require_once 'class-iworks-post-type.php';
 
-class OPI_Theme_Post_Type_Page extends OPI_Theme_Base {
+class iWorks_Post_Type_Page extends iWorks_Post_Type {
 
 	/**
 	 * Option name, used to save data on postmeta table.

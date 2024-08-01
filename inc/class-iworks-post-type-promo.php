@@ -1,8 +1,8 @@
 <?php
 
-require_once 'class-opi-theme-base.php';
+require_once 'class-iworks-post-type.php';
 
-class OPI_Theme_Post_Type_Promo extends OPI_Theme_Base {
+class iWorks_Post_Type_Promo extends iWorks_Post_Type {
 
 	private $post_type_name                = 'opi_featured';
 	private $option_name_url               = '_opi_featured_url';

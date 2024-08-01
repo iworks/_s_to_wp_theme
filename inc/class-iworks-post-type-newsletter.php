@@ -1,8 +1,8 @@
 <?php
 
-require_once 'class-opi-theme-base.php';
+require_once 'class-iworks-post-type.php';
 
-class OPI_Theme_Post_Type_Newsletter extends OPI_Theme_Base {
+class iWorks_Post_Type_Newsletter extends iWorks_Post_Type {
 
 	private array $data                                     = array();
 	private string $post_type_name                          = 'opi_newsletter';
