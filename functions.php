@@ -1,13 +1,20 @@
 <?php
 /**
- * Custom Post Type; Person
+ * Load Google Analitics Integration
  *
  * use __return_true to turn it on
  */
 add_filter( 'iworks/theme/load-post-type-person', '__return_false' );
 
 /**
- * Custom Post Type; FAQ
+ * Custom Post Type: Person
+ *
+ * use __return_true to turn it on
+ */
+add_filter( 'iworks/theme/load-post-type-person', '__return_false' );
+
+/**
+ * Custom Post Type: FAQ
  *
  * use __return_true to turn it on
  */
@@ -18,7 +25,16 @@ add_filter( 'iworks/theme/load-post-type-faq', '__return_false' );
  *
  * use __return_true to turn it on
  */
-add_filter( 'iworks/theme/load-post-type-project', '__return_true' );
+add_filter( 'iworks/theme/load-post-type-project', '__return_false' );
+
+
+/**
+ * Custom Post Type: Opinion
+ *
+ * use __return_true to turn it on
+ */
+add_filter( 'iworks/theme/load-post-type-opinion', '__return_false' );
+
 /**
  * WP Cron
  *

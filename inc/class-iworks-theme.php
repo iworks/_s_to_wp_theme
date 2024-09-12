@@ -20,28 +20,35 @@ class iWorks_Theme extends iWorks_Theme_Base {
 			new iWorks_Cookie_Notice;
 		}
 		/**
-		 * integrations
+		 * Integration: Google Analitics
 		 */
-		include_once 'integrations/services/class-iworks-service-google-analytics.php';
-		new iWorks_Integration_Service_Google_Analitics;
+		if ( apply_filters( 'iworks/theme/load-integration-google-analytics', false ) ) {
+			include_once 'integrations/services/class-iworks-service-google-analytics.php';
+			new iWorks_Integration_Service_Google_Analitics;
+		}
 		/**
-		 * Post Types
+		 * Post Type: Person
 		 */
 		if ( apply_filters( 'iworks/theme/load-post-type-person', false ) ) {
 			include_once 'class-iworks-post-type-person.php';
 			new iWorks_Post_Type_Person;
 		}
+		/**
+		 * Post Type: FAQ
+		 */
 		if ( apply_filters( 'iworks/theme/load-post-type-faq', false ) ) {
 			include_once 'class-iworks-post-type-faq.php';
 			new iWorks_Post_Type_FAQ;
 		}
+		/**
+		 * Post Type: Project
+		 */
 		if ( apply_filters( 'iworks/theme/load-post-type-project', false ) ) {
 			include_once 'class-iworks-post-type-project.php';
 			new iWorks_Post_Type_Project;
 		}
 		/**
-		/**
-		 * opinion
+		 * Post Type: Opinion
 		 */
 		if ( apply_filters( 'iworks/theme/load-post-type-opinion', false ) ) {
 			include_once 'class-iworks-post-type-opinion.php';
