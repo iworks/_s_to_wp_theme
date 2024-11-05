@@ -13,6 +13,7 @@ $width_m: 782px;
 $width_l: 901px;
 $width_x: 1200px;
 $width_xl: 1600px;
+$width_xxl: 1920px;
 
 $default_width: $width_x;
 
@@ -23,6 +24,7 @@ $default_width: $width_x;
 $default_image_size: calc(100% * 9 / 16);
 
 $image_root: 'assets/images/';
+$font_root: 'assets/fonts/';
 
 @mixin image($image ) {
 	image: url(#{$image_root}#{$image}?v=#{$version});
@@ -41,6 +43,14 @@ $image_root: 'assets/images/';
 	}
 }
 
+@function furl($font ){
+	@return url('#{$font_root}#{$font}?v=#{$version}');
+}
+
+@function iurl($image ){
+	@return url(#{$image_root}#{$image}?v=#{$version});
+}
+
 @function iurlb($image ) {
 	@return iurl(backgrounds/#{$image} );
 }
@@ -49,6 +59,19 @@ $image_root: 'assets/images/';
 	@include image('backgrounds/#{$image}');
 }
 
+@mixin bbg($image ) {
+	display: block;
+	text: {
+		indent: -999em;
+	}
+	overflow: hidden;
+	background: {
+		repeat: no-repeat;
+		position: 50% 50%;
+		size: contain;
+		@include bg(#{$image});
+	}
+}
 @mixin default_width() {
 	margin: {
 		left: auto;
@@ -87,26 +110,30 @@ $image_root: 'assets/images/';
 	width: $width/12*$col;
 }
 
-@mixin radius($radius: var(--radius-default)) {
-	-webkit-border-radius: $radius;
-	-moz-border-radius: $radius;
-	border-radius: $radius;
+@mixin radius($value: var(--radius-default)) {
+	-webkit-border-radius: #{$value};
+	-moz-border-radius: #{$value};
+	border-radius: #{$value};
 }
 
-@mixin boxshadow($shadow) {
-	-webkit-box-shadow: $shadow;
-	-moz-box-shadow: $shadow;
-	box-shadow: $shadow;
+@mixin backdrop_blur($value: var(--blur-default)) {
+	backdrop-filter: blur(#{$value});
+	--webkit-backdrop-filter: blur(#{$value});
 }
 
-@mixin textshadow($shadow ) {
-	text-shadow: $shadow;
-	-webkit-text-shadow: $shadow;
-	-moz-text-shadow: $shadow;
+@mixin boxshadow($value) {
+	-webkit-box-shadow: #{$value};
+	-moz-box-shadow: #{$value};
+	box-shadow: #{$value};
+}
+
+@mixin textshadow($value) {
+	-webkit-text-shadow: #{$value};
+	-moz-text-shadow: #{$value};
+	text-shadow: #{$value};
 }
 
 @mixin clearfix {
-
 	&:before,
 	&:after {
 		content: '';
@@ -320,7 +347,10 @@ $image_root: 'assets/images/';
 }
 
 @mixin background_gradient($color1: var(--color-theme-white), $color2: $color_accent ) {
-	background: transparent linear-gradient(90deg, $color1 0%, $color2 17%, $color2 83%, $color1 100%) 0% 0% no-repeat padding-box;
+	background: {
+		color: $color1;
+		image: linear-gradient(90deg, $color1 0%, $color2 17%, $color2 83%, $color1 100%);
+	}
 }
 
 @function padding_clamp() {
