@@ -61,17 +61,17 @@ module.exports = function(grunt) {
 
 		// BUILD patterns to exclude code for specific builds.
 		replaces: {
-			patterns: [{
-				match: /BUILDTIMESTAMP/g,
-				replace: buildtimestamp
-			}, {
-				match: /BUILDTIME/g,
-				replace: buildtime
-			}, {
-				match: /BUILDYEAR/g,
-				replace: buildyear
-			},
-
+			patterns: [
+				{
+					match: /BUILDTIMESTAMP/g,
+					replace: buildtimestamp
+				}, {
+					match: /BUILDTIME/g,
+					replace: buildtime
+				}, {
+					match: /BUILDYEAR/g,
+					replace: buildyear
+				},
 				{
 					match: /THEME_AUTHOR_NAME/g,
 					replace: '<%= pkg.author[0].name %>'

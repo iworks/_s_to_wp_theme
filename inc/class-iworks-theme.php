@@ -27,34 +27,6 @@ class iWorks_Theme extends iWorks_Theme_Base {
 			new iWorks_Integration_Service_Google_Analitics;
 		}
 		/**
-		 * Post Type: Person
-		 */
-		if ( apply_filters( 'iworks/theme/load-post-type-person', false ) ) {
-			include_once 'class-iworks-post-type-person.php';
-			new iWorks_Post_Type_Person;
-		}
-		/**
-		 * Post Type: FAQ
-		 */
-		if ( apply_filters( 'iworks/theme/load-post-type-faq', false ) ) {
-			include_once 'class-iworks-post-type-faq.php';
-			new iWorks_Post_Type_FAQ;
-		}
-		/**
-		 * Post Type: Project
-		 */
-		if ( apply_filters( 'iworks/theme/load-post-type-project', false ) ) {
-			include_once 'class-iworks-post-type-project.php';
-			new iWorks_Post_Type_Project;
-		}
-		/**
-		 * Post Type: Opinion
-		 */
-		if ( apply_filters( 'iworks/theme/load-post-type-opinion', false ) ) {
-			include_once 'class-iworks-post-type-opinion.php';
-			new iWorks_Post_Type_Opinion;
-		}
-		/**
 		 * WP Cron
 		 */
 		if ( apply_filters( 'iworks/theme/load-wp-cron', false ) ) {
@@ -283,7 +255,7 @@ class iWorks_Theme extends iWorks_Theme_Base {
 		register_nav_menus(
 			array(
 				'primary' => esc_html__( 'Primary', 'THEME_SLUG' ),
-				'footer'  => esc_html__( 'Footer Links', 'THEME_SLUG' ),
+				'footer'  => esc_html__( 'Footer', 'THEME_SLUG' ),
 			)
 		);
 		add_theme_support(
