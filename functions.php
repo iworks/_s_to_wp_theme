@@ -17,13 +17,15 @@ add_filter( 'iworks/theme/load-cookies', '__return_false' );
 add_filter( 'iworks/theme/load-toc', '__return_false' );
 
 /**
+ * Cache Support
+ */
+add_filter( 'iworks/theme/load-cache', '__return_false' );
+
+/**
  * Load theme class
  */
 require_once get_template_directory() . '/inc/class-iworks-theme.php';
 new iWorks_Theme;
-
-// require_once get_template_directory() . '/inc/class-iworks-cache.php';
-// new iWorks_Cache;
 
 /**
  * Custom template tags for this theme.

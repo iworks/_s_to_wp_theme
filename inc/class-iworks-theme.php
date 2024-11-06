@@ -34,15 +34,25 @@ class iWorks_Theme extends iWorks_Theme_Base {
 			new iWorks_Theme_WP_Cron;
 		}
 		/**
-		 * functionalities
+		 * Function: Cookies
 		 */
 		if ( apply_filters( 'iworks/theme/load-cookies', false ) ) {
 			include_once 'class-iworks-cookie-notice.php';
 			new iWorks_Cookie_Notice;
 		}
+		/**
+		 * Function: TOC
+		 */
 		if ( apply_filters( 'iworks/theme/load-toc', false ) ) {
 			include_once 'class-iworks-toc.php';
 			new iWorks_Table_Of_Content;
+		}
+		/**
+		 * Function: Cache Support
+		 */
+		if ( apply_filters( 'iworks/theme/load-cache', false ) ) {
+			include_once 'class-iworks-cache.php';
+			new iWorks_Cache;
 		}
 		/**
 		 * hooks
@@ -50,8 +60,6 @@ class iWorks_Theme extends iWorks_Theme_Base {
 		add_action( 'after_setup_theme', array( $this, 'add_image_sizes' ) );
 		add_action( 'after_setup_theme', array( $this, 'content_width' ) );
 		add_action( 'after_setup_theme', array( $this, 'load_theme_textdomain' ) );
-		add_action( 'after_setup_theme', array( $this, 'load_theme_textdomain' ) );
-		add_action( 'after_setup_theme', array( $this, 'setup' ) );
 		add_action( 'after_setup_theme', array( $this, 'setup' ) );
 		add_action( 'init', array( $this, 'register_scripts' ) );
 		add_action( 'plugins_loaded', array( $this, 'set_iworks_cache_keys' ) );
