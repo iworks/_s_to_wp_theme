@@ -33,6 +33,7 @@ module.exports = function(grunt) {
 			"assets/scripts/frontend.js": [
 				"assets/scripts/src/frontend/common.js",
 				"assets/scripts/src/frontend/navigation.js",
+				"assets/scripts/src/frontend/links.js",
 				"assets/scripts/src/frontend/cookie-notice-front.js",
 				// "assets/scripts/src/frontend/wcag.js",
 				// "assets/scripts/src/frontend/fonts.js",

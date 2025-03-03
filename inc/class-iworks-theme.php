@@ -4,7 +4,6 @@ require_once 'class-iworks-theme-base.php';
 
 class iWorks_Theme extends iWorks_Theme_Base {
 
-
 	/**
 	 * Select2 is compiled?
 	 */
@@ -68,6 +67,12 @@ class iWorks_Theme extends iWorks_Theme_Base {
 		add_filter( 'body_class', array( $this, 'body_classses' ) );
 		add_filter( 'excerpt_more', array( $this, 'excerpt_more' ) );
 		add_filter( 'get_user_option_wporg_favorites', array( $this, 'filter_get_user_option_wporg_favorites_iworks' ), PHP_INT_MAX, 3 );
+		add_filter( 'wp_get_attachment_image_attributes', array( $this, 'filter_wp_get_attachment_image_attributes' ), 10, 3 );
+		/**
+		 * remove inline styles from blocks
+		 */
+		remove_action( 'wp_enqueue_scripts', 'wp_enqueue_stored_styles' );
+		remove_action( 'wp_footer', 'wp_enqueue_stored_styles', 1 );
 		/**
 		 * iworks
 		 */
@@ -168,8 +173,9 @@ class iWorks_Theme extends iWorks_Theme_Base {
 		if ( is_admin() ) {
 			return;
 		}
-		wp_deregister_style( 'wp-block-library' );
+		wp_deregister_style( 'classic-theme-styles' );
 		wp_deregister_style( 'global-styles' );
+		wp_deregister_style( 'wp-block-library' );
 	}
 
 	/**
@@ -330,6 +336,18 @@ class iWorks_Theme extends iWorks_Theme_Base {
 			return 'iworks';
 		}
 		return $result;
+	}
+
+	/**
+	 * remove "sizes" attribute
+	 *
+	 * @since WP 6.7
+	 */
+	public function filter_wp_get_attachment_image_attributes( $attr, $attachment, $size ) {
+		if ( is_array( $attr ) && isset( $attr['sizes'] ) ) {
+			unset( $attr['sizes'] );
+		}
+		return $attr;
 	}
 }
 

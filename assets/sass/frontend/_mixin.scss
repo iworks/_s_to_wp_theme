@@ -44,11 +44,11 @@ $font_root: 'assets/fonts/';
 }
 
 @function furl($font ){
-	@return url('#{$font_root}#{$font}?v=#{$version}');
+@return url('#{$font_root}#{$font}?v=#{$version}');
 }
 
 @function iurl($image ){
-	@return url(#{$image_root}#{$image}?v=#{$version});
+@return url(#{$image_root}#{$image}?v=#{$version});
 }
 
 @function iurlb($image ) {
@@ -61,10 +61,13 @@ $font_root: 'assets/fonts/';
 
 @mixin bbg($image ) {
 	display: block;
+
 	text: {
 		indent: -999em;
 	}
+
 	overflow: hidden;
+
 	background: {
 		repeat: no-repeat;
 		position: 50% 50%;
@@ -72,6 +75,7 @@ $font_root: 'assets/fonts/';
 		@include bg(#{$image});
 	}
 }
+
 @mixin default_width() {
 	margin: {
 		left: auto;
@@ -134,6 +138,7 @@ $font_root: 'assets/fonts/';
 }
 
 @mixin clearfix {
+
 	&:before,
 	&:after {
 		content: '';
@@ -355,4 +360,15 @@ $font_root: 'assets/fonts/';
 
 @function padding_clamp() {
 	@return clamp(var(--spacer-8), 2.5vw, var(--spacer-16));
+}
+
+@mixin sr_only() {
+	@include reset_min;
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	margin: -1px;
+	overflow: hidden;
+	clip: rect(0, 0, 0, 0);
+	white-space: nowrap;
 }

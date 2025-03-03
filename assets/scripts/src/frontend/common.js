@@ -41,3 +41,23 @@ document.addEventListener("DOMContentLoaded", function(event) {
 		}
 	}
 });
+/**
+ * is scrolled
+ */
+document.addEventListener("DOMContentLoaded", function(event) {
+	window.scrolled_page = function() {
+		if (
+			0 === window.pageYOffset
+			&& document.body.classList.contains( 'is-page-scrolled' )
+		) {
+			document.body.classList.remove( 'is-page-scrolled' );
+		} else {
+			document.body.classList.add( 'is-page-scrolled' );
+		}
+	};
+
+	window.addEventListener('scroll', function() {
+		window.scrolled_page();
+	});
+	window.scrolled_page();
+});
