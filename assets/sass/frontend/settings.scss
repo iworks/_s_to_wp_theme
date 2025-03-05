@@ -88,7 +88,7 @@
 	--font-size-14: 0.875em;
 	--font-size-12: 0.75em;
 
-	@media screen and (max-width: #{ $width_m -1px }) {
+	@media screen and (max-width: #{ $width_md -1px }) {
 		--font-size-40: 2em;
 		--font-size-32: 1.5em;
 		--font-size-28: 1.5em;

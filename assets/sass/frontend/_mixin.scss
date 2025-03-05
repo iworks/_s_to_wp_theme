@@ -6,16 +6,24 @@ $au: 1.618;
 
 $width: 100%;
 
-$width_xsx: 320px;
-$width_xs: 400px;
-$width_s: 600px;
-$width_m: 782px;
-$width_l: 901px;
-$width_x: 1200px;
-$width_xl: 1600px;
-$width_xxl: 1920px;
+$width_xs: 0;
 
-$default_width: $width_x;
+// Small devices (landscape phones, 576px and up)
+$width_sm: 576px;
+
+// Medium devices (tablets, 768px and up)
+$width_md: 768px;
+
+// Large devices (desktops, 992px and up)
+$width_lg: 992px;
+
+// X-Large devices (large desktops, 1200px and up)
+$width_xl: 1200px;
+
+// XX-Large devices (larger desktops, 1400px and up)
+$width_xx: 1400px;
+
+$default_width: $width_xl;
 
 /**
  * Images
@@ -88,7 +96,7 @@ $font_root: 'assets/fonts/';
 		max-width: 100%;
 	}
 
-	@media screen and (max-width: #{ $width_x + 1px }) {
+	@media screen and (max-width: #{ $width_xl + 1px }) {
 		margin: {
 			left: var(--spacer-8);
 			right: var(--spacer-8);

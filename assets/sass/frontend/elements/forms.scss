@@ -69,7 +69,7 @@ form {
 }
 
 .wp-block-file {
-	@media screen and (max-width: #{ $width_s - 1px }) {
+	@media screen and (max-width: #{ $width_sm - 1px }) {
 		padding-top: var(--spacer-10);
 
 		.wp-block-file__button {
@@ -78,7 +78,7 @@ form {
 		}
 	}
 
-	@media screen and (min-width: $width_s) {
+	@media screen and (min-width: $width_sm) {
 		text-align: right;
 	}
 
