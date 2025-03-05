@@ -26,6 +26,39 @@ $width_xx: 1400px;
 $default_width: $width_xl;
 
 /**
+ * Media Queries
+ */
+@mixin tablet {
+	@media only screen and (min-width: $width_md * 1px) {
+		@content;
+	}
+}
+
+@mixin large {
+	@media only screen and (min-width: $width_lg * 1px) {
+		@content;
+	}
+}
+
+@mixin desktop {
+	@media only screen and (min-width: $width_xl * 1px) {
+		@content;
+	}
+}
+
+@mixin media_min($breakpoint) {
+	@media screen and (min-width: $breakpoint) {
+		@content;
+	}
+}
+
+@mixin media_max($breakpoint) {
+	@media screen and (min-width: calc($breakpoint + 1px)) {
+		@content;
+	}
+}
+
+/**
  * Images
  */
 
