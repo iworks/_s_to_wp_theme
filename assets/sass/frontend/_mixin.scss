@@ -9,21 +9,21 @@ $width: 100%;
 $width_xs: 0;
 
 // Small devices (landscape phones, 576px and up)
-$width_sm: 576px;
+$width_sm: 576;
 
 // Medium devices (tablets, 768px and up)
-$width_md: 768px;
+$width_md: 768;
 
 // Large devices (desktops, 992px and up)
-$width_lg: 992px;
+$width_lg: 992;
 
 // X-Large devices (large desktops, 1200px and up)
-$width_xl: 1200px;
+$width_xl: 1200;
 
 // XX-Large devices (larger desktops, 1400px and up)
-$width_xx: 1400px;
+$width_xx: 1400;
 
-$default_width: $width_xl;
+$default_width: $width_xl * 1px;
 
 /**
  * Media Queries
@@ -100,6 +100,16 @@ $font_root: 'assets/fonts/';
 	@include image('backgrounds/#{$image}');
 }
 
+@mixin logo {
+	background: {
+		align: center;
+		color: none;
+		image: iurl('logo.svg');
+		repeat: no-repeat;
+		size: contain;
+	}
+}
+
 @mixin bbg($image ) {
 	display: block;
 
@@ -129,7 +139,7 @@ $font_root: 'assets/fonts/';
 		max-width: 100%;
 	}
 
-	@media screen and (max-width: #{ $width_xl + 1px }) {
+	@include media_max($width_md * 1px) {
 		margin: {
 			left: var(--spacer-8);
 			right: var(--spacer-8);
