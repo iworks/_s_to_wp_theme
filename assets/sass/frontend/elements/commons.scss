@@ -30,6 +30,28 @@ a {
 	}
 }
 
+.entry {
+	&-content {
+		@for $value from 1 through 12 {
+			$width: percentage($value/12);
+
+			.column-#{$value} {
+				width: $width;
+			}
+		}
+
+		$aligns: left, center, right;
+
+		@each $align in $aligns {
+			.align#{$align} {
+				text: {
+					align: $align;
+				}
+			}
+		}
+	}
+}
+
 /**
  * accessibility
  */

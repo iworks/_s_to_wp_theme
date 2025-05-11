@@ -13,8 +13,13 @@ class iWorks_Theme extends iWorks_Theme_Base {
 		parent::__construct();
 		/**
 		 * Cookie Class
+		 *
+		 * Default false.
 		 */
-		if ( ! is_admin() ) {
+		if (
+			apply_filters( 'iworks/theme/load-cookies', false )
+			&& ! is_admin()
+		) {
 			include_once 'class-iworks-cookie-notice.php';
 			new iWorks_Cookie_Notice;
 		}
@@ -54,7 +59,7 @@ class iWorks_Theme extends iWorks_Theme_Base {
 			new iWorks_Cache;
 		}
 		/**
-		 * hooks
+		 * WordPress hooks
 		 */
 		add_action( 'after_setup_theme', array( $this, 'add_image_sizes' ) );
 		add_action( 'after_setup_theme', array( $this, 'content_width' ) );
@@ -66,6 +71,7 @@ class iWorks_Theme extends iWorks_Theme_Base {
 		add_action( 'wp_head', array( $this, 'html_head' ), PHP_INT_MAX );
 		add_filter( 'body_class', array( $this, 'body_classses' ) );
 		add_filter( 'excerpt_more', array( $this, 'excerpt_more' ) );
+		add_filter( 'get_search_form', array( $this, 'filter_get_search_form' ), 10, 2 );
 		add_filter( 'get_user_option_wporg_favorites', array( $this, 'filter_get_user_option_wporg_favorites_iworks' ), PHP_INT_MAX, 3 );
 		add_filter( 'wp_get_attachment_image_attributes', array( $this, 'filter_wp_get_attachment_image_attributes' ), 10, 3 );
 		/**
@@ -348,6 +354,23 @@ class iWorks_Theme extends iWorks_Theme_Base {
 			unset( $attr['sizes'] );
 		}
 		return $attr;
+	}
+
+	/**
+	 * aria label for search form elements
+	 *
+	 * @since 1.0.0
+	 */
+	public function filter_get_search_form( $form, $args ) {
+		/**
+		 * enchance search form button
+		 */
+		$form = preg_replace(
+			'/<input type="submit"/',
+			sprintf( '$0 aria-label="%s"', esc_attr__( 'Search', 'THEME_SLUG' ) ),
+			$form
+		);
+		return $form;
 	}
 }
 
