@@ -59,10 +59,11 @@ class iWorks_Table_Of_Content {
 			$toc .= '<ol class="iworks-toc-list">';
 			for ( $i = 0; $i < count( $matches[0] ); $i++ ) {
 				$name = $this->get_anchor( $matches[2][ $i ] );
-				if ( preg_match( '/id=[\'"]([^"^\]+)[\'"]/', $matches[1][ $i ], $match_id ) ) {
+				if ( preg_match( '/id=[\'"]([^"^\']+)[\'"]/', $matches[1][ $i ], $match_id ) ) {
 					$name = $match_id[1];
 				} else {
-					$pattern     = sprintf( '/%s/', preg_replace( '/\//', '\\/', $matches[0][ $i ] ) );
+					$p           = preg_replace( '/\?/', '\\?', $matches[0][ $i ] );
+					$pattern     = sprintf( '/%s/', preg_replace( '/\//', '\\/', $p ) );
 					$replacement = preg_replace(
 						'/<' . $this->tag . '/',
 						sprintf(
