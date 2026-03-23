@@ -338,6 +338,9 @@ $font_root: 'assets/fonts/';
 	border-color: var(--button-border-color);
 	background-color: var(--button-background);
 	color: var(--button-color);
+	white-space: nowrap;
+	outline: none;
+	line-height: 1;
 
 	&:visited {
 		color: var(--button-color);
@@ -347,24 +350,36 @@ $font_root: 'assets/fonts/';
 		background-color: var(--button-background-hover);
 		border-color: var(--button-border-color-theme-hover);
 		color: var(--button-color);
+		color: var(--button-color-hover);
 	}
 
+	&:focus,
+	&:focus-visible,
+	&:focus-within {
+		background-color: var(--button-background-focus);
+		border-color: var(--button-border-color-focus);
+		color: var(--button-color-focus);
+
+		box-shadow: 0 0 0 5px var(--Brand-Colors-Grey-Lighten);
+	}
+
+	&:active {
+		background-color: var(--button-background-active);
+		border-color: var(--button-border-color-active);
+		color: var(--button-color-active);
+		box-shadow: 0 0 0 5px var(--Brand-Colors-Blue-20);
+	}
+
+	&:disabled {
+		background-color: var(--button-background-disabled);
+		border-color: var(--button-border-color-disabled);
+		color: var(--button-color-disabled);
+		cursor: not-allowed;
+	}
 }
 
-@mixin button_reverse() {
+@mixin button_primary() {
 	@include button_shape;
-	color: var(--button-background);
-	background-color: var(--button-color);
-	border-color: var(--button-background);
-
-	&:visited {
-		color: var(--button-background);
-	}
-
-	&:hover {
-		color: var(--button-background);
-		background-color: var(--button-reverse-background-hover);
-	}
 }
 
 @mixin button_before_image() {

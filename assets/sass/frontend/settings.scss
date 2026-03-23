@@ -40,13 +40,31 @@
 	--color-theme-twitter: #1da1f2;
 
 	/** BUTTONS */
-	--button-background: var(--color-theme-accent);
+	/* default */
+	--button-background: var(--color-theme-01);
+	--button-border-color: var(--color-theme-01);
+	--button-color: var(--color-theme-accent);
+
+	/* hover */
 	--button-background-hover: var(--color-theme-02);
-	--button-border-color: var(--color-theme-accent);
-	--button-border-color-theme-hover: var(--color-theme-02);
-	--button-color: var(--color-theme-white);
-	--button-color-theme-hover: var(--color-theme-white);
-	--button-reverse-background-hover: var(--color-theme-01);
+	--button-border-color-hover: var(--color-theme-02);
+	--button-color-hover: var(--color-theme-accent);
+
+	/* active */
+	--button-background-active: var(--color-theme-white);
+	--button-border-color-active: var(--color-theme-white);
+	--button-color-active: var(--color-theme-accent);
+
+	/* focus */
+	--button-background-focus: var(--color-theme-white);
+	--button-border-color-focus: var(--color-theme-white);
+	--button-color-focus: var(--color-theme-accent);
+
+
+	/* disabled */
+	--button-background-disabled: #eee;
+	--button-border-color-disabled: #eee;
+	--button-color-disabled: #333;
 
 	/** MARGIN & PADDING */
 	--padding-base: 16px;
