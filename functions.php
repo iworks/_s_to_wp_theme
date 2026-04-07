@@ -1,5 +1,10 @@
 <?php
 /**
+ * Turn off edit link - it disable edititing!!!
+ */
+//add_filter( 'get_edit_post_link', '__return_false' );
+
+/**
  * WP Cron
  *
  * use __return_true to turn it on
@@ -20,6 +25,11 @@ add_filter( 'iworks/theme/load-toc', '__return_false' );
  * Cache Support
  */
 add_filter( 'iworks/theme/load-cache', '__return_false' );
+
+/**
+ * Load testimonials
+ */
+add_filter( 'iworks/theme/load-post-type-testimonials', '__return_false' );
 
 /**
  * Load theme class

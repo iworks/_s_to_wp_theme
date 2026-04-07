@@ -62,7 +62,7 @@ abstract class iWorks_Theme_Base {
 	protected function __construct() {
 		$child_version = wp_get_theme();
 		$this->version = $child_version->Version;
-		$this->url     = get_stylesheet_directory_uri();
+		$this->url     = get_template_directory_uri();
 		$this->debug   = apply_filters( 'iworks_debug_theme', defined( 'WP_DEBUG' ) && WP_DEBUG );
 		/**
 		 * Settings Fields Array
@@ -478,7 +478,7 @@ abstract class iWorks_Theme_Base {
 					);
 					add_settings_field(
 						$field_data['field_name'],
-						isset( $field_data['label'] )? $field_data['label']:sprintf( __( 'THEME_NAME: %s', 'opi-science-portal' ), $field_name ),
+						isset( $field_data['label'] )? $field_data['label']:sprintf( __( 'THEME_NAME: %s', 'THEME_SLUG' ), $field_name ),
 						array( $this, 'add_fields_html' ),
 						$option_group,
 						$section,

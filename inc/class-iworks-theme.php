@@ -51,6 +51,23 @@ class iWorks_Theme extends iWorks_Theme_Base {
 			include_once 'class-iworks-toc.php';
 			new iWorks_Table_Of_Content;
 		}
+
+		/**
+		 * Post Type: Testimonials
+		 */
+		if ( apply_filters( 'iworks/theme/load-post-type-testimonials', false ) ) {
+			include_once 'post-types/class-iworks-theme-post-type-testimonials.php';
+			new iWorks_Theme_Post_Type_Testimonials();
+		}
+
+		/**
+		 * Post Type: Page
+		 */
+		if ( apply_filters( 'iworks/theme/load-post-type-page', false ) ) {
+			include_once 'post-types/class-iworks-theme-post-type-page.php';
+			new iWorks_Theme_Post_Type_Page();
+		}
+
 		/**
 		 * Function: Cache Support
 		 */
@@ -115,6 +132,11 @@ class iWorks_Theme extends iWorks_Theme_Base {
 		 * Plugin: Simple History
 		 */
 		add_filter( 'simple_history/db_purge_days_interval', array( $this, 'filter_simple_history_db_purge_days_interval' ) );
+		/**
+		 * remove default WordPress styling
+		 */
+		add_action( 'init', array( $this, 'remove_default_wordpress_styles' ), PHP_INT_MAX );
+		add_filter( 'should_load_separate_core_block_assets', '__return_false', 99 );
 	}
 
 	/**
@@ -371,6 +393,12 @@ class iWorks_Theme extends iWorks_Theme_Base {
 			$form
 		);
 		return $form;
+	}
+    
+    public function remove_default_wordpress_styles() {
+		remove_action( 'wp_enqueue_scripts', 'wp_enqueue_global_styles' );
+		remove_action( 'wp_footer', 'wp_enqueue_global_styles', 1 );
+		remove_action( 'wp_body_open', 'wp_global_styles_render_svg_filters' );
 	}
 }
 
