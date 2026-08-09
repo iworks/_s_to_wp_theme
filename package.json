@@ -27,11 +27,12 @@
 		"PHP": "8.0"
 	},
 	"tested": {
-		"WordPress": "6.7"
+		"WordPress": "7.1"
 	},
 	"license": "GPL-3.0",
 	"devDependencies": {
-		"grunt": "^0.4.5",
+		"@wordpress/eslint-plugin": "^14",
+		"@wordpress/stylelint-config": "^23",
 		"grunt-autoprefixer": "^0.7.2",
 		"grunt-clear": "^0.1.2",
 		"grunt-concat-css": "^0.3",
@@ -43,9 +44,9 @@
 		"grunt-contrib-cssmin": "^5.0.0",
 		"grunt-contrib-jshint": "^3.2.0",
 		"grunt-contrib-nodeunit": "^1.0.0",
-		"grunt-contrib-sass": "^2.0.0",
 		"grunt-contrib-uglify": "^4.0.1",
 		"grunt-contrib-watch": "^1.1.0",
+		"grunt-eslint": "^23",
 		"grunt-exec": "^0.4.6",
 		"grunt-git": "^1.1.1",
 		"grunt-jsvalidate": "^0.2.2",
@@ -54,20 +55,18 @@
 		"grunt-phpunit": "^0.3.5",
 		"grunt-po2mo": "^0",
 		"grunt-replace": "^2.0.2",
+		"grunt-sass": "3.1.0",
 		"grunt-wp-i18n": "^1.0.0",
 		"load-grunt-tasks": "^5.1.0",
-		"prettier": "^1.12.1",
+		"prettier": "^2",
 		"prettier-eslint": "^15.0.1",
 		"prettier-stylelint": "^0.4.2",
-		"stylelint": "^9.5.0",
-		"stylelint-config-wordpress": "^13.0.0",
-		"stylelint-order": "^6.0.3",
-		"@wordpress/eslint-plugin": "^14",
-		"grunt-eslint": "^23",
+		"sass": "^1.77.0",
+		"stylelint": "^16.0.1",
+		"stylelint-order": "^6.0.4",
 		"time-grunt": "^0.2.3"
 	},
-	"devDependenciesOff": {
-	},
+	"devDependenciesOff": {},
 	"browserslist": [
 		"> 1%",
 		"ie >= 11",

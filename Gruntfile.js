@@ -12,6 +12,9 @@
 
 module.exports = function(grunt) {
 
+	// 1. Declaration of the SASS variable inside the main Grunt function:
+	const sass = require('sass');
+
 	// Show elapsed time at the end.
 	require('time-grunt')(grunt);
 
@@ -243,12 +246,11 @@ module.exports = function(grunt) {
 
 		// CSS - Compile a .scss file into a normal .css file.
 		sass: {
-			all: {
-				options: {
-					'sourcemap=auto': true, // 'sourcemap': 'none' does not work...
-					unixNewlines: true,
-					style: 'expanded'
-				},
+			options: {
+				implementation: sass, // Dart Sass
+				sourceMap: true
+			},
+			dist: {
 				files: conf.css_files_compile
 			}
 		},
