@@ -1,0 +1,85 @@
+/**
+ * FAQ Styles
+ *
+ * Styles for FAQ functionality including accordion behavior,
+ * toggle buttons, and responsive layouts.
+ */
+
+.iworks-faq {
+	&-item {
+
+		&-dt,
+		&-dd {
+			background-color: var(--Base-Colors-White);
+			padding: var(--Numbers-Spaces-Space-xl);
+			margin: var(--Numbers-Spaces-Space-md) 0;
+			border: 1px solid var(--color-theme-accent-light-2);
+		}
+
+		&-dt {
+			color: var(--Text-Colors-950);
+			font-size: var(--Numbers-Font-sizes-Heading-18);
+			font-style: normal;
+			font-weight: 500;
+			line-height: 32px;
+			/* 177.778% */
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			border-top-left-radius: var(--Numbers-Border-radius-Border-radius-20);
+			border-top-right-radius: var(--Numbers-Border-radius-Border-radius-20);
+			margin-bottom: 0;
+
+			&:has(.iworks-faq-list-toggle-button[aria-expanded="true"]) {
+				border-bottom: none;
+			}
+
+			&:has(.iworks-faq-list-toggle-button[aria-expanded="false"]) {
+				border-radius: var(--Numbers-Border-radius-Border-radius-20);
+			}
+		}
+
+		&-dd {
+			box-shadow: 2px 21px 28.3px -23px var(--color-theme-accent-20);
+			border-bottom-left-radius: var(--Numbers-Border-radius-Border-radius-20);
+			border-bottom-right-radius: var(--Numbers-Border-radius-Border-radius-20);
+			border-top: none;
+			padding-top: 0;
+			margin-top: 0;
+
+			:first-child {
+				margin-top: 0;
+			}
+
+			:last-child {
+				margin-bottom: 0;
+			}
+		}
+	}
+
+	&-list {
+		&-toggle {
+			&-button {
+
+				@include reset;
+				display: block;
+				width: 24px;
+				height: 24px;
+
+				&:hover {
+					cursor: pointer;
+				}
+
+				background: {
+					image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M6 12H18" stroke="%232955F3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>');
+					repeat: no-repeat;
+					position: center;
+				}
+
+				&[aria-expanded=false] {
+					background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M6 12H12M12 12H18M12 12V18M12 12V6" stroke="%232955F3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>');
+				}
+			}
+		}
+	}
+}

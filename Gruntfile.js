@@ -403,6 +403,8 @@ module.exports = function(grunt) {
 				src: [
 					'./assets/css/**css',
 					'./assets/css/**map',
+					'./assets/css/frontend/**css',
+					'./assets/css/frontend/**map',
 					'./assets/css/admin/**css',
 					'./assets/css/admin/**map',
 					'./release',

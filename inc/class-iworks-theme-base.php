@@ -308,7 +308,7 @@ abstract class iWorks_Theme_Base {
 	/**
 	 * get file content
 	 *
-	 * @since 2.0.0
+	 * @since 1.0.0
 	 *
 	 * @param string $path Path to file.
 	 */
@@ -344,7 +344,7 @@ abstract class iWorks_Theme_Base {
 	/**
 	 * Save meta Description;
 	 *
-	 * @since 2.0.0
+	 * @since 1.0.0
 	 *
 	 * @param integer $post_id Post ID.
 	 */

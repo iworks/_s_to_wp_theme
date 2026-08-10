@@ -1,4 +1,4 @@
-@import '_mixin.scss';
+@use "mixin" as *;
 
 @media screen {
 	.printonly {

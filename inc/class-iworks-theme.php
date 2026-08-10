@@ -53,22 +53,6 @@ class iWorks_Theme extends iWorks_Theme_Base {
 		}
 
 		/**
-		 * Post Type: Testimonials
-		 */
-		if ( apply_filters( 'iworks/theme/load-post-type-testimonials', false ) ) {
-			include_once 'post-types/class-iworks-theme-post-type-testimonials.php';
-			new iWorks_Theme_Post_Type_Testimonials();
-		}
-
-		/**
-		 * Post Type: Page
-		 */
-		if ( apply_filters( 'iworks/theme/load-post-type-page', false ) ) {
-			include_once 'post-types/class-iworks-theme-post-type-page.php';
-			new iWorks_Theme_Post_Type_Page();
-		}
-
-		/**
 		 * Function: Cache Support
 		 */
 		if ( apply_filters( 'iworks/theme/load-cache', false ) ) {
@@ -369,7 +353,7 @@ class iWorks_Theme extends iWorks_Theme_Base {
 	/**
 	 * remove "sizes" attribute
 	 *
-	 * @since WP 6.7
+	 * @since 1.0.0
 	 */
 	public function filter_wp_get_attachment_image_attributes( $attr, $attachment, $size ) {
 		if ( is_array( $attr ) && isset( $attr['sizes'] ) ) {

@@ -27,11 +27,6 @@ add_filter( 'iworks/theme/load-toc', '__return_false' );
 add_filter( 'iworks/theme/load-cache', '__return_false' );
 
 /**
- * Load testimonials
- */
-add_filter( 'iworks/theme/load-post-type-testimonials', '__return_false' );
-
-/**
  * Load theme class
  */
 require_once get_template_directory() . '/inc/class-iworks-theme.php';

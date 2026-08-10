@@ -4,7 +4,7 @@
  *
  * @package WordPress
  * @subpackage Twenty_Seventeen
- * @since 1.0
+ * @since 1.0.0
  */
 
 /**
@@ -213,7 +213,7 @@ function THEME_SLUG_social_links_icons() {
 	/**
 	 * Filter Twenty Seventeen social links icons.
 	 *
-	 * @since Twenty Seventeen 1.0
+	 * @since 1.0.0
 	 *
 	 * @param array $social_links_icons Array of social links icons.
 	 */

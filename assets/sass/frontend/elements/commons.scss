@@ -1,7 +1,9 @@
+@use "../mixin" as *;
+@use "sass:math";
+
 html {
-	min: {
-		width: $width_xs;
-	}
+	min-width: $width_xs;
+	scroll-behavior: smooth;
 
 	.otgs-development-site-front-end {
 		display: none;
@@ -9,9 +11,9 @@ html {
 }
 
 body {
-	min: {
-		width: $width_xs;
-	}
+	min-width: $width_xs;
+	background-color: var(--color-theme-background-body);
+	color: var(--color-theme-text);
 }
 
 a {
@@ -33,7 +35,7 @@ a {
 .entry {
 	&-content {
 		@for $value from 1 through 12 {
-			$width: percentage($value/12);
+			$width: math.percentage(math.div($value, 12));
 
 			.column-#{$value} {
 				width: $width;

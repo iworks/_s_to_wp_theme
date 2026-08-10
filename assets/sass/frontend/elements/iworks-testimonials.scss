@@ -1,0 +1,39 @@
+.iworks-testimonials-container {
+	&.iworks-testimonials-slider {
+		.iworks-testimonial {
+			&s {
+				overflow: hidden;
+				@include reset_ul;
+
+				.hide {
+					display: none;
+				}
+
+				&-nav {
+					@include reset_ul;
+					display: flex;
+					justify-content: center;
+					align-items: center;
+					gap: var(--Numbers-Spaces-Space-lg);
+					margin-top: var(--Numbers-Spaces-Space-xl);
+
+					a {
+						display: block;
+						width: 8px;
+						height: 8px;
+						border-radius: 50%;
+						background-color: var(--colot-theme-fill-02);
+					}
+
+					.current {
+						a {
+							width: 14px;
+							height: 14px;
+							background-color: var(--color-theme-accent);
+						}
+					}
+				}
+			}
+		}
+	}
+}

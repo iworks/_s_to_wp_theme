@@ -1,24 +1,13 @@
-@import '_mixin';
-
-html {
-	scroll-behavior: smooth;
-}
-
-body {
-	background-color: var(--color-theme-background-body);
-	color: var(--color-theme-text);
-}
-
-
-@import 'elements/header';
-@import 'elements/layout';
-@import 'elements/forms';
-@import 'elements/home';
-@import 'elements/blog';
-@import 'elements/single-page';
-@import 'elements/single-post';
-@import 'elements/cookie-notice';
-@import 'elements/lds-spinner';
-@import 'elements/footer';
-@import 'elements/commons';
-@import 'elements/wp-blocks';
+@use "mixin" as *;
+@use 'elements/header';
+@use 'elements/layout';
+@use 'elements/forms';
+@use 'elements/home';
+@use 'elements/blog';
+@use 'elements/single-page';
+@use 'elements/single-post';
+@use 'elements/cookie-notice';
+@use 'elements/lds-spinner';
+@use 'elements/footer';
+@use 'elements/commons';
+@use 'elements/wp-blocks';

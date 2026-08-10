@@ -49,8 +49,16 @@ rm -rf ${THEME_SLUG}/bin
 
 cd ${THEME}
 
+#
+# THEME_NAME
+#
 perl -pi -e "s/THEME_SLUG/${THEME_SLUG}/g" $(grep -rl THEME_SLUG)
 perl -pi -e "s/THEME_NAME/${THEME_NAME}/g" $(grep -rl THEME_NAME)
+
+#
+# Fix THEMENAME in Gruntfile.js
+#
+perl -pi -e "s/THEMENAME/THEME_NAME/g" Gruntfile.js
 
 STYLE=assets/sass/frontend/_s/style.scss
 
