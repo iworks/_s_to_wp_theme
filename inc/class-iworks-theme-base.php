@@ -57,73 +57,36 @@ abstract class iWorks_Theme_Base {
 	 *
 	 * @since 1.0.0
 	 */
-	private array $settings_fields;
+	private array $settings_fields = array();
+
+	/**
+	 * Config file path
+	 *
+	 * @since 1.0.0
+	 *
+	 * @var string
+	 */
+	private string $config_file_path = '/etc/config.php';
 
 	protected function __construct() {
 		$child_version = wp_get_theme();
 		$this->version = $child_version->Version;
 		$this->url     = get_template_directory_uri();
 		$this->debug   = apply_filters( 'iworks_debug_theme', defined( 'WP_DEBUG' ) && WP_DEBUG );
+	}
+
+	/**
+	 * Load config from file
+	 *
+	 * @since 1.0.0
+	 */
+	private function load_config() {
 		/**
 		 * Settings Fields Array
 		 */
 		$this->settings_fields = apply_filters(
 			'iworks/THEME_SLUG/settings-fields/array',
-			array(
-				'general' => array(
-					'default' => array (
-						'section' => 'default',
-						'fields' => array(
-							'version' => array(
-								'type' => 'string', // Valid values are 'string', 'boolean', 'integer', 'number', 'array', and 'object'.
-								'default' => '0.0.0.0',
-								'label' => esc_html__( 'Version', 'THEME_SLUG' ),
-							),
-							'foo' => array(
-								'type' => 'text',
-								'label' => esc_html__( 'Name', 'THEME_SLUG' ),
-							),
-						),
-					),
-				),
-				'writing' => array(
-					'default' => array(
-						'fields'=>array(),
-					),
-					'post_via_email' => array(
-						'fields'=>array(),
-					),
-				),
-				'reading' => array(
-					'default' => array(
-						'fields'=>array(),
-					),
-				),
-				'discussion' => array(
-					'default' => array(
-						'fields'=>array(),
-					),
-					'avatars' => array(
-						'fields'=>array(),
-					),
-				),
-				'media' => array(
-					'default' => array(
-						'fields'=>array(),
-					),
-					'embeds' => array(
-						'fields'=>array(),
-					),
-					'uploads' => array(
-						'fields'=>array(),
-					),
-				),
-				'permalink' => array(
-					'optional' => array(
-						'fields'=>array(),
-					),
-				),
-			)
+			require_once dirname( __DIR__, 1 ) . $this->config_file_path,
 		);
 	}
 
@@ -131,6 +94,9 @@ abstract class iWorks_Theme_Base {
 	 * Get settings_fields because it is private
 	 */
 	protected function get_settings_fields() {
+		if ( empty( $this->settings_fields ) ) {
+			$this->load_config();
+		}
 		return $this->settings_fields;
 	}
 
@@ -295,7 +261,7 @@ abstract class iWorks_Theme_Base {
 				'unknown',
 			);
 		}
-		return         array(
+		return array(
 			'id'      => $attachment_ID,
 			'caption' => wp_get_attachment_caption( $attachment_ID ),
 			'url'     => wp_get_attachment_url( $attachment_ID ),
@@ -439,18 +405,19 @@ abstract class iWorks_Theme_Base {
 			sprintf(
 				'%s_%s_%s',
 				$this->option_name,
-				substr( hash( 'crc32', $group.$section), 0, 4 ),
-				$field_name),
+				substr( hash( 'crc32', $group . $section ), 0, 4 ),
+				$field_name
+			),
 			0,
 			20
 		);
 	}
 
 	public function add_fields_html( $args ) {
-		$value = get_option( $args['field_name'], isset( $args['default'] )? $args['default']:false );
+		$value = get_option( $args['field_name'], isset( $args['default'] ) ? $args['default'] : false );
 		printf(
 			'<input type="%s" value="%s" name="%s" class="regular-text code" />',
-			esc_attr( isset( $args['type'] )? $args['type']:'text' ),
+			esc_attr( isset( $args['type'] ) ? $args['type'] : 'text' ),
 			esc_attr( $value ),
 			esc_attr( $args['field_name'] )
 		);
@@ -465,11 +432,11 @@ abstract class iWorks_Theme_Base {
 	 * Add settings Fields
 	 */
 	public function add_fields() {
-		foreach( $this->get_settings_fields() as $option_group => $option_group_data ) {
-			foreach( $option_group_data as $section => $data ) {
-				foreach( $data['fields'] as $field_name => $field_data  ) {
-					$field_data['page'] = $option_group;
-					$field_data['section'] = $section;
+		foreach ( $this->get_settings_fields() as $option_group => $option_group_data ) {
+			foreach ( $option_group_data as $section => $data ) {
+				foreach ( $data['fields'] as $field_name => $field_data ) {
+					$field_data['page']       = $option_group;
+					$field_data['section']    = $section;
 					$field_data['field_name'] = $this->get_settings_field_name( $option_group, $section, $field_name );
 					register_setting(
 						$option_group,
@@ -478,7 +445,7 @@ abstract class iWorks_Theme_Base {
 					);
 					add_settings_field(
 						$field_data['field_name'],
-						isset( $field_data['label'] )? $field_data['label']:sprintf( __( 'THEME_NAME: %s', 'THEME_SLUG' ), $field_name ),
+						isset( $field_data['label'] ) ? $field_data['label'] : sprintf( __( 'THEME_NAME: %s', 'THEME_SLUG' ), $field_name ),
 						array( $this, 'add_fields_html' ),
 						$option_group,
 						$section,
@@ -487,6 +454,21 @@ abstract class iWorks_Theme_Base {
 				}
 			}
 		}
+	}
+
+	protected function get_all_settings() {
+		$settings = array();
+		foreach ( $this->get_settings_fields() as $option_group => $option_group_data ) {
+			foreach ( $option_group_data as $section => $data ) {
+				foreach ( $data['fields'] as $field_name => $field_data ) {
+					$field_data['page']                    = $option_group;
+					$field_data['section']                 = $section;
+					$field_data['field_name']              = $this->get_settings_field_name( $option_group, $section, $field_name );
+					$settings[ $field_data['field_name'] ] = get_option( $field_data['field_name'], isset( $field_data['default'] ) ? $field_data['default'] : false );
+				}
+			}
+		}
+		return $settings;
 	}
 }
 

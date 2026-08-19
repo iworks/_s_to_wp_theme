@@ -1,3 +1,5 @@
+@use "../mixin" as *;
+
 #iworks-cookie-notice {
 	background-color: var(--color-theme-white);
 	color: var(--color-theme-black);

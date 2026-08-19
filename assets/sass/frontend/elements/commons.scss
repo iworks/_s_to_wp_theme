@@ -2,7 +2,7 @@
 @use "sass:math";
 
 html {
-	min-width: $width_xs;
+	min-width: var(--width-xs);
 	scroll-behavior: smooth;
 
 	.otgs-development-site-front-end {
@@ -11,7 +11,7 @@ html {
 }
 
 body {
-	min-width: $width_xs;
+	min-width: var(--width-xs);
 	background-color: var(--color-theme-background-body);
 	color: var(--color-theme-text);
 }

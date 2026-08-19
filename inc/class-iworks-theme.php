@@ -21,35 +21,35 @@ class iWorks_Theme extends iWorks_Theme_Base {
 			&& ! is_admin()
 		) {
 			include_once 'class-iworks-cookie-notice.php';
-			new iWorks_Cookie_Notice;
+			new iWorks_Cookie_Notice();
 		}
 		/**
 		 * Integration: Google Analitics
 		 */
 		if ( apply_filters( 'iworks/theme/load-integration-google-analytics', false ) ) {
 			include_once 'integrations/services/class-iworks-service-google-analytics.php';
-			new iWorks_Integration_Service_Google_Analitics;
+			new iWorks_Integration_Service_Google_Analitics();
 		}
 		/**
 		 * WP Cron
 		 */
 		if ( apply_filters( 'iworks/theme/load-wp-cron', false ) ) {
 			include_once 'class-iworks-theme-wp-cron.php';
-			new iWorks_Theme_WP_Cron;
+			new iWorks_Theme_WP_Cron();
 		}
 		/**
 		 * Function: Cookies
 		 */
 		if ( apply_filters( 'iworks/theme/load-cookies', false ) ) {
 			include_once 'class-iworks-cookie-notice.php';
-			new iWorks_Cookie_Notice;
+			new iWorks_Cookie_Notice();
 		}
 		/**
 		 * Function: TOC
 		 */
 		if ( apply_filters( 'iworks/theme/load-toc', false ) ) {
 			include_once 'class-iworks-toc.php';
-			new iWorks_Table_Of_Content;
+			new iWorks_Table_Of_Content();
 		}
 
 		/**
@@ -57,7 +57,7 @@ class iWorks_Theme extends iWorks_Theme_Base {
 		 */
 		if ( apply_filters( 'iworks/theme/load-cache', false ) ) {
 			include_once 'class-iworks-cache.php';
-			new iWorks_Cache;
+			new iWorks_Cache();
 		}
 		/**
 		 * WordPress hooks
@@ -66,6 +66,7 @@ class iWorks_Theme extends iWorks_Theme_Base {
 		add_action( 'after_setup_theme', array( $this, 'content_width' ) );
 		add_action( 'after_setup_theme', array( $this, 'load_theme_textdomain' ) );
 		add_action( 'after_setup_theme', array( $this, 'setup' ) );
+		add_action( 'after_setup_theme', array( $this, 'custom_logo_setup' ) );
 		add_action( 'init', array( $this, 'register_scripts' ) );
 		add_action( 'plugins_loaded', array( $this, 'set_iworks_cache_keys' ) );
 		add_action( 'widgets_init', array( $this, 'register_sidebars' ) );
@@ -121,6 +122,10 @@ class iWorks_Theme extends iWorks_Theme_Base {
 		 */
 		add_action( 'init', array( $this, 'remove_default_wordpress_styles' ), PHP_INT_MAX );
 		add_filter( 'should_load_separate_core_block_assets', '__return_false', 99 );
+		/**
+		 * THEME_NAME
+		 */
+		add_filter( 'iworks/theme/settings', array( $this, 'filter_iworks_theme_settings_fields_array' ) );
 	}
 
 	/**
@@ -280,8 +285,8 @@ class iWorks_Theme extends iWorks_Theme_Base {
 		add_theme_support( 'post-thumbnails' );
 		register_nav_menus(
 			array(
-				'primary' => esc_html__( 'Primary', 'THEME_SLUG' ),
-				'footer'  => esc_html__( 'Footer', 'THEME_SLUG' ),
+				'menu-1' => esc_html__( 'Primary', 'THEME_SLUG' ),
+				'footer' => esc_html__( 'Footer', 'THEME_SLUG' ),
 			)
 		);
 		add_theme_support(
@@ -378,11 +383,48 @@ class iWorks_Theme extends iWorks_Theme_Base {
 		);
 		return $form;
 	}
-    
-    public function remove_default_wordpress_styles() {
+
+	public function remove_default_wordpress_styles() {
 		remove_action( 'wp_enqueue_scripts', 'wp_enqueue_global_styles' );
 		remove_action( 'wp_footer', 'wp_enqueue_global_styles', 1 );
 		remove_action( 'wp_body_open', 'wp_global_styles_render_svg_filters' );
 	}
-}
+	/**
+	 * Custom logo setup
+	 *
+	 * @since 1.0.0
+	 */
+	public function custom_logo_setup() {
+		$defaults = apply_filters(
+			'iworks/theme/custom-logo',
+			array(
+				'height'               => 100,
+				'width'                => 400,
+				'flex-height'          => true,
+				'flex-width'           => true,
+				'header-text'          => array( 'site-title', 'site-description' ),
+				'unlink-homepage-logo' => true,
+			)
+		);
+		add_theme_support( 'custom-logo', $defaults );
+	}
 
+	/**
+	 * Register theme settings
+	 *
+	 * @since 1.0.0
+	 */
+	public function action_admin_init_register_settings() {
+		$this->register_theme_settings();
+	}
+
+	/**
+	 * Filter settings fields array
+	 *
+	 * @since 1.0.0
+	 */
+	public function filter_iworks_theme_settings_fields_array( $settings_fields ) {
+		return $this->get_all_settings();
+	}
+}
+}

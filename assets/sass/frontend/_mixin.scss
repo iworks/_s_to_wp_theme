@@ -6,7 +6,7 @@ $au: 1.618;
 
 $width: 100%;
 
-$width_xs: 0;
+$width_xs: 320;
 
 // Small devices (landscape phones, 576px and up)
 $width_sm: 576;
@@ -410,6 +410,22 @@ $font_root: 'assets/fonts/';
 
 @mixin button_primary() {
 	@include button_shape;
+}
+
+@mixin button_reverse() {
+	@include button_shape;
+	color: var(--button-background);
+	background-color: var(--button-color);
+	border-color: var(--button-background);
+
+	&:visited {
+		color: var(--button-background);
+	}
+
+	&:hover {
+		color: var(--button-background);
+		background-color: var(--button-reverse-background-hover);
+	}
 }
 
 @mixin button_before_image() {
